@@ -12,7 +12,6 @@ namespace EEGfront
         {           
             this.WindowState = System.Windows.WindowState.Maximized;
             InitializeComponent();
-      
         }                                       
         private void Wave_KeyDown(object sender, KeyEventArgs e)
         {
