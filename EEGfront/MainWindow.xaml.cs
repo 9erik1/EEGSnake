@@ -22,52 +22,129 @@ namespace EEGfront
         private GLControl bot;
         private GLControl game;
 
-        Thread draw;
+        Thread drawL;
+        Thread drawR;
+        Thread drawT;
+        Thread drawB;
 
-        private bool white = true;
-
-        private bool IsDraw = true;
+        private bool lTog = true;
+        private bool rTog = true;
+        private bool tTog = true;
+        private bool bTog = true;
 
         public MainWindow()
         {
             this.WindowState = System.Windows.WindowState.Maximized;
             InitializeComponent();
-            draw = new Thread(new ThreadStart(Draw));
-            draw.Start();
+            drawL = new Thread(new ThreadStart(DrawL));
+            drawL.Start();
+            drawR = new Thread(new ThreadStart(DrawR));
+            drawR.Start();
+            drawT = new Thread(new ThreadStart(DrawT));
+            drawT.Start();
+            drawB = new Thread(new ThreadStart(DrawB));
+            drawB.Start();
         }
 
-        private async void Draw()
+        private async void DrawL()
         {
-            while (IsDraw)
+            while (true)
             {
-                await Task.Delay(2000);
-                Console.WriteLine("Update"+ this.VisualChildrenCount);
+                await Task.Delay(20);
                 await Dispatcher.BeginInvoke((Action) (() =>
                 {
-                    var x = (GLControl)Lefty.Child;
-                    Console.WriteLine("Update" + this.VisualChildrenCount);
-                    x.MakeCurrent();
+                    GLControl l = (GLControl)Lefty.Child;
+                    l.MakeCurrent();
                     GL.Clear(ClearBufferMask.ColorBufferBit);
-
-                    if (white)
+                    if (lTog)
                     {
-                        GL.ClearColor(Color.Wheat);
-                        white = false;
+                        GL.ClearColor(Color.White);
+                        lTog = false;
                     }
                     else
                     {
                         GL.ClearColor(Color.Black);
-                        white = true;
+                        lTog = true;
                     }
-                    GL.Flush();
-                    x.SwapBuffers();
+                    l.SwapBuffers();
                 }));
-
-
-
             }
         }
 
+        private async void DrawR()
+        {
+            while (true)
+            {
+                await Task.Delay(40);
+                await Dispatcher.BeginInvoke((Action)(() =>
+                {
+                    GLControl r = (GLControl)Rightey.Child;
+                    r.MakeCurrent();
+                    GL.Clear(ClearBufferMask.ColorBufferBit);
+                    if (rTog)
+                    {
+                        GL.ClearColor(Color.White);
+                        rTog = false;
+                    }
+                    else
+                    {
+                        GL.ClearColor(Color.Black);
+                        rTog = true;
+                    }
+                    r.SwapBuffers();
+                }));
+            }
+        }
+
+        private async void DrawT()
+        {
+            while (true)
+            {
+                await Task.Delay(80);
+                await Dispatcher.BeginInvoke((Action)(() =>
+                {
+                    GLControl t = (GLControl)Heven.Child;
+                    t.MakeCurrent();
+                    GL.Clear(ClearBufferMask.ColorBufferBit);
+                    if (tTog)
+                    {
+                        GL.ClearColor(Color.White);
+                        tTog = false;
+                    }
+                    else
+                    {
+                        GL.ClearColor(Color.Black);
+                        tTog = true;
+                    }
+                   t.SwapBuffers();
+                }));
+            }
+        }
+
+        private async void DrawB()
+        {
+            while (true)
+            {
+                await Task.Delay(160);
+                await Dispatcher.BeginInvoke((Action)(() =>
+                {
+                    GLControl b = (GLControl)Hell.Child;
+                    b.MakeCurrent();
+                    GL.Clear(ClearBufferMask.ColorBufferBit);
+                    if (bTog)
+                    {
+                        GL.ClearColor(Color.White);
+                        bTog = false;
+                    }
+                    else
+                    {
+                        GL.ClearColor(Color.Black);
+                        bTog = true;
+                    }
+                    b.SwapBuffers();
+                }));
+            }
+        }
 
         private void GLviewLeft(object sender, EventArgs e)
         {
@@ -108,8 +185,8 @@ namespace EEGfront
             float fov = 1.0f;
             float near_distance = 1.0f;
             float far_distance = 1000.0f;
-            OpenTK.Matrix4 perspective_matrix =
-            OpenTK.Matrix4.CreatePerspectiveFieldOfView(fov, (float)aspect_ratio, near_distance, far_distance);
+            Matrix4 perspective_matrix =
+            Matrix4.CreatePerspectiveFieldOfView(fov, (float)aspect_ratio, near_distance, far_distance);
             GL.MatrixMode(MatrixMode.Projection);
             GL.LoadMatrix(ref perspective_matrix);
         }
@@ -121,30 +198,8 @@ namespace EEGfront
             GL.Clear(ClearBufferMask.ColorBufferBit);
             GL.ClearColor(Color.Red);
             GL.MatrixMode(MatrixMode.Projection);
-            GL.LoadIdentity();
-            GL.Ortho(-1.0, 1.0, -1.0, 1.0, 0.0, 4.0);
-            GL.Begin(BeginMode.Triangles);
-            GL.Color3(Color.MidnightBlue);
-            GL.Vertex2(-1.0f, 1.0f);
-            GL.Color3(Color.SpringGreen);
-            GL.Vertex2(0.0f, -1.0f);
-            GL.Color3(Color.Ivory);
-            GL.Vertex2(1.0f, 1.0f);
-            GL.End();
             GL.Flush();
             x.SwapBuffers();
         }
     }
 }
-
-
-//GL.LoadIdentity();
-//            GL.Ortho(-1.0, 1.0, -1.0, 1.0, 0.0, 4.0);
-//            GL.Begin(BeginMode.Triangles);
-//            GL.Color3(Color.MidnightBlue);
-//            GL.Vertex2(-1.0f, 1.0f);
-//            GL.Color3(Color.SpringGreen);
-//            GL.Vertex2(0.0f, -1.0f);
-//            GL.Color3(Color.Ivory);
-//            GL.Vertex2(1.0f, 1.0f);
-//            GL.End();
