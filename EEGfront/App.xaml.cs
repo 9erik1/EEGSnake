@@ -17,6 +17,7 @@ namespace EEGfront
 
             var pca = new MainWindow();
             pca.DataContext = new MainViewModel();
+        
             pca.Show();
             pca.Closing += Pca_Closed;
 

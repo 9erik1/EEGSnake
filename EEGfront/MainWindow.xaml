@@ -2,11 +2,15 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="720" Width="1280">
-    <Grid KeyDown="Wave_KeyDown">
-        <WindowsFormsHost Name="GLWindow"  Panel.ZIndex="50"  ></WindowsFormsHost>
+    <Grid >
 
+
+        <WindowsFormsHost Initialized="GLviewLeft" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,244,0,245"  ></WindowsFormsHost>
+        <WindowsFormsHost Initialized="GLviewRight" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,244,10,245"  ></WindowsFormsHost>
+        <WindowsFormsHost Initialized="GLviewTop" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="536,10,536,0"  ></WindowsFormsHost>
+        <WindowsFormsHost Initialized="GLviewBot" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="536,0,536,10"  ></WindowsFormsHost>
         <ComboBox IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding MenuItem}" SelectedValue="{Binding CurrentOption}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120">
-            
+
         </ComboBox>
 
 

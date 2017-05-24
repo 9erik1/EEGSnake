@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Windows.Input;
 using System;
+using OpenTK;
 
 namespace EEGfront
 {
@@ -15,7 +16,7 @@ namespace EEGfront
         Thread draw;
 
         private EmotiveAquisition stream;
-
+        private GLControl graphics;
 
 
         public MainViewModel()
