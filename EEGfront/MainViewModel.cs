@@ -7,11 +7,20 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using System;
 using OpenTK;
+using System.Windows;
 
 namespace EEGfront
 {
     public class MainViewModel : INotifyPropertyChanged
     {
+        public enum AppState
+        {
+            Game,
+            Train,
+            Stats
+        }
+
+
         private bool IsDraw = true;
         Thread draw;
 
@@ -23,14 +32,17 @@ namespace EEGfront
         {
             //stream = EmotiveAquisition.Instance;
 
-            menuItems = new ObservableCollection<string>();
-            menuItems.Add("Game");
-            menuItems.Add("Training");
-            menuItems.Add("Data");
+            menuItems = new ObservableCollection<AppState>();
+            menuItems.Add(AppState.Game);
+            menuItems.Add(AppState.Train);
+            menuItems.Add(AppState.Stats);
 
-            currentOption = "Game";
+            currentOption = AppState.Game;
+            CurrentOptionChange(currentOption);
 
             MenuItem.CollectionChanged += MenuItem_CollectionChanged;
+
+            gameToggle = Visibility.Visible;
 
             //OptionChanged = new RelayCommand
 
@@ -58,10 +70,23 @@ namespace EEGfront
             }
         }
 
-        private void CurrentOptionChange(string s)
+        private void CurrentOptionChange(AppState s)
         {
-            Console.WriteLine(s);
+            Console.WriteLine("Warning! App State Change: " + s);
+            if (s == AppState.Train)
+            {
+                GameToggle = Visibility.Hidden;
+                TrainToggle = Visibility.Visible;
+            }
+            if (s == AppState.Game)
+            {
+                GameToggle = Visibility.Visible;
+                TrainToggle = Visibility.Hidden;
+            }
         }
+
+
+
 
         public string[] Title { get; private set; }
         //private ICommand optionChanged;
@@ -78,8 +103,35 @@ namespace EEGfront
         //        return optionChanged;
         //    }
         //}
-        private string currentOption;
-        public string CurrentOption
+        private Visibility trainToggle;
+        public Visibility TrainToggle
+        {
+            get { return trainToggle; }
+            set
+            {
+                if (value != trainToggle)
+                {
+                    trainToggle = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+        private Visibility gameToggle;
+        public Visibility GameToggle
+        {
+            get { return gameToggle; }
+            set
+            {
+                if (value != gameToggle)
+                {
+                    gameToggle = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        private AppState currentOption;
+        public AppState CurrentOption
         {
             get { return currentOption; }
             set
@@ -92,12 +144,12 @@ namespace EEGfront
                 }
             }
         }
-        private IList<string> menuItems;
-        public ObservableCollection<string> MenuItem
+        private IList<AppState> menuItems;
+        public ObservableCollection<AppState> MenuItem
         {
             get
             {
-                return (ObservableCollection<string>)menuItems;
+                return (ObservableCollection<AppState>)menuItems;
             }
             set
             {

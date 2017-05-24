@@ -3,10 +3,11 @@ using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using System;
 using System.Drawing;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Forms.Integration;
-using System.Windows.Input;
 
 namespace EEGfront
 {
@@ -19,38 +20,86 @@ namespace EEGfront
         private GLControl right;
         private GLControl top;
         private GLControl bot;
+        private GLControl game;
+
+        Thread draw;
+
+        private bool white = true;
+
+        private bool IsDraw = true;
 
         public MainWindow()
         {
             this.WindowState = System.Windows.WindowState.Maximized;
             InitializeComponent();
+            draw = new Thread(new ThreadStart(Draw));
+            draw.Start();
         }
+
+        private async void Draw()
+        {
+            while (IsDraw)
+            {
+                await Task.Delay(2000);
+                Console.WriteLine("Update"+ this.VisualChildrenCount);
+                await Dispatcher.BeginInvoke((Action) (() =>
+                {
+                    var x = (GLControl)Lefty.Child;
+                    Console.WriteLine("Update" + this.VisualChildrenCount);
+                    x.MakeCurrent();
+                    GL.Clear(ClearBufferMask.ColorBufferBit);
+
+                    if (white)
+                    {
+                        GL.ClearColor(Color.Wheat);
+                        white = false;
+                    }
+                    else
+                    {
+                        GL.ClearColor(Color.Black);
+                        white = true;
+                    }
+                    GL.Flush();
+                    x.SwapBuffers();
+                }));
+
+
+
+            }
+        }
+
 
         private void GLviewLeft(object sender, EventArgs e)
         {
-            glInit(left, sender);
+            glInit(left, sender, "lefty");
         }
 
         private void GLviewRight(object sender, EventArgs e)
         {
-            glInit(right, sender);
+            glInit(right, sender, "rightey");
         }
 
         private void GLviewTop(object sender, EventArgs e)
         {
-            glInit(top, sender);
+            glInit(top, sender, "heven");
         }
 
         private void GLviewBot(object sender, EventArgs e)
         {
-            glInit(bot, sender);
+            glInit(bot, sender, "hell");
         }
 
-        private void glInit(GLControl g, object sender)
+        private void GLviewGame(object sender, EventArgs e)
+        {
+            glInit(game, sender, "game");
+        }
+
+        private void glInit(GLControl g, object sender, string name)
         {
             var flags = GraphicsContextFlags.Default;
             g = new GLControl(new GraphicsMode(32, 24), 2, 0, flags);
             g.Context.MakeCurrent(null);
+            g.Name = name;
             g.Paint += GLControl_Paint;
             g.Dock = DockStyle.Fill;
             (sender as WindowsFormsHost).Child = g;
