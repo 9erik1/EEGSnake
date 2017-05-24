@@ -44,6 +44,11 @@ namespace EEGfront
             drawT.Start();
             drawB = new Thread(new ThreadStart(DrawB));
             drawB.Start();
+
+            left = (GLControl)Lefty.Child;
+            right = (GLControl)Rightey.Child;
+            top = (GLControl)Heven.Child;
+            bot = (GLControl)Hell.Child;
         }
 
         private async void DrawL()
@@ -53,8 +58,8 @@ namespace EEGfront
                 await Task.Delay(20);
                 await Dispatcher.BeginInvoke((Action) (() =>
                 {
-                    GLControl l = (GLControl)Lefty.Child;
-                    l.MakeCurrent();
+                    //GLControl l = (GLControl)Lefty.Child;
+                    left.MakeCurrent();
                     GL.Clear(ClearBufferMask.ColorBufferBit);
                     if (lTog)
                     {
@@ -66,7 +71,7 @@ namespace EEGfront
                         GL.ClearColor(Color.Black);
                         lTog = true;
                     }
-                    l.SwapBuffers();
+                    left.SwapBuffers();
                 }));
             }
         }
@@ -78,8 +83,7 @@ namespace EEGfront
                 await Task.Delay(40);
                 await Dispatcher.BeginInvoke((Action)(() =>
                 {
-                    GLControl r = (GLControl)Rightey.Child;
-                    r.MakeCurrent();
+                    right.MakeCurrent();
                     GL.Clear(ClearBufferMask.ColorBufferBit);
                     if (rTog)
                     {
@@ -91,7 +95,7 @@ namespace EEGfront
                         GL.ClearColor(Color.Black);
                         rTog = true;
                     }
-                    r.SwapBuffers();
+                    right.SwapBuffers();
                 }));
             }
         }
@@ -103,8 +107,7 @@ namespace EEGfront
                 await Task.Delay(80);
                 await Dispatcher.BeginInvoke((Action)(() =>
                 {
-                    GLControl t = (GLControl)Heven.Child;
-                    t.MakeCurrent();
+                    top.MakeCurrent();
                     GL.Clear(ClearBufferMask.ColorBufferBit);
                     if (tTog)
                     {
@@ -116,7 +119,7 @@ namespace EEGfront
                         GL.ClearColor(Color.Black);
                         tTog = true;
                     }
-                   t.SwapBuffers();
+                    top.SwapBuffers();
                 }));
             }
         }
@@ -127,9 +130,8 @@ namespace EEGfront
             {
                 await Task.Delay(160);
                 await Dispatcher.BeginInvoke((Action)(() =>
-                {
-                    GLControl b = (GLControl)Hell.Child;
-                    b.MakeCurrent();
+                {                    
+                    bot.MakeCurrent();
                     GL.Clear(ClearBufferMask.ColorBufferBit);
                     if (bTog)
                     {
@@ -141,7 +143,7 @@ namespace EEGfront
                         GL.ClearColor(Color.Black);
                         bTog = true;
                     }
-                    b.SwapBuffers();
+                    bot.SwapBuffers();
                 }));
             }
         }
