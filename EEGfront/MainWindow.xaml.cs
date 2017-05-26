@@ -55,7 +55,7 @@ namespace EEGfront
         {
             while (true)
             {
-                await Task.Delay(20);
+                await Task.Delay(200);
                 await Dispatcher.BeginInvoke((Action) (() =>
                 {
                     //GLControl l = (GLControl)Lefty.Child;
@@ -80,7 +80,7 @@ namespace EEGfront
         {
             while (true)
             {
-                await Task.Delay(40);
+                await Task.Delay(400);
                 await Dispatcher.BeginInvoke((Action)(() =>
                 {
                     right.MakeCurrent();
@@ -104,7 +104,7 @@ namespace EEGfront
         {
             while (true)
             {
-                await Task.Delay(80);
+                await Task.Delay(800);
                 await Dispatcher.BeginInvoke((Action)(() =>
                 {
                     top.MakeCurrent();
@@ -128,7 +128,7 @@ namespace EEGfront
         {
             while (true)
             {
-                await Task.Delay(160);
+                await Task.Delay(1600);
                 await Dispatcher.BeginInvoke((Action)(() =>
                 {                    
                     bot.MakeCurrent();

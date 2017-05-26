@@ -8,6 +8,8 @@ using System.Windows.Input;
 using System;
 using OpenTK;
 using System.Windows;
+using System.Net;
+using System.IO;
 
 namespace EEGfront
 {
@@ -30,6 +32,9 @@ namespace EEGfront
 
         public MainViewModel()
         {
+            // because we use untrusted ssl ;)
+            ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
+
             //stream = EmotiveAquisition.Instance;
 
             menuItems = new ObservableCollection<AppState>();
@@ -85,24 +90,38 @@ namespace EEGfront
             }
         }
 
+        private void Clickey()
+        {
+            Console.WriteLine("Warning! App State Change: ");
+            string url = "https://99.242.214.17:5900/restusers/JeremiahSmith";
+            string html = string.Empty;            
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            using (Stream stream = response.GetResponseStream())
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                html = reader.ReadToEnd();
+            }
 
+            Console.WriteLine(html);
+        }
 
 
         public string[] Title { get; private set; }
-        //private ICommand optionChanged;
-        //public ICommand OptionChanged
-        //{
-        //    get
-        //    {
-        //        if (optionChanged == null)
-        //        {
-        //            optionChanged = new RelayCommand(
-        //                p => true,
-        //                p => this.CurrentOptionChange(optionChanged));
-        //        }
-        //        return optionChanged;
-        //    }
-        //}
+        private ICommand optionChanged;
+        public ICommand OptionChanged
+        {
+            get
+            {
+                if (optionChanged == null)
+                {
+                    optionChanged = new RelayCommand(
+                        p => true,
+                        p => this.Clickey());
+                }
+                return optionChanged;
+            }
+        }
         private Visibility trainToggle;
         public Visibility TrainToggle
         {
