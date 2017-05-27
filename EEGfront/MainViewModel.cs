@@ -10,6 +10,8 @@ using OpenTK;
 using System.Windows;
 using System.Net;
 using System.IO;
+using GateKeep;
+
 
 namespace EEGfront
 {
@@ -29,11 +31,17 @@ namespace EEGfront
         private EmotiveAquisition stream;
         private GLControl graphics;
 
+        private HandShake loginModule;
+
 
         public MainViewModel()
         {
             // because we use untrusted ssl ;)
             ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
+
+            //using of the login module
+            loginModule = new HandShake();
+
 
             //stream = EmotiveAquisition.Instance;
 
@@ -90,20 +98,17 @@ namespace EEGfront
             }
         }
 
-        private void Clickey()
+        private async void Clickey()
         {
-            Console.WriteLine("Warning! App State Change: ");
-            string url = "https://99.242.214.17:5900/restusers/JeremiahSmith";
-            string html = string.Empty;            
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            using (Stream stream = response.GetResponseStream())
-            using (StreamReader reader = new StreamReader(stream))
+            try
             {
-                html = reader.ReadToEnd();
-            }
 
-            Console.WriteLine(html);
+                Console.WriteLine(await loginModule.Shake());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Failed for basic reason: " + e);
+            }
         }
 
 

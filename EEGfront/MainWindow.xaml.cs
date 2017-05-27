@@ -32,6 +32,8 @@ namespace EEGfront
         private bool tTog = true;
         private bool bTog = true;
 
+        private bool isDraw = true;
+
         public MainWindow()
         {
             this.WindowState = System.Windows.WindowState.Maximized;
@@ -49,11 +51,11 @@ namespace EEGfront
             right = (GLControl)Rightey.Child;
             top = (GLControl)Heven.Child;
             bot = (GLControl)Hell.Child;
-        }
+        }        
 
         private async void DrawL()
         {
-            while (true)
+            while (isDraw)
             {
                 await Task.Delay(200);
                 await Dispatcher.BeginInvoke((Action) (() =>
@@ -78,7 +80,7 @@ namespace EEGfront
 
         private async void DrawR()
         {
-            while (true)
+            while (isDraw)
             {
                 await Task.Delay(400);
                 await Dispatcher.BeginInvoke((Action)(() =>
@@ -102,7 +104,7 @@ namespace EEGfront
 
         private async void DrawT()
         {
-            while (true)
+            while (isDraw)
             {
                 await Task.Delay(800);
                 await Dispatcher.BeginInvoke((Action)(() =>
@@ -126,7 +128,7 @@ namespace EEGfront
 
         private async void DrawB()
         {
-            while (true)
+            while (isDraw)
             {
                 await Task.Delay(1600);
                 await Dispatcher.BeginInvoke((Action)(() =>
@@ -202,6 +204,17 @@ namespace EEGfront
             GL.MatrixMode(MatrixMode.Projection);
             GL.Flush();
             x.SwapBuffers();
+        }
+
+        private void Kill(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            isDraw = false;
+            Console.WriteLine("Draw Thread End");
+        }
+
+        private void KillEnd(object sender, EventArgs e)
+        {
+            Console.WriteLine("APP KILL END");
         }
     }
 }
