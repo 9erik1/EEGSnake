@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,7 +15,7 @@ namespace GateKeep
 {
     class Cloud
     {
-
+        private static readonly HttpClient client = new HttpClient();
         public Cloud()
         {
 
@@ -75,25 +76,42 @@ namespace GateKeep
 
         public async Task<string> LogIn()
         {
-            string html = string.Empty;
-            try
+            var values = new Dictionary<string, string>
             {
-                string url = "https://99.242.214.17:5900/restusers/JeremiahSmith";
-                
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-                using (HttpWebResponse response = (HttpWebResponse)await request.GetResponseAsync())
-                using (Stream stream = response.GetResponseStream())
-                using (StreamReader reader = new StreamReader(stream))
-                {
-                    html = reader.ReadToEnd();
-                }
-            }
-            catch (Exception e)
-            {
-                //html = "Get Failed! Invalid Shmeltz!!! MESSAGE: " + message + " SOURCE: " + source + " STACK: " + stack + " HAS INNER EXCEPTION: " + innerStr + " HRESULT: " + hResult + " HELP LINK: " + help;
-                html = ExceptionParse(e);
-            }
-            return html;
+                { "email", "hello" },
+                { "password", "world" }
+            };
+
+            var content = new FormUrlEncodedContent(values);
+
+            var response = await client.PostAsync("https://99.242.214.17:5900/rest/api/users", content);
+
+            string responseString = await response.Content.ReadAsStringAsync();
+
+            return responseString;
+
+
+
+
+            //string html = string.Empty;
+            //try
+            //{
+            //    string url = "https://99.242.214.17:5900/rest/api/";
+
+            //    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            //    using (HttpWebResponse response = (HttpWebResponse)await request.GetResponseAsync())
+            //    using (Stream stream = response.GetResponseStream())
+            //    using (StreamReader reader = new StreamReader(stream))
+            //    {
+            //        html = reader.ReadToEnd();
+            //    }
+            //}
+            //catch (Exception e)
+            //{
+            //    //html = "Get Failed! Invalid Shmeltz!!! MESSAGE: " + message + " SOURCE: " + source + " STACK: " + stack + " HAS INNER EXCEPTION: " + innerStr + " HRESULT: " + hResult + " HELP LINK: " + help;
+            //    html = ExceptionParse(e);
+            //}
+            //return html;
         }
     }
 }
