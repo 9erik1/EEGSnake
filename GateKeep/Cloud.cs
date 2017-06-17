@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.IO;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 
@@ -13,12 +9,26 @@ using System.Threading.Tasks;
 
 namespace GateKeep
 {
-    class Cloud
+    public class Cloud
     {
+        private static Cloud instance;
         private static readonly HttpClient client = new HttpClient();
-        public Cloud()
-        {
 
+        private Cloud()
+        {
+            client.Timeout = new TimeSpan(0, 0, 2);
+        }
+
+        public static Cloud Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Cloud();
+                }
+                return instance;
+            }
         }
 
         private string ExceptionParse(Exception e)
@@ -74,17 +84,17 @@ namespace GateKeep
             //conn.Open();
         }
 
-        public async Task<string> LogIn()
+        public async Task<string> LogIn(string user, string pass)
         {
             var values = new Dictionary<string, string>
             {
-                { "email", "hello" },
-                { "password", "world" }
+                { "username", user },
+                { "pass", pass }
             };
 
             var content = new FormUrlEncodedContent(values);
 
-            var response = await client.PostAsync("https://99.242.214.17:5900/rest/api/users", content);
+            var response = await client.PostAsync("https://99.224.201.229:5900/rest/login/",content);
 
             string responseString = await response.Content.ReadAsStringAsync();
 

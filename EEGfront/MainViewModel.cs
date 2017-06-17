@@ -31,16 +31,25 @@ namespace EEGfront
         private EmotiveAquisition stream;
         private GLControl graphics;
 
-        private HandShake loginModule;
+        private Cloud rest;
 
 
-        public MainViewModel()
+        public MainViewModel(string idTag)
         {
+
+            rest = Cloud.Instance;
+
+ 
+
+            Console.WriteLine("user id success in view model: " + idTag);
+
+            User = "cesba";
+            Pass = "dobze";
             // because we use untrusted ssl ;)
             ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
 
             //using of the login module
-            loginModule = new HandShake();
+ 
 
 
             //stream = EmotiveAquisition.Instance;
@@ -103,7 +112,7 @@ namespace EEGfront
             try
             {
 
-                Console.WriteLine(await loginModule.Shake());
+                //Console.WriteLine(await loginModule.Shake(User,Pass));
             }
             catch (Exception e)
             {
@@ -113,6 +122,10 @@ namespace EEGfront
 
 
         public string[] Title { get; private set; }
+
+        public string User { get; set; }
+        public string Pass { get; set; }
+
         private ICommand optionChanged;
         public ICommand OptionChanged
         {

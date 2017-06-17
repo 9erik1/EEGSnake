@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 
 namespace GateKeep
@@ -13,12 +9,12 @@ namespace GateKeep
 
         public HandShake()
         {
-            dataVerify = new Cloud();
+            dataVerify = Cloud.Instance;
         }
 
-        public async Task<string> Shake()
+        public async Task<string> Shake(string user, string pass)
         {
-            return await dataVerify.LogIn();
+            return await dataVerify.LogIn(user, pass);
         }
     }
 }

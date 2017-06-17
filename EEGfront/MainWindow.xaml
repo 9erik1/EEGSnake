@@ -15,11 +15,10 @@
         </ComboBox>
 
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding TrainToggle}">
-            <TextBlock Margin="10" FontSize="20">How do you like your coffee?</TextBlock>
-            <Button Command="{Binding OptionChanged}" Margin="10">Black</Button>
-            <Button Margin="10">With milk</Button>
-            <Button Margin="10">Latte machiato</Button>
-            <Button Margin="10">Chappuchino</Button>
+            <TextBlock Margin="10" FontSize="20">Please Login Into HON of Newearth</TextBlock>
+            <TextBox Height="30" Width="200" Text="{Binding User}"></TextBox>
+            <TextBox Height="30" Width="200" Text="{Binding Pass}"></TextBox>
+            <Button Command="{Binding OptionChanged}" Margin="10">Login</Button>
         </StackPanel>
 
 

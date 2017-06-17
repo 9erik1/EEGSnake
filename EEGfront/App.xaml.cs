@@ -15,11 +15,21 @@ namespace EEGfront
             {
             }
 
-            var pca = new MainWindow();
-            pca.DataContext = new MainViewModel();
+            var login = new Login();
+            login.DataContext = new LoginViewModel();
+
+            login.Show();
+
+
+
+            //var pca = new MainWindow();
+            //pca.DataContext = new MainViewModel();
         
-            pca.Show();
-            pca.Closing += Pca_Closed;
+            //pca.Show();
+            //pca.Closing += Pca_Closed;
+
+
+
 
 
         }
