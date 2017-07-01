@@ -104,76 +104,19 @@ namespace EEGfront
             GL.LoadIdentity();
             GL.Color3(Color.Red);
             //for hour
-            GL.Begin(PrimitiveType.TriangleFan);
 
-            GL.Vertex2(0, +5);
-            GL.Vertex2(0, -5);
-            GL.Vertex2(70, 0);
-            GL.Vertex2(70, 0);
-            GL.Color3(Color.Red);
-
-            GL.End();
 
             //for minute
-            GL.Begin(PrimitiveType.TriangleFan);
+            GL.Begin(PrimitiveType.Lines);
             GL.Vertex2(+5, 0);
             GL.Vertex2(-5, 0);
             GL.Vertex2(-65, 40);
             GL.Vertex2(-65, 40);
             GL.End();
-            GL.Color3(Color.Black);
 
-            //for draw digit III
-            GL.Begin(PrimitiveType.Lines);
-            GL.Vertex2(5, 60);
-            GL.Vertex2(5, 70);
-            GL.Vertex2(0, 60);
-            GL.Vertex2(0, 70);
 
-            GL.Vertex2(-5, 70);
-            GL.Vertex2(-15, 60);
-            GL.Vertex2(-15, 70);
-            GL.Vertex2(-5, 60);
 
-            GL.End();
 
-            GL.Color3(Color.Black);
-            //for draw digit XII
-            GL.Begin(PrimitiveType.Lines);
-
-            GL.Vertex2(60, 0);
-            GL.Vertex2(60, 8);
-            GL.Vertex2(70, 0);
-            GL.Vertex2(70, 8);
-            GL.Vertex2(65, 0);
-            GL.Vertex2(65, 8);
-
-            GL.End();
-            GL.Color3(Color.Black);
-            //for draw digit IV
-            GL.Begin(PrimitiveType.Lines);
-
-            GL.Vertex2(10, -60);
-            GL.Vertex2(10, -70);
-            GL.Vertex2(0, -60);
-            GL.Vertex2(0, -70);
-            GL.Vertex2(5, -60);
-            GL.Vertex2(0, -70);
-            GL.Vertex2(5, -60);
-            GL.Vertex2(0, -70);
-
-            GL.End();
-            GL.Color3(Color.Black);
-            //for draw digit IX
-            GL.Begin(PrimitiveType.Lines);
-            GL.Vertex2(-75, -5);
-            GL.Vertex2(-75, -15);
-
-            GL.Vertex2(-70, -5);
-            GL.Vertex2(-60, -15);
-            GL.Vertex2(-70, -15);
-            GL.Vertex2(-60, -5);
-            GL.End();
         }
 
         private async void DrawL()
