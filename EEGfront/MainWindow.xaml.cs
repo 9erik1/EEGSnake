@@ -16,6 +16,8 @@ namespace EEGfront
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Object drawLock = new Object();
+
         private GLControl left;
         private GLControl right;
         private GLControl top;
@@ -26,6 +28,7 @@ namespace EEGfront
         Thread drawR;
         Thread drawT;
         Thread drawB;
+        Thread deawGame;
 
         private bool lTog = true;
         private bool rTog = true;
@@ -38,6 +41,9 @@ namespace EEGfront
         {
             this.WindowState = System.Windows.WindowState.Maximized;
             InitializeComponent();
+
+
+
             drawL = new Thread(new ThreadStart(DrawL));
             drawL.Start();
             drawR = new Thread(new ThreadStart(DrawR));
@@ -46,35 +52,155 @@ namespace EEGfront
             drawT.Start();
             drawB = new Thread(new ThreadStart(DrawB));
             drawB.Start();
+            deawGame = new Thread(new ThreadStart(GameThread));
+            deawGame.Start();
 
             left = (GLControl)Lefty.Child;
             right = (GLControl)Rightey.Child;
             top = (GLControl)Heven.Child;
             bot = (GLControl)Hell.Child;
-        }        
+            game = (GLControl)Game.Child;
+        }
+
+        private async void GameThread()
+        {
+            while (isDraw)
+            {
+                await Task.Delay(20);
+                lock (drawLock)
+                {
+                    Dispatcher.BeginInvoke((Action)(() =>
+                    {
+                        //GLControl l = (GLControl)Lefty.Child;
+                        game.MakeCurrent();
+                        GL.Clear(ClearBufferMask.ColorBufferBit);
+                        //if (lTog)
+                        //{
+                        //    GL.ClearColor(Color.White);
+                        //    lTog = false;
+                        //}
+                        //else
+                        //{
+                        //    GL.ClearColor(Color.Black);
+                        //    lTog = true;
+                        //}
+
+                        GL.ClearColor(Color.Wheat);
+
+                        //GL.Begin(PrimitiveType.Quads);
+                        //GL.Color3(Color.Brown);
+                        //GL.Vertex3(0, 0, 0);
+                        //GL.Vertex3(0, 100, 0);
+                        //GL.End();
+                        Draw_digit();
+                        game.SwapBuffers();
+                    }));
+                }
+            }
+        }
+        void Draw_digit()
+        {
+            GL.MatrixMode(MatrixMode.Projection);
+            GL.LoadIdentity();
+            GL.Color3(Color.Red);
+            //for hour
+            GL.Begin(PrimitiveType.TriangleFan);
+
+            GL.Vertex2(0, +5);
+            GL.Vertex2(0, -5);
+            GL.Vertex2(70, 0);
+            GL.Vertex2(70, 0);
+            GL.Color3(Color.Red);
+
+            GL.End();
+
+            //for minute
+            GL.Begin(PrimitiveType.TriangleFan);
+            GL.Vertex2(+5, 0);
+            GL.Vertex2(-5, 0);
+            GL.Vertex2(-65, 40);
+            GL.Vertex2(-65, 40);
+            GL.End();
+            GL.Color3(Color.Black);
+
+            //for draw digit III
+            GL.Begin(PrimitiveType.Lines);
+            GL.Vertex2(5, 60);
+            GL.Vertex2(5, 70);
+            GL.Vertex2(0, 60);
+            GL.Vertex2(0, 70);
+
+            GL.Vertex2(-5, 70);
+            GL.Vertex2(-15, 60);
+            GL.Vertex2(-15, 70);
+            GL.Vertex2(-5, 60);
+
+            GL.End();
+
+            GL.Color3(Color.Black);
+            //for draw digit XII
+            GL.Begin(PrimitiveType.Lines);
+
+            GL.Vertex2(60, 0);
+            GL.Vertex2(60, 8);
+            GL.Vertex2(70, 0);
+            GL.Vertex2(70, 8);
+            GL.Vertex2(65, 0);
+            GL.Vertex2(65, 8);
+
+            GL.End();
+            GL.Color3(Color.Black);
+            //for draw digit IV
+            GL.Begin(PrimitiveType.Lines);
+
+            GL.Vertex2(10, -60);
+            GL.Vertex2(10, -70);
+            GL.Vertex2(0, -60);
+            GL.Vertex2(0, -70);
+            GL.Vertex2(5, -60);
+            GL.Vertex2(0, -70);
+            GL.Vertex2(5, -60);
+            GL.Vertex2(0, -70);
+
+            GL.End();
+            GL.Color3(Color.Black);
+            //for draw digit IX
+            GL.Begin(PrimitiveType.Lines);
+            GL.Vertex2(-75, -5);
+            GL.Vertex2(-75, -15);
+
+            GL.Vertex2(-70, -5);
+            GL.Vertex2(-60, -15);
+            GL.Vertex2(-70, -15);
+            GL.Vertex2(-60, -5);
+            GL.End();
+        }
 
         private async void DrawL()
         {
             while (isDraw)
             {
                 await Task.Delay(200);
-                await Dispatcher.BeginInvoke((Action) (() =>
+                lock (drawLock)
                 {
-                    //GLControl l = (GLControl)Lefty.Child;
-                    left.MakeCurrent();
-                    GL.Clear(ClearBufferMask.ColorBufferBit);
-                    if (lTog)
+                    Dispatcher.BeginInvoke((Action)(() =>
                     {
-                        GL.ClearColor(Color.White);
-                        lTog = false;
-                    }
-                    else
-                    {
-                        GL.ClearColor(Color.Black);
-                        lTog = true;
-                    }
-                    left.SwapBuffers();
-                }));
+                        //GLControl l = (GLControl)Lefty.Child;
+                        left.MakeCurrent();
+                        GL.Clear(ClearBufferMask.ColorBufferBit);
+                        if (lTog)
+                        {
+                            GL.ClearColor(Color.White);
+                            lTog = false;
+                        }
+                        else
+                        {
+                            GL.ClearColor(Color.Black);
+                            lTog = true;
+                        }
+                        left.SwapBuffers();
+                    }));
+                }
             }
         }
 
@@ -83,22 +209,25 @@ namespace EEGfront
             while (isDraw)
             {
                 await Task.Delay(400);
-                await Dispatcher.BeginInvoke((Action)(() =>
+                lock (drawLock)
                 {
-                    right.MakeCurrent();
-                    GL.Clear(ClearBufferMask.ColorBufferBit);
-                    if (rTog)
+                    Dispatcher.BeginInvoke((Action)(() =>
                     {
-                        GL.ClearColor(Color.White);
-                        rTog = false;
-                    }
-                    else
-                    {
-                        GL.ClearColor(Color.Black);
-                        rTog = true;
-                    }
-                    right.SwapBuffers();
-                }));
+                        right.MakeCurrent();
+                        GL.Clear(ClearBufferMask.ColorBufferBit);
+                        if (rTog)
+                        {
+                            GL.ClearColor(Color.White);
+                            rTog = false;
+                        }
+                        else
+                        {
+                            GL.ClearColor(Color.Black);
+                            rTog = true;
+                        }
+                        right.SwapBuffers();
+                    }));
+                }
             }
         }
 
@@ -107,22 +236,25 @@ namespace EEGfront
             while (isDraw)
             {
                 await Task.Delay(800);
-                await Dispatcher.BeginInvoke((Action)(() =>
+                lock (drawLock)
                 {
-                    top.MakeCurrent();
-                    GL.Clear(ClearBufferMask.ColorBufferBit);
-                    if (tTog)
+                    Dispatcher.BeginInvoke((Action)(() =>
                     {
-                        GL.ClearColor(Color.White);
-                        tTog = false;
-                    }
-                    else
-                    {
-                        GL.ClearColor(Color.Black);
-                        tTog = true;
-                    }
-                    top.SwapBuffers();
-                }));
+                        top.MakeCurrent();
+                        GL.Clear(ClearBufferMask.ColorBufferBit);
+                        if (tTog)
+                        {
+                            GL.ClearColor(Color.White);
+                            tTog = false;
+                        }
+                        else
+                        {
+                            GL.ClearColor(Color.Black);
+                            tTog = true;
+                        }
+                        top.SwapBuffers();
+                    }));
+                }
             }
         }
 
@@ -131,22 +263,25 @@ namespace EEGfront
             while (isDraw)
             {
                 await Task.Delay(1600);
-                await Dispatcher.BeginInvoke((Action)(() =>
-                {                    
-                    bot.MakeCurrent();
-                    GL.Clear(ClearBufferMask.ColorBufferBit);
-                    if (bTog)
+                lock (drawLock)
+                {
+                    Dispatcher.BeginInvoke((Action)(() =>
                     {
-                        GL.ClearColor(Color.White);
-                        bTog = false;
-                    }
-                    else
-                    {
-                        GL.ClearColor(Color.Black);
-                        bTog = true;
-                    }
-                    bot.SwapBuffers();
-                }));
+                        bot.MakeCurrent();
+                        GL.Clear(ClearBufferMask.ColorBufferBit);
+                        if (bTog)
+                        {
+                            GL.ClearColor(Color.White);
+                            bTog = false;
+                        }
+                        else
+                        {
+                            GL.ClearColor(Color.Black);
+                            bTog = true;
+                        }
+                        bot.SwapBuffers();
+                    }));
+                }
             }
         }
 
