@@ -37,7 +37,6 @@ namespace EEGfront
                     userid = answer.Split(',')[2].Split(':')[1];
                 Console.WriteLine(userid.Substring(0,userid.Length-1));
 
-
                 if(!string.IsNullOrEmpty(userid))
                 {
                     var pca = new MainWindow();

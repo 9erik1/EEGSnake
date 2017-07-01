@@ -91,7 +91,7 @@ namespace EEGfront
                     update.Start();
                 }
                 
-                Console.WriteLine("EMO Engine DataAquisition Suuccess");
+                Console.WriteLine("EMO Engine DataAquisition Success");
                 isConnected = true;
             }
             catch (Exception ex)
