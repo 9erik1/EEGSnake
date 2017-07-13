@@ -43,8 +43,8 @@ namespace EEGfront
 
             Console.WriteLine("user id success in view model: " + idTag);
 
-            User = "cesba";
-            Pass = "dobze";
+            Dir = 0;
+            Trials = 0;
             // because we use untrusted ssl ;)
             ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
 
@@ -120,11 +120,67 @@ namespace EEGfront
             }
         }
 
+        private async void ManTest()
+        {
+            try
+            {
+
+                Console.WriteLine("Manual Test. Paramaters are " + Dir.ToString() + " and " + Trials.ToString());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Failed for basic reason: " + e);
+            }
+        }
+
+        private async void AutoTest()
+        {
+            try
+            {
+
+                Console.WriteLine("Auto Test");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Failed for basic reason: " + e);
+            }
+        }
+
 
         public string[] Title { get; private set; }
 
-        public string User { get; set; }
-        public string Pass { get; set; }
+        public int Dir { get; set; }
+        public int Trials { get; set; }
+
+        private ICommand autoCommand;
+        public ICommand AutoCommand
+        {
+            get
+            {
+                if (autoCommand == null)
+                {
+                    autoCommand = new RelayCommand(
+                        p => true,
+                        p => this.AutoTest());
+                }
+                return autoCommand;
+            }
+        }
+
+        private ICommand manualCommand;
+        public ICommand ManualCommand
+        {
+            get
+            {
+                if (manualCommand == null)
+                {
+                    manualCommand = new RelayCommand(
+                        p => true,
+                        p => this.ManTest());
+                }
+                return manualCommand;
+            }
+        }
 
         private ICommand optionChanged;
         public ICommand OptionChanged

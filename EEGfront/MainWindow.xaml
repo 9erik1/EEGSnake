@@ -10,26 +10,21 @@
         <WindowsFormsHost Name="Heven" Initialized="GLviewTop" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="536,10,536,0"  ></WindowsFormsHost>
         <WindowsFormsHost Name="Hell" Initialized="GLviewBot" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="536,0,536,10"  ></WindowsFormsHost>
         <WindowsFormsHost Name="Game" Initialized="GLviewGame" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding GameToggle}"  ></WindowsFormsHost>
+        
         <ComboBox IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding MenuItem}" SelectedValue="{Binding CurrentOption}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120">
 
         </ComboBox>
 
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding TrainToggle}">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-                <Label Content="Mode"></Label> 
-                <TextBox Height="20" Width="50" Text="{Binding User}"></TextBox>
-                <Label Content="Class"></Label>
-                <TextBox Height="20" Width="50" Text="{Binding Pass}"></TextBox>
-                <Label Content="Trials"></Label>
-                <TextBox Height="20" Width="50" Text="{Binding Pass}"></TextBox>
+                <Button Height="20" Width="50" Content="Auto" Command="{Binding AutoCommand}" ></Button>
+                <Button Height="20" Width="50" Content="Manual" Command="{Binding ManualCommand}"></Button>
+                <Label Content="Direction"></Label>
+                <TextBox Height="20" Width="50" Text="{Binding Dir}"></TextBox>
+                <Label Content="Count"></Label>
+                <TextBox Height="20" Width="50" Text="{Binding Trials}"></TextBox>
             </StackPanel>
-            <TextBlock Margin="10" FontSize="20">Please Login Into HON of Newearth</TextBlock>
-            <TextBox Height="30" Width="200" Text="{Binding User}"></TextBox>
-            <TextBox Height="30" Width="200" Text="{Binding Pass}"></TextBox>
-            <Button Command="{Binding OptionChanged}" Margin="10">Login</Button>
         </StackPanel>
-
-
-
+    
     </Grid>
 </Window>
