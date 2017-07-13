@@ -65,6 +65,10 @@ namespace EEGfront
             MenuItem.CollectionChanged += MenuItem_CollectionChanged;
 
             gameToggle = Visibility.Visible;
+            upToggle = Visibility.Visible;
+            downToggle = Visibility.Visible;
+            leftToggle = Visibility.Visible;
+            rightToggle = Visibility.Visible;
 
             //OptionChanged = new RelayCommand
 
@@ -87,7 +91,6 @@ namespace EEGfront
         {
             while (IsDraw)
             {
-
                 await Task.Delay(2000);
             }
         }
@@ -99,11 +102,19 @@ namespace EEGfront
             {
                 GameToggle = Visibility.Hidden;
                 TrainToggle = Visibility.Visible;
+                UpToggle = Visibility.Hidden;
+                DownToggle = Visibility.Hidden;
+                LeftToggle = Visibility.Hidden;
+                RightToggle = Visibility.Hidden;
             }
             if (s == AppState.Game)
             {
                 GameToggle = Visibility.Visible;
                 TrainToggle = Visibility.Hidden;
+                UpToggle = Visibility.Visible;
+                DownToggle = Visibility.Visible;
+                LeftToggle = Visibility.Visible;
+                RightToggle = Visibility.Visible;
             }
         }
 
@@ -123,9 +134,47 @@ namespace EEGfront
         private async void ManTest()
         {
             try
-            {
-
+            {                
                 Console.WriteLine("Manual Test. Paramaters are " + Dir.ToString() + " and " + Trials.ToString());
+
+                switch (Dir)
+                {
+                    case 0:
+                        UpToggle = Visibility.Visible;
+                        break;
+                    case 1:
+                        RightToggle = Visibility.Visible;
+                        break;
+                    case 2:
+                        DownToggle = Visibility.Visible;
+                        break;
+                    case 3:
+                        LeftToggle = Visibility.Visible;
+                        break;
+                    default:
+                        Console.WriteLine("Default case");
+                        break;
+                }                
+                await Task.Delay(Trials*1000);
+                switch (Dir)
+                {
+                    case 0:
+                        UpToggle = Visibility.Hidden;
+                        break;
+                    case 1:
+                        RightToggle = Visibility.Hidden;
+                        break;
+                    case 2:
+                        DownToggle = Visibility.Hidden;
+                        break;
+                    case 3:
+                        LeftToggle = Visibility.Hidden;
+                        break;
+                    default:
+                        Console.WriteLine("Default case");
+                        break;
+                }
+
             }
             catch (Exception e)
             {
@@ -196,6 +245,62 @@ namespace EEGfront
                 return optionChanged;
             }
         }
+
+        #region Dir Toggles  
+        private Visibility upToggle;
+        public Visibility UpToggle
+        {
+            get { return upToggle; }
+            set
+            {
+                if (value != upToggle)
+                {
+                    upToggle = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+        private Visibility downToggle;
+        public Visibility DownToggle
+        {
+            get { return downToggle; }
+            set
+            {
+                if (value != downToggle)
+                {
+                    downToggle = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+        private Visibility leftToggle;
+        public Visibility LeftToggle
+        {
+            get { return leftToggle; }
+            set
+            {
+                if (value != leftToggle)
+                {
+                    leftToggle = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+        private Visibility rightToggle;
+        public Visibility RightToggle
+        {
+            get { return rightToggle; }
+            set
+            {
+                if (value != rightToggle)
+                {
+                    rightToggle = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
         private Visibility trainToggle;
         public Visibility TrainToggle
         {

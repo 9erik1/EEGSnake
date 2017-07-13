@@ -5,10 +5,10 @@
     <Grid >
 
 
-        <WindowsFormsHost Name="Lefty" Initialized="GLviewLeft" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,244,0,245"  ></WindowsFormsHost>
-        <WindowsFormsHost Name="Rightey" Initialized="GLviewRight" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,244,10,245"  ></WindowsFormsHost>
-        <WindowsFormsHost Name="Heven" Initialized="GLviewTop" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="536,10,536,0"  ></WindowsFormsHost>
-        <WindowsFormsHost Name="Hell" Initialized="GLviewBot" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="536,0,536,10"  ></WindowsFormsHost>
+        <WindowsFormsHost Name="Lefty" Initialized="GLviewLeft" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="{Binding LeftToggle}" Margin="10,244,0,245"  ></WindowsFormsHost>
+        <WindowsFormsHost Name="Rightey" Initialized="GLviewRight" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="{Binding RightToggle}" Margin="0,244,10,245"  ></WindowsFormsHost>
+        <WindowsFormsHost Name="Heven" Initialized="GLviewTop" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="{Binding UpToggle}" Margin="536,10,536,0"  ></WindowsFormsHost>
+        <WindowsFormsHost Name="Hell" Initialized="GLviewBot" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Visibility="{Binding DownToggle}" Margin="536,0,536,10"  ></WindowsFormsHost>
         <WindowsFormsHost Name="Game" Initialized="GLviewGame" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding GameToggle}"  ></WindowsFormsHost>
         
         <ComboBox IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding MenuItem}" SelectedValue="{Binding CurrentOption}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120">

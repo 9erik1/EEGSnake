@@ -42,8 +42,6 @@ namespace EEGfront
             this.WindowState = System.Windows.WindowState.Maximized;
             InitializeComponent();
 
-
-
             drawL = new Thread(new ThreadStart(DrawL));
             drawL.Start();
             drawR = new Thread(new ThreadStart(DrawR));
@@ -104,8 +102,6 @@ namespace EEGfront
             GL.LoadIdentity();
             GL.Color3(Color.Red);
             //for hour
-
-
             //for minute
             GL.Begin(PrimitiveType.Lines);
             GL.Vertex2(+5, 0);
@@ -113,10 +109,6 @@ namespace EEGfront
             GL.Vertex2(-65, 40);
             GL.Vertex2(-65, 40);
             GL.End();
-
-
-
-
         }
 
         private async void DrawL()
