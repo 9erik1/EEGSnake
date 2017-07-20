@@ -29,6 +29,7 @@ namespace EEGfront
         Thread draw;
 
         private EmotiveAquisition stream;
+        private Rest restService;
         private GLControl graphics;
 
         private Cloud rest;
@@ -38,7 +39,8 @@ namespace EEGfront
         {
 
             rest = Cloud.Instance;
-
+            restService = Rest.Instance;
+            
  
 
             Console.WriteLine("user id success in view model: " + idTag);
@@ -133,6 +135,9 @@ namespace EEGfront
 
         private async void ManTest()
         {
+            await restService.Get("https://192.168.0.173:5900/rest/");
+            await restService.PostCurrent("8");
+            await restService.PostPrev("8");
             try
             {                
                 Console.WriteLine("Manual Test. Paramaters are " + Dir.ToString() + " and " + Trials.ToString());
