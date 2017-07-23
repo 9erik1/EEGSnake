@@ -115,6 +115,7 @@ namespace EEGfront
                     pass = true;
                     isActive = true;
                     fps++;
+                    //Console.WriteLine(fps);
                 }
                 catch (NullReferenceException nulley)
                 {

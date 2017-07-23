@@ -82,11 +82,18 @@ namespace EEGfront
             //conn.Open();
         }
 
+        private void LogResponse(HttpResponseMessage resp)
+        {
+            Console.WriteLine(resp.StatusCode);
+            Console.WriteLine(resp.Headers);
+        }
+
         public async Task<string> Get(string url)
         {
             var response = await client.GetAsync(url);
 
             string responseString = await response.Content.ReadAsStringAsync();
+            LogResponse(response);
             Console.WriteLine(responseString);
             return responseString;
 
@@ -96,7 +103,7 @@ namespace EEGfront
         {
             var values = new Dictionary<string, string>
             {
-                { "user_id", user_id },
+                { "user_id", user_id }
             };
 
             var content = new FormUrlEncodedContent(values);
@@ -104,22 +111,26 @@ namespace EEGfront
             var response = await client.PostAsync("https://99.224.57.104:5900/rest/prevmodel/", content);
 
             string responseString = await response.Content.ReadAsStringAsync();
+            LogResponse(response);
             Console.WriteLine(responseString);
             return responseString;
         }
 
-        public async Task<string> PostCurrent(string user_id)
+        public async Task<string> UpdateModel(string user_id, int con)
         {
+  
             var values = new Dictionary<string, string>
             {
                 { "user_id", user_id },
+                { "current_model", con.ToString() }
             };
 
             var content = new FormUrlEncodedContent(values);
 
-            var response = await client.PostAsync("https://99.224.57.104:5900/rest/currentmodel/", content);
+            var response = await client.PostAsync("https://99.224.57.104:5900/rest/updatemodel/", content);
 
             string responseString = await response.Content.ReadAsStringAsync();
+            LogResponse(response);
             Console.WriteLine(responseString);
             return responseString;
         }

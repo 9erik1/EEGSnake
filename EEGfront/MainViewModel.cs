@@ -32,16 +32,20 @@ namespace EEGfront
         private Rest restService;
         private GLControl graphics;
 
-        private Cloud rest;
+        //private Cloud rest;
 
 
         public MainViewModel(string idTag)
         {
 
-            rest = Cloud.Instance;
+            //rest = Cloud.Instance;
             restService = Rest.Instance;
-            
- 
+            stream = EmotiveAquisition.Instance;
+
+            // Example 
+            //await restService.Get("https://192.168.0.173:5900/rest/");
+            //await restService.PostCurrent("8");
+            //await restService.PostPrev("8");
 
             Console.WriteLine("user id success in view model: " + idTag);
 
@@ -135,9 +139,6 @@ namespace EEGfront
 
         private async void ManTest()
         {
-            await restService.Get("https://192.168.0.173:5900/rest/");
-            await restService.PostCurrent("8");
-            await restService.PostPrev("8");
             try
             {                
                 Console.WriteLine("Manual Test. Paramaters are " + Dir.ToString() + " and " + Trials.ToString());
@@ -179,7 +180,7 @@ namespace EEGfront
                         Console.WriteLine("Default case");
                         break;
                 }
-
+                await restService.UpdateModel("8",stream.dataWindow.GetHashCode());
             }
             catch (Exception e)
             {
