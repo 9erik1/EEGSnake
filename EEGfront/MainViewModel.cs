@@ -11,7 +11,7 @@ using System.Windows;
 using System.Net;
 using System.IO;
 using GateKeep;
-
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace EEGfront
 {
@@ -180,7 +180,12 @@ namespace EEGfront
                         Console.WriteLine("Default case");
                         break;
                 }
-                await restService.UpdateModel("8",stream.dataWindow.GetHashCode());
+
+                Stream TestFileStream = new MemoryStream();
+                BinaryFormatter serializer = new BinaryFormatter();
+                serializer.Serialize(TestFileStream, stream);
+                await restService.UpdateModel("8", TestFileStream);
+                TestFileStream.Close();               
             }
             catch (Exception e)
             {
