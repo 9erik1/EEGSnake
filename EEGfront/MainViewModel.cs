@@ -10,14 +10,8 @@ using OpenTK;
 using System.Windows;
 using System.Net;
 using System.IO;
-using GateKeep;
 using System.Runtime.Serialization.Formatters.Binary;
-using Accord.Statistics.Analysis;
-using System.Linq;
-using Accord.Math;
-using System.Numerics;
-using Accord.MachineLearning.VectorMachines.Learning;
-using Accord.Statistics.Kernels;
+using System.Windows.Threading;
 
 namespace EEGfront
 {
@@ -41,7 +35,7 @@ namespace EEGfront
 
         //private Cloud rest;
 
-
+        string lastLearn = "";
         public MainViewModel(string idTag)
         {
 
@@ -49,6 +43,13 @@ namespace EEGfront
             restService = Rest.Instance;
             stream = EmotiveAquisition.Instance;
             machineStudent = MultiStateTransGender.Instance;
+
+            //Dispatcher.BeginInvoke((Action)(() =>
+            //{
+            //    Console.WriteLine("asd");
+            //}));
+        
+            Task.Run(async () => lastLearn = await restService.PostCurrent("8"));
 
             // Example 
             //await restService.Get("https://192.168.0.173:5900/rest/");
@@ -191,7 +192,7 @@ namespace EEGfront
 
                 var x = machineStudent.MachineLearn(stream.dataWindow);
 
-
+                var y = lastLearn;
                 //serilization of data
                 Stream DataWindowStream = new MemoryStream();
                 BinaryFormatter serializer = new BinaryFormatter();

@@ -118,6 +118,23 @@ namespace EEGfront
             return responseString;
         }
 
+        public async Task<string> PostCurrent(string user_id)
+        {
+            var values = new Dictionary<string, string>
+            {
+                { "user_id", user_id }
+            };
+
+            var content = new FormUrlEncodedContent(values);
+
+            var response = await client.PostAsync("https://99.224.57.104:5900/rest/currentmodel/", content);
+
+            string responseString = await response.Content.ReadAsStringAsync();
+            LogResponse(response);
+            Console.WriteLine(responseString);
+            return responseString;
+        }
+
         public async Task<string> UpdateModel(string user_id, Stream content)
         {
             var values = new Dictionary<string, string>();
