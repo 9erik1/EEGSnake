@@ -1,8 +1,13 @@
-﻿using System;
+﻿using Accord.MachineLearning.VectorMachines;
+using Accord.Statistics.Kernels;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
 using System.Net.Http;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -117,7 +122,15 @@ namespace EEGfront
             Console.WriteLine(responseString);
             return responseString;
         }
-
+        public static Stream GenerateStreamFromString(string s)
+        {
+            MemoryStream stream = new MemoryStream();
+            StreamWriter writer = new StreamWriter(stream);
+            writer.Write(s);
+            writer.Flush();
+            stream.Position = 0;
+            return stream;
+        }
         public async Task<string> PostCurrent(string user_id)
         {
             var values = new Dictionary<string, string>
@@ -130,8 +143,47 @@ namespace EEGfront
             var response = await client.PostAsync("https://99.224.57.104:5900/rest/currentmodel/", content);
 
             string responseString = await response.Content.ReadAsStringAsync();
+            JObject json = JObject.Parse(responseString);
+
+            JToken contentr = json["current_model"]["current_model"]["data"];
+            string resp = contentr.ToString(Newtonsoft.Json.Formatting.None);
+         
+            using (Stream fs = GenerateStreamFromString(resp))
+            {
+             
+            
+            MulticlassSupportVectorMachine<Gaussian> proxyLearn = null;
+            string leel;
+            // Open the file containing the data that you want to deserialize.
+            //Stream fs = await response.Content.ReadAsStreamAsync();
+            try
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+
+                // Deserialize the hashtable from the file and 
+                // assign the reference to the local variable.
+
+                //leel = (string)formatter.Deserialize(fs);
+                proxyLearn = (MulticlassSupportVectorMachine<Gaussian>)formatter.Deserialize(fs);
+                
+            }
+            catch (SerializationException e)
+            {
+                Console.WriteLine("Failed to deserialize. Reason: " + e.Message);
+                throw;
+            }
+            finally
+            {
+                //fs.Close();
+            }
+            }
+            // To prove that the table deserialized correctly, 
+            // display the key/value pairs.
+
+            //var lel = proxyLearn;
+
             LogResponse(response);
-            Console.WriteLine(responseString);
+            //Console.WriteLine(responseString);
             return responseString;
         }
 
