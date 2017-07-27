@@ -170,6 +170,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MultiStateTransGender.cs" />
     <Compile Include="Rest.cs" />
     <Compile Include="EmotiveAquisition.cs" />
     <Compile Include="Login.xaml.cs">
