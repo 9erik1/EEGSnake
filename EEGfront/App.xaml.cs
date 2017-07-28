@@ -33,12 +33,5 @@ namespace EEGfront
 
 
         }
-
-        private void Pca_Closed(object sender, EventArgs e)
-        {
-            MainWindow pcaWin = sender as MainWindow;
-            MainViewModel pcaVM = pcaWin.DataContext as MainViewModel;
-            pcaVM.Shutdown();
-        }
     }
 }

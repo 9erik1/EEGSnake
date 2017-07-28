@@ -43,7 +43,7 @@ namespace EEGfront
                     pca.DataContext = new MainViewModel("");
 
                     pca.Show();
-                    //pca.Closing += Pca_Closed;
+                    pca.Closing += Pca_Closed;
                 }
 
             }
@@ -53,7 +53,12 @@ namespace EEGfront
                 //Err = e.Message;
             }
         }
-
+        private void Pca_Closed(object sender, EventArgs e)
+        {
+            MainWindow pcaWin = sender as MainWindow;
+            MainViewModel pcaVM = pcaWin.DataContext as MainViewModel;
+            pcaVM.Shutdown();
+        }
 
         public string[] Title { get; private set; }
 

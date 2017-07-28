@@ -11,7 +11,6 @@ using System.Windows;
 using System.Net;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Windows.Threading;
 
 namespace EEGfront
 {
