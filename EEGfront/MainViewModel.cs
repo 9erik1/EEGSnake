@@ -11,6 +11,9 @@ using System.Windows;
 using System.Net;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using Accord.MachineLearning.VectorMachines;
+using Accord.Statistics.Kernels;
+using System.Runtime.Serialization;
 
 namespace EEGfront
 {
@@ -196,6 +199,33 @@ namespace EEGfront
                 Stream DataWindowStream = new MemoryStream();
                 BinaryFormatter serializer = new BinaryFormatter();
                 serializer.Serialize(DataWindowStream, machineStudent);
+
+                DataWindowStream.Position = 0;
+                var sr = new StreamReader(DataWindowStream);
+                var myStr = sr.ReadToEnd();
+                Console.WriteLine(myStr);
+
+
+                MulticlassSupportVectorMachine<Gaussian> proxyLearn = null;
+                try
+                {
+                    BinaryFormatter formatter = new BinaryFormatter();
+
+                    // Deserialize the hashtable from the file and 
+                    // assign the reference to the local variable.
+
+                    //leel = (string)formatter.Deserialize(fs);
+                    DataWindowStream.Position = 0;
+                    MultiStateTransGender xx = (MultiStateTransGender)formatter.Deserialize(DataWindowStream);
+                    Console.WriteLine(xx);
+                }
+                catch (SerializationException e)
+                {
+                    Console.WriteLine("Failed to deserialize. Reason: " + e.Message);
+                    throw;
+                }
+
+
                 await restService.UpdateModel("8", DataWindowStream);//post call
                 DataWindowStream.Close();
             }
@@ -209,6 +239,7 @@ namespace EEGfront
         {
             try
             {
+                var x = await restService.PostCurrent("8");
 
                 Console.WriteLine("Auto Test");
             }

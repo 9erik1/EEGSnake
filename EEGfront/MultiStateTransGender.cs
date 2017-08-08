@@ -28,7 +28,7 @@ namespace EEGfront
         {
             // When deserialiing this object, return a reference to 
             // the Singleton object instead.
-            return EmotiveAquisition.Instance;
+            return MultiStateTransGender.Instance;
         }
     }
 

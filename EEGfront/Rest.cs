@@ -147,9 +147,12 @@ namespace EEGfront
 
             JToken contentr = json["current_model"]["current_model"]["data"];
             string resp = contentr.ToString(Newtonsoft.Json.Formatting.None);
-         
-            using (Stream fs = GenerateStreamFromString(resp))
-            {
+
+            byte[] temp = Encoding.UTF8.GetBytes(resp);
+            MemoryStream s = new MemoryStream(temp);
+
+
+ 
              
             
             MulticlassSupportVectorMachine<Gaussian> proxyLearn = null;
@@ -164,8 +167,7 @@ namespace EEGfront
                 // assign the reference to the local variable.
 
                 //leel = (string)formatter.Deserialize(fs);
-                proxyLearn = (MulticlassSupportVectorMachine<Gaussian>)formatter.Deserialize(fs);
-                
+                proxyLearn = (MulticlassSupportVectorMachine<Gaussian>)formatter.Deserialize(s);                
             }
             catch (SerializationException e)
             {
@@ -176,7 +178,7 @@ namespace EEGfront
             {
                 //fs.Close();
             }
-            }
+            
             // To prove that the table deserialized correctly, 
             // display the key/value pairs.
 
