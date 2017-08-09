@@ -36,7 +36,7 @@ namespace EEGfront
         // A method called when serializing a Singleton.
         void ISerializable.GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            
+
             info.AddValue("Class", Learn);
         }
         #endregion

@@ -15,6 +15,7 @@ using Accord.MachineLearning.VectorMachines;
 using Accord.Statistics.Kernels;
 using System.Runtime.Serialization;
 using MyObjSerial;
+using System.Xml.Serialization;
 
 namespace EEGfront
 {
@@ -201,13 +202,18 @@ namespace EEGfront
                 Employee mp = new Employee();
                 mp.EmpId = 10;
                 mp.EmpName = "Omkumar";
+                mp.Count = machineStudent.Learn.Count;
+                mp.NumberOfInputs = machineStudent.Learn.NumberOfInputs;
+                mp.NumberOfOutputs = machineStudent.Learn.NumberOfOutputs;
+                mp.Learn = machineStudent.Learn.Clone();
+    
 
-                MemoryStream DataWindowStream = new MemoryStream();
+                  MemoryStream DataWindowStream = new MemoryStream();
                 BinaryFormatter serializer = new BinaryFormatter();
                 serializer.Serialize(DataWindowStream, mp);
 
 
-                var f777 = DataWindowStream.ToArray();
+     
 
                 await restService.UpdateModel("8", DataWindowStream);//post call
 
