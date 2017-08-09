@@ -1,5 +1,6 @@
 ﻿using Accord.MachineLearning.VectorMachines;
 using Accord.Statistics.Kernels;
+using MyObjSerial;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -149,32 +150,9 @@ namespace EEGfront
             var lel  = contentr.ToObject<byte[]>();
 
 
-
-            //string resp = contentr.ToString(Newtonsoft.Json.Formatting.None);
-
-            //byte[] temp = Encoding.UTF8.GetBytes(resp);
-
-
-
-            //BinaryFormatter binFormater = new BinaryFormatter();
-            //Stream stream = new MemoryStream(lel);
-            //stream.Seek(0, 0);
-            //var xxxxx = (MultiStateTransGender)binFormater.Deserialize(stream);
-            //stream.Close();
-
             using (MemoryStream s = new MemoryStream(lel))
 
             {
-
-                //var sr = new StreamReader(s);
-                //var myStr = sr.ReadToEnd();
-
-                var str = Encoding.UTF8.GetString(s.ToArray());
-
-                 MultiStateTransGender proxyLearn = null;
-                string leel;
-                // Open the file containing the data that you want to deserialize.
-                //Stream fs = await response.Content.ReadAsStreamAsync();
                 try
                 {
                     BinaryFormatter formatter = new BinaryFormatter();
@@ -184,12 +162,10 @@ namespace EEGfront
 
                     //leel = (string)formatter.Deserialize(fs);
                     s.Position = 0;
-                    var x = (MultiStateTransGender)formatter.Deserialize(s);
+                    var x = (Employee)formatter.Deserialize(s);
 
-                    var trans = x.Learn;
+                    var trans = x;
 
-
-                    Console.WriteLine(proxyLearn);
                 }
                 catch (SerializationException e)
                 {
@@ -200,11 +176,6 @@ namespace EEGfront
                 {
                     //fs.Close();
                 }
-
-                // To prove that the table deserialized correctly, 
-                // display the key/value pairs.
-
-                //var lel = proxyLearn;
             }
             LogResponse(response);
             //Console.WriteLine(responseString);

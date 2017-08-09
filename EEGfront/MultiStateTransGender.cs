@@ -16,48 +16,28 @@ using System.Web;
 
 namespace EEGfront
 {
-    [Serializable]
-    [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
-    [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
-    [AspNetHostingPermission(SecurityAction.LinkDemand, Level = AspNetHostingPermissionLevel.Minimal)]
-    internal sealed class SingletonSerializationHelper : IObjectReference
-    {
-        // This object has no fields (although it could).
-
-        // GetRealObject is called after this object is deserialized.
-        public Object GetRealObject(StreamingContext context)
-        {
-            // When deserialiing this object, return a reference to 
-            // the Singleton object instead.
-            return MultiStateTransGender.Instance;
-        }
-    }
 
     [Serializable]
     public class MultiStateTransGender : ISerializable
     {
+        public MulticlassSupportVectorMachine<Gaussian> Learn;
         #region pipework
-        private static MultiStateTransGender instance;
-        public static MultiStateTransGender Instance
+        public MultiStateTransGender()
         {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new MultiStateTransGender();
-                }
-                return instance;
-            }
+
+        }
+
+        public MultiStateTransGender(SerializationInfo info, StreamingContext ctxt)
+        {
+            //Get the values from info and assign them to the appropriate properties
+            Learn = (MulticlassSupportVectorMachine<Gaussian>)info.GetValue("Class", typeof(MulticlassSupportVectorMachine<Gaussian>));
         }
 
         // A method called when serializing a Singleton.
-        [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
         void ISerializable.GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            // Instead of serializing this object, 
-            // serialize a SingletonSerializationHelp instead.
-            info.SetType(typeof(SingletonSerializationHelper));
-            // No other values need to be added.
+            
+            info.AddValue("Class", Learn);
         }
         #endregion
 
@@ -122,9 +102,6 @@ namespace EEGfront
         }
 
         #endregion
-
-        [ComVisibleAttribute(true)]
-        public MulticlassSupportVectorMachine<Gaussian> Learn;
 
         private double[][] ApplyPCA(Queue<Double>[] rawStream)
         {

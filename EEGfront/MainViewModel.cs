@@ -14,6 +14,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using Accord.MachineLearning.VectorMachines;
 using Accord.Statistics.Kernels;
 using System.Runtime.Serialization;
+using MyObjSerial;
 
 namespace EEGfront
 {
@@ -44,7 +45,7 @@ namespace EEGfront
             //rest = Cloud.Instance;
             restService = Rest.Instance;
             stream = EmotiveAquisition.Instance;
-            machineStudent = MultiStateTransGender.Instance;
+            machineStudent = new MultiStateTransGender();
 
             //Dispatcher.BeginInvoke((Action)(() =>
             //{
@@ -196,15 +197,20 @@ namespace EEGfront
 
                 var y = lastLearn;
                 //serilization of data
+
+                Employee mp = new Employee();
+                mp.EmpId = 10;
+                mp.EmpName = "Omkumar";
+
                 MemoryStream DataWindowStream = new MemoryStream();
                 BinaryFormatter serializer = new BinaryFormatter();
-                serializer.Serialize(DataWindowStream, machineStudent);
+                serializer.Serialize(DataWindowStream, mp);
 
 
                 var f777 = DataWindowStream.ToArray();
 
                 await restService.UpdateModel("8", DataWindowStream);//post call
-                DataWindowStream.Close();
+
             }
             catch (Exception e)
             {
