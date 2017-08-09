@@ -146,44 +146,66 @@ namespace EEGfront
             JObject json = JObject.Parse(responseString);
 
             JToken contentr = json["current_model"]["current_model"]["data"];
-            string resp = contentr.ToString(Newtonsoft.Json.Formatting.None);
-
-            byte[] temp = Encoding.UTF8.GetBytes(resp);
-            MemoryStream s = new MemoryStream(temp);
+            var lel  = contentr.ToObject<byte[]>();
 
 
- 
-             
-            
-            MulticlassSupportVectorMachine<Gaussian> proxyLearn = null;
-            string leel;
-            // Open the file containing the data that you want to deserialize.
-            //Stream fs = await response.Content.ReadAsStreamAsync();
-            try
+
+            //string resp = contentr.ToString(Newtonsoft.Json.Formatting.None);
+
+            //byte[] temp = Encoding.UTF8.GetBytes(resp);
+
+
+
+            //BinaryFormatter binFormater = new BinaryFormatter();
+            //Stream stream = new MemoryStream(lel);
+            //stream.Seek(0, 0);
+            //var xxxxx = (MultiStateTransGender)binFormater.Deserialize(stream);
+            //stream.Close();
+
+            using (MemoryStream s = new MemoryStream(lel))
+
             {
-                BinaryFormatter formatter = new BinaryFormatter();
 
-                // Deserialize the hashtable from the file and 
-                // assign the reference to the local variable.
+                //var sr = new StreamReader(s);
+                //var myStr = sr.ReadToEnd();
 
-                //leel = (string)formatter.Deserialize(fs);
-                proxyLearn = (MulticlassSupportVectorMachine<Gaussian>)formatter.Deserialize(s);                
+                var str = Encoding.UTF8.GetString(s.ToArray());
+
+                 MultiStateTransGender proxyLearn = null;
+                string leel;
+                // Open the file containing the data that you want to deserialize.
+                //Stream fs = await response.Content.ReadAsStreamAsync();
+                try
+                {
+                    BinaryFormatter formatter = new BinaryFormatter();
+
+                    // Deserialize the hashtable from the file and 
+                    // assign the reference to the local variable.
+
+                    //leel = (string)formatter.Deserialize(fs);
+                    s.Position = 0;
+                    var x = (MultiStateTransGender)formatter.Deserialize(s);
+
+                    var trans = x.Learn;
+
+
+                    Console.WriteLine(proxyLearn);
+                }
+                catch (SerializationException e)
+                {
+                    Console.WriteLine("Failed to deserialize. Reason: " + e.Message);
+                    throw;
+                }
+                finally
+                {
+                    //fs.Close();
+                }
+
+                // To prove that the table deserialized correctly, 
+                // display the key/value pairs.
+
+                //var lel = proxyLearn;
             }
-            catch (SerializationException e)
-            {
-                Console.WriteLine("Failed to deserialize. Reason: " + e.Message);
-                throw;
-            }
-            finally
-            {
-                //fs.Close();
-            }
-            
-            // To prove that the table deserialized correctly, 
-            // display the key/value pairs.
-
-            //var lel = proxyLearn;
-
             LogResponse(response);
             //Console.WriteLine(responseString);
             return responseString;
@@ -193,7 +215,7 @@ namespace EEGfront
         {
             var values = new Dictionary<string, string>();
             content.Position = 0;
-            using (StreamReader reader = new StreamReader(content, Encoding.UTF8))
+            using (StreamReader reader = new StreamReader(content, Encoding.ASCII))
             {
 
                 values = new Dictionary<string, string>
