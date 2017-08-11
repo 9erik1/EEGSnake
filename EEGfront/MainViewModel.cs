@@ -16,6 +16,8 @@ using Accord.Statistics.Kernels;
 using System.Runtime.Serialization;
 using MyObjSerial;
 using System.Xml.Serialization;
+using Accord.IO;
+using System.IO.Compression;
 
 namespace EEGfront
 {
@@ -205,17 +207,33 @@ namespace EEGfront
                 mp.Count = machineStudent.Learn.Count;
                 mp.NumberOfInputs = machineStudent.Learn.NumberOfInputs;
                 mp.NumberOfOutputs = machineStudent.Learn.NumberOfOutputs;
-                mp.Learn = machineStudent.Learn.Clone();
-    
-
-                  MemoryStream DataWindowStream = new MemoryStream();
-                BinaryFormatter serializer = new BinaryFormatter();
-                serializer.Serialize(DataWindowStream, mp);
+                mp.Learn = machineStudent.Learn;
 
 
-     
+                //byte[] bytes;
+                //Serializer.Save(machineStudent.Learn, out bytes, SerializerCompression.GZip);
 
-                await restService.UpdateModel("8", DataWindowStream);//post call
+
+
+                //Stream DataWindowStream = new MemoryStream();
+                //BinaryFormatter serializer = new BinaryFormatter();
+                //serializer.s(DataWindowStream, mp);
+
+
+
+                //byte[] payment = Accord.IO.Serializer.Save(machineStudent.Learn, SerializerCompression.GZip);
+
+                using (var payload = new MemoryStream())
+                {
+                    //using (var gzip = new GZipStream(payload, CompressionMode.Compress, leaveOpen: true))
+                    //{
+                        Serializer.Save(machineStudent.Learn, payload);
+               
+
+                        await restService.UpdateModel("8", payload);//post call
+                   // }
+
+                }
 
             }
             catch (Exception e)

@@ -17,8 +17,8 @@ using System.Web;
 namespace EEGfront
 {
 
-    [Serializable]
-    public class MultiStateTransGender : ISerializable
+
+    public class MultiStateTransGender 
     {
         public MulticlassSupportVectorMachine<Gaussian> Learn;
         #region pipework
@@ -27,18 +27,10 @@ namespace EEGfront
 
         }
 
-        public MultiStateTransGender(SerializationInfo info, StreamingContext ctxt)
-        {
-            //Get the values from info and assign them to the appropriate properties
-            Learn = (MulticlassSupportVectorMachine<Gaussian>)info.GetValue("Class", typeof(MulticlassSupportVectorMachine<Gaussian>));
-        }
+  
 
         // A method called when serializing a Singleton.
-        void ISerializable.GetObjectData(SerializationInfo info, StreamingContext context)
-        {
 
-            info.AddValue("Class", Learn);
-        }
         #endregion
 
         #region filters

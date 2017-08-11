@@ -1,11 +1,14 @@
-﻿using Accord.MachineLearning.VectorMachines;
+﻿using Accord.IO;
+using Accord.MachineLearning.VectorMachines;
 using Accord.Statistics.Kernels;
 using MyObjSerial;
 using Newtonsoft.Json.Linq;
+using OxyPlot;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
+using System.IO.Compression;
 using System.Net.Http;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -132,6 +135,28 @@ namespace EEGfront
             stream.Position = 0;
             return stream;
         }
+
+        public string DecompressString(string compressedText)
+        {
+            byte[] gZipBuffer = Convert.FromBase64String(compressedText);
+            using (var memoryStream = new MemoryStream())
+            {
+                int dataLength = BitConverter.ToInt32(gZipBuffer, 0);
+                memoryStream.Write(gZipBuffer, 4, gZipBuffer.Length - 4);
+
+                var buffer = new byte[dataLength];
+
+                memoryStream.Position = 0;
+                using (var gZipStream = new GZipStream(memoryStream, CompressionMode.Decompress))
+                {
+                    gZipStream.Read(buffer, 0, buffer.Length);
+                }
+
+                return Encoding.UTF8.GetString(buffer);
+            }
+        }
+
+
         public async Task<string> PostCurrent(string user_id)
         {
             var values = new Dictionary<string, string>
@@ -149,28 +174,39 @@ namespace EEGfront
             JToken contentr = json["current_model"]["current_model"]["data"];
             var lel  = contentr.ToObject<byte[]>();
 
+            string result = System.Text.Encoding.UTF8.GetString(lel);
 
-            using (MemoryStream s = new MemoryStream(lel))
+            result = DecompressString(result);
+
+            
+            byte[] asd = Encoding.UTF8.GetBytes(result);
+
+            using (MemoryStream s = new MemoryStream(asd))
 
             {
                 try
                 {
-                    BinaryFormatter formatter = new BinaryFormatter();
 
-                    // Deserialize the hashtable from the file and 
-                    // assign the reference to the local variable.
+               
 
-                    //leel = (string)formatter.Deserialize(fs);
-                    s.Position = 0;
-                    var x = (Employee)formatter.Deserialize(s);
 
-                    var trans = x;
+
+                    BinaryFormatter br = new BinaryFormatter();
+
+                    var transvestite = Accord.IO.Serializer.Load(s, out br, SerializerCompression.None);
+               
+
+                    var trans = 0;
 
                 }
                 catch (SerializationException e)
                 {
                     Console.WriteLine("Failed to deserialize. Reason: " + e.Message);
                     throw;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Failed to deserialize. Reason: " + ex.Message);
                 }
                 finally
                 {
@@ -182,17 +218,42 @@ namespace EEGfront
             return responseString;
         }
 
-        public async Task<string> UpdateModel(string user_id, Stream content)
+        public static string CompressString(string text)
+        {
+            byte[] buffer = Encoding.UTF8.GetBytes(text);
+            var memoryStream = new MemoryStream();
+            using (var gZipStream = new GZipStream(memoryStream, CompressionMode.Compress, true))
+            {
+                gZipStream.Write(buffer, 0, buffer.Length);
+            }
+
+            memoryStream.Position = 0;
+
+            var compressedData = new byte[memoryStream.Length];
+            memoryStream.Read(compressedData, 0, compressedData.Length);
+
+            var gZipBuffer = new byte[compressedData.Length + 4];
+            Buffer.BlockCopy(compressedData, 0, gZipBuffer, 4, compressedData.Length);
+            Buffer.BlockCopy(BitConverter.GetBytes(buffer.Length), 0, gZipBuffer, 0, 4);
+            return Convert.ToBase64String(gZipBuffer);
+        }
+
+
+        public async Task<string> UpdateModel(string user_id, MemoryStream content)
         {
             var values = new Dictionary<string, string>();
-            content.Position = 0;
+            //content.Position = 0;
             using (StreamReader reader = new StreamReader(content, Encoding.ASCII))
             {
+                string load = await reader.ReadToEndAsync();
+
+                load = CompressString(load);
+
 
                 values = new Dictionary<string, string>
                 {
                     { "user_id", user_id },
-                    { "current_model", await reader.ReadToEndAsync() }
+                    { "current_model", load }
                 };
             }
 
