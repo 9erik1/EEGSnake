@@ -228,9 +228,11 @@ namespace EEGfront
                     //using (var gzip = new GZipStream(payload, CompressionMode.Compress, leaveOpen: true))
                     //{
                         Serializer.Save(machineStudent.Learn, payload);
-               
+                    payload.Position = 0;
+                    MulticlassSupportVectorMachine<Gaussian> asd = Serializer.Load<MulticlassSupportVectorMachine<Gaussian>>(payload);
 
-                        await restService.UpdateModel("8", payload);//post call
+
+                    await restService.UpdateModel("8", payload);//post call
                    // }
 
                 }
