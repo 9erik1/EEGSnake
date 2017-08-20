@@ -139,27 +139,6 @@ namespace EEGfront
             return stream;
         }
 
-        public string DecompressString(string compressedText)
-        {
-            byte[] gZipBuffer = Convert.FromBase64String(compressedText);
-            using (var memoryStream = new MemoryStream())
-            {
-                int dataLength = BitConverter.ToInt32(gZipBuffer, 0);
-                memoryStream.Write(gZipBuffer, 4, gZipBuffer.Length - 4);
-
-                var buffer = new byte[dataLength];
-
-                memoryStream.Position = 0;
-                using (var gZipStream = new GZipStream(memoryStream, CompressionMode.Decompress))
-                {
-                    gZipStream.Read(buffer, 0, buffer.Length);
-                }
-
-                return Encoding.UTF8.GetString(buffer);
-            }
-        }
-
-
         public async Task<string> PostCurrent(string user_id)
         {
             var values = new Dictionary<string, string>
@@ -169,67 +148,68 @@ namespace EEGfront
 
             var content = new FormUrlEncodedContent(values);
 
-            var response = await client.PostAsync("https://99.224.57.104:5900/rest/currentmodel/", content);
+            var response = await client.PostAsync("http://192.168.0.101:3222/currentmodel/", content);
 
-            string responseString = await response.Content.ReadAsStringAsync();
-            JObject json = JObject.Parse(responseString);
+            //string responseString = await response.Content.ReadAsStringAsync();
+            //JObject json = JObject.Parse(responseString);
 
-            JToken contentr = json["current_model"]["current_model"]["data"];
-            var lel  = contentr.ToObject<byte[]>();
+            //JToken contentr = json["current_model"]["current_model"]["data"];
+            //var lel  = contentr.ToObject<byte[]>();
 
-            string result = System.Text.Encoding.UTF8.GetString(lel);
+            //string result = Encoding.UTF8.GetString(lel);
+            Stream c = await response.Content.ReadAsStreamAsync();
 
-            result = DecompressString(result);
+            MulticlassSupportVectorMachine<Gaussian> asd = Serializer.Load<MulticlassSupportVectorMachine<Gaussian>>(c);
 
-            
-            byte[] asd = Encoding.UTF8.GetBytes(result);
+            //byte[] asd = Encoding.UTF8.GetBytes(result);
 
-            using (MemoryStream s = new MemoryStream(asd))
+            //using (MemoryStream s = new MemoryStream(asd))
 
-            {
-                try
-                {
+            //{
+            //    try
+            //    {
 
+            //        //MulticlassSupportVectorMachine<Gaussian> asd = Serializer.Load<MulticlassSupportVectorMachine<Gaussian>>(payload);
+
+
+
+            //        BinaryFormatter br = new BinaryFormatter();
+
+            //        var transvestite = Accord.IO.Serializer.Load(s, out br, SerializerCompression.None);
                
 
+            //        var trans = 0;
 
-
-                    BinaryFormatter br = new BinaryFormatter();
-
-                    var transvestite = Accord.IO.Serializer.Load(s, out br, SerializerCompression.None);
-               
-
-                    var trans = 0;
-
-                }
-                catch (SerializationException e)
-                {
-                    Console.WriteLine("Failed to deserialize. Reason: " + e.Message);
-                    throw;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Failed to deserialize. Reason: " + ex.Message);
-                }
-                finally
-                {
-                    //fs.Close();
-                }
-            }
+            //    }
+            //    catch (SerializationException e)
+            //    {
+            //        Console.WriteLine("Failed to deserialize. Reason: " + e.Message);
+            //        throw;
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Console.WriteLine("Failed to deserialize. Reason: " + ex.Message);
+            //    }
+            //    finally
+            //    {
+            //        //fs.Close();
+            //    }
+            //}
             LogResponse(response);
             //Console.WriteLine(responseString);
-            return responseString;
+            return "";
         }
 
         public async Task<string> UpdateModel(string user_id, Stream content)
-        { HttpClient multiformclient = new HttpClient();
+        { 
+
             MultipartFormDataContent formdata = new MultipartFormDataContent();
 
             formdata.Add(new StringContent(user_id), "user_id");
             //var cont = new StreamContent(content);
             formdata.Add(new StreamContent(content), "current_model", "learn.zip");
 
-            HttpResponseMessage response = await multiformclient.PostAsync("https://192.168.0.173:5900/rest/updatemodel", formdata);
+            HttpResponseMessage response = await client.PostAsync("http://192.168.0.101:3222/updatemodel", formdata);
 
             string responsestring = await response.Content.ReadAsStringAsync();
             LogResponse(response);
