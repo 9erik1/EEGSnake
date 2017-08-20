@@ -54,7 +54,7 @@ namespace EEGfront
             //{
             //    Console.WriteLine("asd");
             //}));
-        
+
             Task.Run(async () => lastLearn = await restService.PostCurrent("8"));
 
             // Example 
@@ -223,25 +223,46 @@ namespace EEGfront
 
                 //byte[] payment = Accord.IO.Serializer.Save(machineStudent.Learn, SerializerCompression.GZip);
 
-                using (var payload = new MemoryStream())
-                {
-                    //using (var gzip = new GZipStream(payload, CompressionMode.Compress, leaveOpen: true))
-                    //{
-                        Serializer.Save(machineStudent.Learn, payload);
-                    payload.Position = 0;
-                    MulticlassSupportVectorMachine<Gaussian> asd = Serializer.Load<MulticlassSupportVectorMachine<Gaussian>>(payload);
+                var payload = new MemoryStream();
+
+                //using (var gzip = new GZipStream(payload, CompressionMode.Compress, leaveOpen: true))
+                //{
+                Serializer.Save(machineStudent.Learn, payload);
+                payload.Position = 0;
+                //MulticlassSupportVectorMachine<Gaussian> asd = Serializer.Load<MulticlassSupportVectorMachine<Gaussian>>(payload);
+                //payload.Position = 0;
 
 
-                    await restService.UpdateModel("8", payload);//post call
-                   // }
 
-                }
+
+
+
+
+                //var load = Compress(payload);
+
+
+                await restService.UpdateModel("8", payload);//post call
+                                                            // }
+
+
 
             }
             catch (Exception e)
             {
                 Console.WriteLine("Failed for basic reason: " + e);
             }
+        }
+
+        public Stream Compress(Stream decompressed,CompressionLevel compressionLevel = CompressionLevel.Fastest)
+        {
+            var compressed = new MemoryStream();
+            using (var zip = new GZipStream(compressed, compressionLevel, true))
+            {
+                decompressed.CopyTo(zip);
+            }
+
+            compressed.Seek(0, SeekOrigin.Begin);
+            return compressed;
         }
 
         private async void AutoTest()

@@ -7,12 +7,15 @@ using OxyPlot;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.IO;
 using System.IO.Compression;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace EEGfront
@@ -218,33 +221,21 @@ namespace EEGfront
             return responseString;
         }
 
-        public async Task<string> UpdateModel(string user_id, MemoryStream content)
-        {
-            var values = new Dictionary<string, string>();
-            //content.Position = 0;
-            using (StreamReader reader = new StreamReader(content, Encoding.ASCII))
-            {
-                string load = await reader.ReadToEndAsync();
+        public async Task<string> UpdateModel(string user_id, Stream content)
+        { HttpClient multiformclient = new HttpClient();
+            MultipartFormDataContent formdata = new MultipartFormDataContent();
 
-               // load = CompressString(load);
+            formdata.Add(new StringContent(user_id), "user_id");
+            //var cont = new StreamContent(content);
+            formdata.Add(new StreamContent(content), "current_model", "learn.zip");
 
+            HttpResponseMessage response = await multiformclient.PostAsync("https://192.168.0.173:5900/rest/updatemodel", formdata);
 
-                values = new Dictionary<string, string>
-                {
-                    { "user_id", user_id },
-                    { "current_model", load }
-                };
-            }
-
-
-            var postContent = new FormUrlEncodedContent(values);
-
-            var response = await client.PostAsync("https://99.224.57.104:5900/rest/updatemodel/", postContent);
-
-            string responseString = await response.Content.ReadAsStringAsync();
+            string responsestring = await response.Content.ReadAsStringAsync();
             LogResponse(response);
-            Console.WriteLine(responseString);
-            return responseString;
+            Console.WriteLine("1: " + responsestring);
+
+            return responsestring;
         }
     }
 }
