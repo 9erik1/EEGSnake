@@ -26,6 +26,7 @@ namespace EEGfront
 
         private async void Clickey()
         {
+            Console.WriteLine("----------START LOGIN----------");
             try
             {
                 string answer = await loginModule.Shake(User, Pass);
@@ -36,11 +37,11 @@ namespace EEGfront
                 if (!string.IsNullOrEmpty(answer.Split(',')[2].Split(':')[1]))
                     userid = answer.Split(',')[2].Split(':')[1];
                 Console.WriteLine(userid.Substring(0,userid.Length-1));
-
+                var initmainview = new MainViewModel("");
                 if(!string.IsNullOrEmpty(userid))
                 {
                     var pca = new MainWindow();
-                    pca.DataContext = new MainViewModel("");
+                    pca.DataContext = initmainview;
 
                     pca.Show();
                     pca.Closing += Pca_Closed;
@@ -52,6 +53,7 @@ namespace EEGfront
                 Console.WriteLine("Failed for basic reason: " + e);
                 //Err = e.Message;
             }
+            Console.WriteLine("-----------END LOGIN-----------");
         }
         private void Pca_Closed(object sender, EventArgs e)
         {

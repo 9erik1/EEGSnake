@@ -6,7 +6,6 @@ using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Windows.Input;
 using System;
-using OpenTK;
 using System.Windows;
 using System.Net;
 using System.IO;
@@ -32,15 +31,10 @@ namespace EEGfront
         private EmotiveAquisition stream;
         private Rest restService;
         private SVMClassifier machineStudent;
-        private GLControl graphics;
-
-        //private Cloud rest;
 
         MulticlassSupportVectorMachine<Gaussian> currentClassifier;
         public MainViewModel(string idTag)
         {
-
-            //rest = Cloud.Instance;
             restService = Rest.Instance;
             stream = EmotiveAquisition.Instance;
             machineStudent = new SVMClassifier();
@@ -80,7 +74,6 @@ namespace EEGfront
             leftToggle = Visibility.Visible;
             rightToggle = Visibility.Visible;
 
-            //OptionChanged = new RelayCommand
 
             draw = new Thread(new ThreadStart(Draw));
             draw.Start();
@@ -241,21 +234,6 @@ namespace EEGfront
                         p => this.ManTest());
                 }
                 return manualCommand;
-            }
-        }
-
-        private ICommand optionChanged;
-        public ICommand OptionChanged
-        {
-            get
-            {
-                if (optionChanged == null)
-                {
-                    optionChanged = new RelayCommand(
-                        p => true,
-                        p => this.Clickey());
-                }
-                return optionChanged;
             }
         }
 
