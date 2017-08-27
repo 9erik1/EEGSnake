@@ -8,8 +8,7 @@ using System.Windows.Threading;
 
 namespace EEGfront
 {
-    //[Serializable]
-    public class EmotiveAquisition /*: ISerializable*/
+    public class EmotiveAquisition
     {
         private static EmotiveAquisition instance;
         public static EmotiveAquisition Instance
@@ -167,37 +166,5 @@ namespace EEGfront
                 await Task.Delay(250);
             }
         }
-
-        //// A method called when serializing a Singleton.
-        //[SecurityPermissionAttribute(SecurityAction.LinkDemand,
-        //Flags = SecurityPermissionFlag.SerializationFormatter)]
-        //void ISerializable.GetObjectData(
-        //     SerializationInfo info, StreamingContext context)
-        //{
-        //    // Instead of serializing this object, 
-        //    // serialize a SingletonSerializationHelp instead.
-        //    info.SetType(typeof(SingletonSerializationHelper));
-        //    // No other values need to be added.
-        //}
     }
-
-   // [Serializable]
-   // [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
-   // [SecurityPermissionAttribute(SecurityAction.LinkDemand,
-   // Flags = SecurityPermissionFlag.SerializationFormatter)]
-   // [AspNetHostingPermission(SecurityAction.LinkDemand,
-   //Level = AspNetHostingPermissionLevel.Minimal)]
-   // internal sealed class SingletonSerializationHelper : IObjectReference
-   // {
-   //     // This object has no fields (although it could).
-
-   //     // GetRealObject is called after this object is deserialized.
-   //     public Object GetRealObject(StreamingContext context)
-   //     {
-   //         // When deserialiing this object, return a reference to 
-   //         // the Singleton object instead.
-   //         return EmotiveAquisition.Instance;
-   //     }
-   // }
-
 }

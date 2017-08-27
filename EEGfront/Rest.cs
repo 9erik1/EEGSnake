@@ -3,7 +3,6 @@ using Accord.MachineLearning.VectorMachines;
 using Accord.Statistics.Kernels;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -35,8 +34,12 @@ namespace EEGfront
 
         private void LogResponse(HttpResponseMessage resp)
         {
+            Console.WriteLine("----------START----------");
             Console.WriteLine(resp.StatusCode);
             Console.WriteLine(resp.Headers);
+            Console.WriteLine(resp.RequestMessage.RequestUri);
+            Console.WriteLine(resp.Content.Headers);
+            Console.WriteLine("-----------END-----------");
         }
 
         public async Task<string> Get(string url)
@@ -67,7 +70,7 @@ namespace EEGfront
             return responseString;
         }
 
-        public async Task<string> PostCurrent(string user_id)
+        public async Task<MulticlassSupportVectorMachine<Gaussian>> PostCurrent(string user_id)
         {
             var values = new Dictionary<string, string>
             {
@@ -80,10 +83,10 @@ namespace EEGfront
 
             Stream c = await response.Content.ReadAsStreamAsync();
 
-            MulticlassSupportVectorMachine<Gaussian> asd = Serializer.Load<MulticlassSupportVectorMachine<Gaussian>>(c);
+            MulticlassSupportVectorMachine<Gaussian> classifier = Serializer.Load<MulticlassSupportVectorMachine<Gaussian>>(c);
 
             LogResponse(response);
-            return response.StatusCode.ToString();
+            return classifier;
         }
 
         public async Task<string> UpdateModel(string user_id, Stream content)

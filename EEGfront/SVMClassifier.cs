@@ -1,5 +1,4 @@
 ﻿
-
 using Accord.MachineLearning.VectorMachines;
 using Accord.MachineLearning.VectorMachines.Learning;
 using Accord.Math;
@@ -9,27 +8,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
-using System.Runtime.InteropServices;
-using System.Runtime.Serialization;
-using System.Security.Permissions;
-using System.Web;
 
 namespace EEGfront
 {
 
 
-    public class MultiStateTransGender 
+    public class SVMClassifier 
     {
         public MulticlassSupportVectorMachine<Gaussian> Learn;
         #region pipework
-        public MultiStateTransGender()
+        public SVMClassifier()
         {
 
         }
-
-  
-
-        // A method called when serializing a Singleton.
 
         #endregion
 

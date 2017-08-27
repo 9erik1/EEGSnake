@@ -10,14 +10,9 @@ using OpenTK;
 using System.Windows;
 using System.Net;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+using Accord.IO;
 using Accord.MachineLearning.VectorMachines;
 using Accord.Statistics.Kernels;
-using System.Runtime.Serialization;
-using MyObjSerial;
-using System.Xml.Serialization;
-using Accord.IO;
-using System.IO.Compression;
 
 namespace EEGfront
 {
@@ -36,26 +31,26 @@ namespace EEGfront
 
         private EmotiveAquisition stream;
         private Rest restService;
-        private MultiStateTransGender machineStudent;
+        private SVMClassifier machineStudent;
         private GLControl graphics;
 
         //private Cloud rest;
 
-        string lastLearn = "";
+        MulticlassSupportVectorMachine<Gaussian> currentClassifier;
         public MainViewModel(string idTag)
         {
 
             //rest = Cloud.Instance;
             restService = Rest.Instance;
             stream = EmotiveAquisition.Instance;
-            machineStudent = new MultiStateTransGender();
+            machineStudent = new SVMClassifier();
 
             //Dispatcher.BeginInvoke((Action)(() =>
             //{
             //    Console.WriteLine("asd");
             //}));
 
-            Task.Run(async () => lastLearn = await restService.PostCurrent("8"));
+            Task.Run(async () => currentClassifier = await restService.PostCurrent("8"));
 
             // Example 
             //await restService.Get("https://192.168.0.173:5900/rest/");
@@ -69,10 +64,6 @@ namespace EEGfront
             // because we use untrusted ssl ;)
             ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
 
-            //using of the login module
-
-
-
             //stream = EmotiveAquisition.Instance;
 
             menuItems = new ObservableCollection<AppState>();
@@ -82,8 +73,6 @@ namespace EEGfront
 
             currentOption = AppState.Game;
             CurrentOptionChange(currentOption);
-
-            MenuItem.CollectionChanged += MenuItem_CollectionChanged;
 
             gameToggle = Visibility.Visible;
             upToggle = Visibility.Visible;
@@ -95,11 +84,6 @@ namespace EEGfront
 
             draw = new Thread(new ThreadStart(Draw));
             draw.Start();
-        }
-
-        private void MenuItem_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            Console.WriteLine("Max Plebian");
         }
 
         public void Shutdown()
@@ -139,7 +123,7 @@ namespace EEGfront
             }
         }
 
-        private async void Clickey()
+        private void Clickey()
         {
             try
             {
@@ -198,71 +182,17 @@ namespace EEGfront
 
                 var x = machineStudent.MachineLearn(stream.dataWindow);
 
-                var y = lastLearn;
-                //serilization of data
-
-                Employee mp = new Employee();
-                mp.EmpId = 10;
-                mp.EmpName = "Omkumar";
-                mp.Count = machineStudent.Learn.Count;
-                mp.NumberOfInputs = machineStudent.Learn.NumberOfInputs;
-                mp.NumberOfOutputs = machineStudent.Learn.NumberOfOutputs;
-                mp.Learn = machineStudent.Learn;
-
-
-                //byte[] bytes;
-                //Serializer.Save(machineStudent.Learn, out bytes, SerializerCompression.GZip);
-
-
-
-                //Stream DataWindowStream = new MemoryStream();
-                //BinaryFormatter serializer = new BinaryFormatter();
-                //serializer.s(DataWindowStream, mp);
-
-
-
-                //byte[] payment = Accord.IO.Serializer.Save(machineStudent.Learn, SerializerCompression.GZip);
-
                 var payload = new MemoryStream();
 
-                //using (var gzip = new GZipStream(payload, CompressionMode.Compress, leaveOpen: true))
-                //{
                 Serializer.Save(machineStudent.Learn, payload);
                 payload.Position = 0;
-                //MulticlassSupportVectorMachine<Gaussian> asd = Serializer.Load<MulticlassSupportVectorMachine<Gaussian>>(payload);
-                //payload.Position = 0;
 
-
-
-
-
-
-
-                //var load = Compress(payload);
-
-
-                await restService.UpdateModel("8", payload);//post call
-                                                            // }
-
-
-
+                await restService.UpdateModel("8", payload);
             }
             catch (Exception e)
             {
                 Console.WriteLine("Failed for basic reason: " + e);
             }
-        }
-
-        public Stream Compress(Stream decompressed,CompressionLevel compressionLevel = CompressionLevel.Fastest)
-        {
-            var compressed = new MemoryStream();
-            using (var zip = new GZipStream(compressed, compressionLevel, true))
-            {
-                decompressed.CopyTo(zip);
-            }
-
-            compressed.Seek(0, SeekOrigin.Begin);
-            return compressed;
         }
 
         private async void AutoTest()
@@ -277,11 +207,6 @@ namespace EEGfront
             {
                 Console.WriteLine("Failed for basic reason: " + e);
             }
-        }
-
-        private void makedowaves()
-        {
-
         }
 
         public string[] Title { get; private set; }

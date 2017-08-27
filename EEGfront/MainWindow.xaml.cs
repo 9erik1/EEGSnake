@@ -69,27 +69,9 @@ namespace EEGfront
                 {
                     Dispatcher.BeginInvoke((Action)(() =>
                     {
-                        //GLControl l = (GLControl)Lefty.Child;
                         game.MakeCurrent();
                         GL.Clear(ClearBufferMask.ColorBufferBit);
-                        //if (lTog)
-                        //{
-                        //    GL.ClearColor(Color.White);
-                        //    lTog = false;
-                        //}
-                        //else
-                        //{
-                        //    GL.ClearColor(Color.Black);
-                        //    lTog = true;
-                        //}
-
                         GL.ClearColor(Color.Wheat);
-
-                        //GL.Begin(PrimitiveType.Quads);
-                        //GL.Color3(Color.Brown);
-                        //GL.Vertex3(0, 0, 0);
-                        //GL.Vertex3(0, 100, 0);
-                        //GL.End();
                         Draw_digit();
                         game.SwapBuffers();
                     }));

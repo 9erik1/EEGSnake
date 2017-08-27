@@ -166,8 +166,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Employee.cs" />
-    <Compile Include="MultiStateTransGender.cs" />
+    <Compile Include="SVMClassifier.cs" />
     <Compile Include="Rest.cs" />
     <Compile Include="EmotiveAquisition.cs" />
     <Compile Include="Login.xaml.cs">
