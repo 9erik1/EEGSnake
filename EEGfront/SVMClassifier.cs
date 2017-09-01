@@ -130,12 +130,14 @@ namespace EEGfront
             double[][] inputs =
             {
                 aggregateData[1],
-                aggregateData[2]
+                aggregateData[2],
+                aggregateData[3]
             };
             int[] outputs =
             {
                 output,
-                output
+                output,
+                1
             };
 
             MulticlassSupportVectorLearning<Gaussian> teacher = new MulticlassSupportVectorLearning<Gaussian>()
@@ -150,7 +152,16 @@ namespace EEGfront
                 }
             };
 
-            Learn = teacher.Learn(inputs, outputs);
+   
+
+            if (Learn == null)
+            {
+                Learn = teacher.Learn(inputs, outputs);
+            }
+            else
+            {
+                //Learn = Learn.Concatenate(teacher.Learn(inputs, outputs))[0];
+            }
         }
 
         public int[] AnswerSVM(Queue<Double>[] rawStream)

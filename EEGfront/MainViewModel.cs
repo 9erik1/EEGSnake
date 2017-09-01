@@ -45,7 +45,9 @@ namespace EEGfront
             //    Console.WriteLine("asd");
             //}));
 
-            Task.Run(async () => currentClassifier = await restService.PostCurrent("8"));
+            Task.Run(async () => currentClassifier = await restService.PostCurrent("13"));
+
+
 
 
 
@@ -186,7 +188,7 @@ namespace EEGfront
                 Serializer.Save(machineStudent.Learn, payload);
                 payload.Position = 0;
 
-                await restService.UpdateModel("8", payload);
+                await restService.UpdateModel("13", payload);
             }
             catch (Exception e)
             {
@@ -202,7 +204,7 @@ namespace EEGfront
 
                 var y = machineStudent.AnswerSVM(stream.dataWindow);
 
-                Console.WriteLine("Auto Test");
+                Console.WriteLine("Auto Test" + y);
             }
             catch (Exception e)
             {
