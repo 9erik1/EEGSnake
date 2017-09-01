@@ -12,6 +12,7 @@ using System.IO;
 using Accord.IO;
 using Accord.MachineLearning.VectorMachines;
 using Accord.Statistics.Kernels;
+using Accord.MachineLearning.VectorMachines.Learning;
 
 namespace EEGfront
 {
@@ -45,6 +46,9 @@ namespace EEGfront
             //}));
 
             Task.Run(async () => currentClassifier = await restService.PostCurrent("8"));
+
+
+
 
             // Example 
             //await restService.Get("https://192.168.0.173:5900/rest/");
@@ -173,7 +177,9 @@ namespace EEGfront
                         break;
                 }
 
-                var x = machineStudent.MachineLearn(stream.dataWindow);
+                //var x = machineStudent.MachineLearn(stream.dataWindow);
+
+                machineStudent.UpdateSVM(stream.dataWindow, Dir);
 
                 var payload = new MemoryStream();
 
@@ -192,7 +198,9 @@ namespace EEGfront
         {
             try
             {
-                var x = await restService.PostCurrent("8");
+                //var x = await restService.PostCurrent("8");
+
+                var y = machineStudent.AnswerSVM(stream.dataWindow);
 
                 Console.WriteLine("Auto Test");
             }

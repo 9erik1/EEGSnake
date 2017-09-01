@@ -13,9 +13,9 @@ namespace EEGfront
 {
 
 
-    public class SVMClassifier 
+    public class SVMClassifier
     {
-        public MulticlassSupportVectorMachine<Gaussian> Learn;
+        public MulticlassSupportVectorMachine<Gaussian> Learn { get; set; }
         #region pipework
         public SVMClassifier()
         {
@@ -123,6 +123,48 @@ namespace EEGfront
 
             return actual;
         }
+
+        public void UpdateSVM(Queue<Double>[] rawStream, int output)//Know your output
+        {
+            double[][] aggregateData = ApplyPCA(rawStream);
+            double[][] inputs =
+            {
+                aggregateData[1],
+                aggregateData[2]
+            };
+            int[] outputs =
+            {
+                output,
+                output
+            };
+
+            MulticlassSupportVectorLearning<Gaussian> teacher = new MulticlassSupportVectorLearning<Gaussian>()
+            {
+                // Configure the learning algorithm to use SMO to train the
+                //  underlying SVMs in each of the binary class subproblems.
+                Learner = (param) => new SequentialMinimalOptimization<Gaussian>()
+                {
+                    // Estimate a suitable guess for the Gaussian kernel's parameters.
+                    // This estimate can serve as a starting point for a grid search.
+                    UseKernelEstimation = true
+                }
+            };
+
+            Learn = teacher.Learn(inputs, outputs);
+        }
+
+        public int[] AnswerSVM(Queue<Double>[] rawStream)
+        {
+            double[][] aggregateData = ApplyPCA(rawStream);
+            double[][] testinput =
+            {
+                aggregateData[1],
+                aggregateData[2]
+            };
+            int[] predicted = Learn.Decide(testinput);
+            return predicted;
+        }
+
 
         public int[] MachineLearn(Queue<Double>[] rawStream)
         {
