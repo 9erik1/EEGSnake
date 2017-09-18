@@ -13,6 +13,8 @@ using Accord.IO;
 using Accord.MachineLearning.VectorMachines;
 using Accord.Statistics.Kernels;
 using Accord.MachineLearning.VectorMachines.Learning;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace EEGfront
 {
@@ -36,9 +38,28 @@ namespace EEGfront
         MulticlassSupportVectorMachine<Gaussian> currentClassifier;
         public MainViewModel(string idTag)
         {
+            TrainingInputManager tim = new TrainingInputManager();
+            tim.AddUp(new double[] { 1, 2 }, DateTime.Now);
+            IFormatter formatter = new BinaryFormatter();
+            Stream s = new MemoryStream();
+            formatter.Serialize(s, tim);
+            s.Position = 0;
+
+            TrainingInputManager t = (TrainingInputManager)formatter.Deserialize(s);
+            Console.WriteLine(t);
+
+
+            s.Close();
+
+
+
+
             restService = Rest.Instance;
             stream = EmotiveAquisition.Instance;
             machineStudent = new SVMClassifier();
+
+
+
 
             //Dispatcher.BeginInvoke((Action)(() =>
             //{
@@ -46,11 +67,6 @@ namespace EEGfront
             //}));
 
             Task.Run(async () => currentClassifier = await restService.PostCurrent("13"));
-
-
-
-
-
 
             // Example 
             //await restService.Get("https://192.168.0.173:5900/rest/");

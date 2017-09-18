@@ -8,17 +8,14 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace EEGfront
 {
-    class TrainingInputManager :ISerializable
+    [Serializable]
+    public class TrainingInputManager 
     {
-        void ISerializable.GetObjectData(SerializationInfo info, StreamingContext context)
-        {
 
-        }
-
-        List<Tuple<double[], DateTime>> Up { get; set; }
-        List<Tuple<double[], DateTime>> Down { get; set; }
-        List<Tuple<double[], DateTime>> Left { get; set; }
-        List<Tuple<double[], DateTime>> Right { get; set; }
+        public List<Tuple<double[], DateTime>> Up { get; set; }
+        public List<Tuple<double[], DateTime>> Down { get; set; }
+        public List<Tuple<double[], DateTime>> Left { get; set; }
+        public List<Tuple<double[], DateTime>> Right { get; set; }
 
         public TrainingInputManager()
         {
@@ -30,7 +27,7 @@ namespace EEGfront
 
         public void AddUp(double[] ProcessedSample, DateTime timestamp)
         {
-
+            Up.Add(new Tuple<double[], DateTime>(ProcessedSample, timestamp));
         }
         public void AddDown(double[] ProcessedSample, DateTime timestamp)
         {
