@@ -3,6 +3,7 @@ using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using System;
 using System.Drawing;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -54,7 +55,11 @@ namespace EEGfront
             top = (GLControl)Heven.Child;
             bot = (GLControl)Hell.Child;
 
-            wbSample.Navigate("https://google.com");
+            var myAssembly = System.Reflection.Assembly.GetEntryAssembly();
+            string myAssemblyLocation = System.IO.Path.GetDirectoryName(myAssembly.Location);
+            string myHtmlPath = myAssemblyLocation + "\\img\\my.html";
+
+            wbSample.Navigate(myHtmlPath);
         }
 
         private async void GameThread()
