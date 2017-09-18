@@ -22,13 +22,11 @@ namespace EEGfront
         private GLControl right;
         private GLControl top;
         private GLControl bot;
-        private GLControl game;
 
         Thread drawL;
         Thread drawR;
         Thread drawT;
         Thread drawB;
-        Thread deawGame;
 
         private bool lTog = true;
         private bool rTog = true;
@@ -50,14 +48,11 @@ namespace EEGfront
             drawT.Start();
             drawB = new Thread(new ThreadStart(DrawB));
             drawB.Start();
-            deawGame = new Thread(new ThreadStart(GameThread));
-            deawGame.Start();
 
             left = (GLControl)Lefty.Child;
             right = (GLControl)Rightey.Child;
             top = (GLControl)Heven.Child;
             bot = (GLControl)Hell.Child;
-            game = (GLControl)Game.Child;
         }
 
         private async void GameThread()
@@ -69,11 +64,9 @@ namespace EEGfront
                 {
                     Dispatcher.BeginInvoke((Action)(() =>
                     {
-                        game.MakeCurrent();
                         GL.Clear(ClearBufferMask.ColorBufferBit);
                         GL.ClearColor(Color.Wheat);
                         Draw_digit();
-                        game.SwapBuffers();
                     }));
                 }
             }
@@ -220,11 +213,6 @@ namespace EEGfront
         private void GLviewBot(object sender, EventArgs e)
         {
             glInit(bot, sender, "hell");
-        }
-
-        private void GLviewGame(object sender, EventArgs e)
-        {
-            glInit(game, sender, "game");
         }
 
         private void glInit(GLControl g, object sender, string name)
