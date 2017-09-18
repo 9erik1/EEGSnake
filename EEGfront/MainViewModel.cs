@@ -15,6 +15,7 @@ using Accord.Statistics.Kernels;
 using Accord.MachineLearning.VectorMachines.Learning;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Windows.Controls;
 
 namespace EEGfront
 {

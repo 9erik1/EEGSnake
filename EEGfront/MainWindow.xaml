@@ -9,6 +9,7 @@
         <WindowsFormsHost Name="Rightey" Initialized="GLviewRight" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="{Binding RightToggle}" Margin="0,244,10,245"  ></WindowsFormsHost>
         <WindowsFormsHost Name="Heven" Initialized="GLviewTop" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="{Binding UpToggle}" Margin="536,10,536,0"  ></WindowsFormsHost>
         <WindowsFormsHost Name="Hell" Initialized="GLviewBot" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Visibility="{Binding DownToggle}" Margin="536,0,536,10"  ></WindowsFormsHost>
+        <WebBrowser Name="wbSample" Height="400" Width="400" HorizontalAlignment="Center" Visibility="{Binding DownToggle}"></WebBrowser>
 
         <ComboBox IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding MenuItem}" SelectedValue="{Binding CurrentOption}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120">
 

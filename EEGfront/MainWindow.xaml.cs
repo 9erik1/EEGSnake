@@ -53,6 +53,8 @@ namespace EEGfront
             right = (GLControl)Rightey.Child;
             top = (GLControl)Heven.Child;
             bot = (GLControl)Hell.Child;
+
+            wbSample.Navigate("https://google.com");
         }
 
         private async void GameThread()
