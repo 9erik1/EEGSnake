@@ -60,15 +60,14 @@ namespace EEGfront
             var myAssembly = System.Reflection.Assembly.GetEntryAssembly();
             string myAssemblyLocation = System.IO.Path.GetDirectoryName(myAssembly.Location);
             string myHtmlPath = myAssemblyLocation + "\\webview\\snake.html";
-            Uri snakepath = new Uri(myHtmlPath);
             wbSample.LoadCompleted += WbSample_LoadCompleted;
-            wbSample.Navigate(myHtmlPath);
+            wbSample.Navigate("http://www.me.umn.edu/~dockt036/snake.html");
 
         }
 
         private void WbSample_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
-            var doc = (HtmlDocument)wbSample.Document;
+     
         }
 
         private async void GameThread()

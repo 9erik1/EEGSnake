@@ -355,7 +355,7 @@ namespace EEGfront
                 if (value != currentOption)
                 {
                     currentOption = value;
-                    CurrentOptionChange(currentOption);
+                    //CurrentOptionChange(currentOption);
                     NotifyPropertyChanged();
                 }
             }
