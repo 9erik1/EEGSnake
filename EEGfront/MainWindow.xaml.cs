@@ -10,6 +10,8 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Forms.Integration;
 
+
+
 namespace EEGfront
 {
     /// <summary>
@@ -57,9 +59,16 @@ namespace EEGfront
 
             var myAssembly = System.Reflection.Assembly.GetEntryAssembly();
             string myAssemblyLocation = System.IO.Path.GetDirectoryName(myAssembly.Location);
-            string myHtmlPath = myAssemblyLocation + "\\img\\my.html";
-
+            string myHtmlPath = myAssemblyLocation + "\\webview\\snake.html";
+            Uri snakepath = new Uri(myHtmlPath);
+            wbSample.LoadCompleted += WbSample_LoadCompleted;
             wbSample.Navigate(myHtmlPath);
+
+        }
+
+        private void WbSample_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+            var doc = (HtmlDocument)wbSample.Document;
         }
 
         private async void GameThread()

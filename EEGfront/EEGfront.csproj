@@ -252,8 +252,13 @@
       <Name>GateKeep</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Content Include="img\my.html">
+    <Content Include="webview\css\snake.css" />
+    <Content Include="webview\js\app.js" />
+    <Content Include="webview\js\draw.js" />
+    <Content Include="webview\js\setting.js" />
+    <Content Include="webview\snake.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
