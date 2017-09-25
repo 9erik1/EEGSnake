@@ -14,6 +14,8 @@ using Accord.Statistics.Kernels;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using Accord.IO;
+using System.Drawing;
+using System.Windows.Media;
 
 namespace EEGfront
 {
@@ -92,6 +94,8 @@ namespace EEGfront
 
             draw = new Thread(new ThreadStart(Draw));
             draw.Start();
+            //private Brush _colorr = Brushes.Red;
+            //SnakeGame = Brushes.Green;
         }
 
         public void Shutdown()
@@ -417,6 +421,26 @@ namespace EEGfront
                 }
             }
         }
+
+
+
+        private SolidColorBrush snakeGame = new SolidColorBrush(System.Windows.Media.Color.FromRgb(125,125,125));
+        public SolidColorBrush SnakeGame
+        {
+            get
+            {
+                return snakeGame;
+            }
+            set
+            {
+                if (value != snakeGame)
+                {
+                    this.snakeGame = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
 
         public string DisplayedImage
         {
