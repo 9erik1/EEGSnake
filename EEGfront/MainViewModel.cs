@@ -36,8 +36,6 @@ namespace EEGfront
         private Rest restService;
         private SVMClassifier machineStudent;
 
-        string re;
-
         MulticlassSupportVectorMachine<Gaussian> currentClassifier;
         public MainViewModel(string idTag)
         {
@@ -51,6 +49,8 @@ namespace EEGfront
             {
                 T_I_M = await restService.PostCurrentRaw("8");
                 Console.WriteLine(T_I_M);
+                if (T_I_M == null)
+                    T_I_M = new TrainingInputManager();
             });
 
             //Dispatcher.BeginInvoke((Action)(() =>
@@ -186,18 +186,18 @@ namespace EEGfront
                         break;
                 }
 
-                PackRaw();
+                PackRaw(Dir);
             }
             catch (Exception e)
             {
                 Console.WriteLine("Failed for basic reason: " + e);
             }
         }
-        private async void PackLearn()
+        private async void PackLearn(int dir)
         {
             var x = machineStudent.MachineLearn(stream.dataWindow);
 
-            machineStudent.UpdateSVM(stream.dataWindow, Dir);
+            machineStudent.UpdateSVM(stream.dataWindow, dir);
 
             var payload = new MemoryStream();
 
@@ -206,11 +206,30 @@ namespace EEGfront
             await restService.UpdateModelRaw("8", payload);
             payload.Close();
         }
-        private async void PackRaw()
+        private async void PackRaw(int dir)
         {
             IFormatter formatter = new BinaryFormatter();
             Stream s = new MemoryStream();
-            T_I_M.AddUp(new double[] { 6, 6, 6 }, DateTime.Now);
+
+            switch (dir)
+            {
+                case 0:
+                    T_I_M.AddUp(stream.dataWindow, DateTime.Now);
+                    break;
+                case 1:
+                    T_I_M.AddRight(stream.dataWindow, DateTime.Now);
+                    break;
+                case 2:
+                    T_I_M.AddDown(stream.dataWindow, DateTime.Now);
+                    break;
+                case 3:
+                    T_I_M.AddLeft(stream.dataWindow, DateTime.Now);
+                    break;
+                default:
+                    Console.WriteLine("Default case");
+                    break;
+            }
+            
             formatter.Serialize(s, T_I_M);
             s.Position = 0;
             await restService.UpdateModelRaw("8", s);
