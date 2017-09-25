@@ -24,6 +24,17 @@
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
@@ -37,21 +48,228 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
                 <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
+            
+            <Rectangle Grid.Row="0" Grid.Column="0" Fill="Red" />
+            <Rectangle Grid.Row="0" Grid.Column="1" Fill="Red" />
+            <Rectangle Grid.Row="0" Grid.Column="2" Fill="Red" />
+            <Rectangle Grid.Row="0" Grid.Column="3" Fill="Red" />
+            <Rectangle Grid.Row="0" Grid.Column="4" Fill="Red" />
+            <Rectangle Grid.Row="0" Grid.Column="5" Fill="Red" />
+            <Rectangle Grid.Row="0" Grid.Column="6" Fill="Red" />
+            <Rectangle Grid.Row="0" Grid.Column="7" Fill="Red" />
+            <Rectangle Grid.Row="0" Grid.Column="8" Fill="Red" />
+            <Rectangle Grid.Row="0" Grid.Column="9" Fill="Red" />
+            <Rectangle Grid.Row="0" Grid.Column="10" Fill="Red" />
+            <Rectangle Grid.Row="0" Grid.Column="11" Fill="Red" />
+            <Rectangle Grid.Row="0" Grid.Column="12" Fill="Red" />
+            <Rectangle Grid.Row="0" Grid.Column="13" Fill="Red" />
+            <Rectangle Grid.Row="0" Grid.Column="14" Fill="Red" />
+            <Rectangle Grid.Row="0" Grid.Column="15" Fill="Red" />
+            <Rectangle Grid.Row="0" Grid.Column="16" Fill="Red" />
+            <Rectangle Grid.Row="0" Grid.Column="17" Fill="Red" />
+            <Rectangle Grid.Row="0" Grid.Column="18" Fill="Red" />
+            <Rectangle Grid.Row="0" Grid.Column="19" Fill="Red" />
 
+            <Rectangle Grid.Row="1" Grid.Column="0" Fill="Red" />
+            <Rectangle Grid.Row="1" Grid.Column="1" Fill="Red" />
+            <Rectangle Grid.Row="1" Grid.Column="2" Fill="Red" />
+            <Rectangle Grid.Row="1" Grid.Column="3" Fill="Red" />
+            <Rectangle Grid.Row="1" Grid.Column="4" Fill="Red" />
+            <Rectangle Grid.Row="1" Grid.Column="5" Fill="Red" />
+            <Rectangle Grid.Row="1" Grid.Column="6" Fill="Red" />
+            <Rectangle Grid.Row="1" Grid.Column="7" Fill="Red" />
+            <Rectangle Grid.Row="1" Grid.Column="8" Fill="Red" />
+            <Rectangle Grid.Row="1" Grid.Column="9" Fill="Red" />
+            <Rectangle Grid.Row="1" Grid.Column="10" Fill="Red" />
+            <Rectangle Grid.Row="1" Grid.Column="11" Fill="Red" />
+            <Rectangle Grid.Row="1" Grid.Column="12" Fill="Red" />
+            <Rectangle Grid.Row="1" Grid.Column="13" Fill="Red" />
+            <Rectangle Grid.Row="1" Grid.Column="14" Fill="Red" />
+            <Rectangle Grid.Row="1" Grid.Column="15" Fill="Red" />
+            <Rectangle Grid.Row="1" Grid.Column="16" Fill="Red" />
+            <Rectangle Grid.Row="1" Grid.Column="17" Fill="Red" />
+            <Rectangle Grid.Row="1" Grid.Column="18" Fill="Red" />
+            <Rectangle Grid.Row="1" Grid.Column="19" Fill="Red" />
+            
+            <Rectangle Grid.Row="2" Grid.Column="0" Fill="Red" />
+            <Rectangle Grid.Row="2" Grid.Column="1" Fill="Red" />
+            <Rectangle Grid.Row="2" Grid.Column="2" Fill="Red" />
+            <Rectangle Grid.Row="2" Grid.Column="3" Fill="Red" />
+            <Rectangle Grid.Row="2" Grid.Column="4" Fill="Red" />
+            <Rectangle Grid.Row="2" Grid.Column="5" Fill="Red" />
+            <Rectangle Grid.Row="2" Grid.Column="6" Fill="Red" />
+            <Rectangle Grid.Row="2" Grid.Column="7" Fill="Red" />
+            <Rectangle Grid.Row="2" Grid.Column="8" Fill="Red" />
+            <Rectangle Grid.Row="2" Grid.Column="9" Fill="Red" />
+            <Rectangle Grid.Row="2" Grid.Column="10" Fill="Red" />
+            <Rectangle Grid.Row="2" Grid.Column="11" Fill="Red" />
+            <Rectangle Grid.Row="2" Grid.Column="12" Fill="Red" />
+            <Rectangle Grid.Row="2" Grid.Column="13" Fill="Red" />
+            <Rectangle Grid.Row="2" Grid.Column="14" Fill="Red" />
+            <Rectangle Grid.Row="2" Grid.Column="15" Fill="Red" />
+            <Rectangle Grid.Row="2" Grid.Column="16" Fill="Red" />
+            <Rectangle Grid.Row="2" Grid.Column="17" Fill="Red" />
+            <Rectangle Grid.Row="2" Grid.Column="18" Fill="Red" />
+            <Rectangle Grid.Row="2" Grid.Column="19" Fill="Red" />
 
-            <Rectangle Grid.Row="0" Grid.Column="0" Fill="AliceBlue" />
-            <Rectangle Grid.Row="0" Grid.Column="1" Fill="AliceBlue" />
-            <Rectangle Grid.Row="0" Grid.Column="5" Fill="AliceBlue" />
-            <Rectangle Grid.Row="8" Grid.Column="9" Fill="AliceBlue" />
-            <Rectangle Grid.Row="0" Grid.Column="8" Fill="AliceBlue" />
-            <Rectangle Grid.Row="6" Grid.Column="6" Fill="AliceBlue" />
-            <Rectangle Grid.Row="3" Grid.Column="0" Fill="AliceBlue" />
-            <Rectangle Grid.Row="0" Grid.Column="5" Fill="AliceBlue" />
-            <Rectangle Grid.Row="4" Grid.Column="0" Fill="AliceBlue" />
-            <Rectangle Grid.Row="5" Grid.Column="5" Fill="AliceBlue" />
-            <Rectangle Grid.Row="5" Grid.Column="7" Fill="AliceBlue" />
-            <!--<Viewbox c Grid.Column="0" Grid.Row="0" Stretch="Uniform">
+            <Rectangle Grid.Row="3" Grid.Column="0" Fill="Red" />
+            <Rectangle Grid.Row="3" Grid.Column="1" Fill="Red" />
+            <Rectangle Grid.Row="3" Grid.Column="2" Fill="Red" />
+            <Rectangle Grid.Row="3" Grid.Column="3" Fill="Red" />
+            <Rectangle Grid.Row="3" Grid.Column="4" Fill="Red" />
+            <Rectangle Grid.Row="3" Grid.Column="5" Fill="Red" />
+            <Rectangle Grid.Row="3" Grid.Column="6" Fill="Red" />
+            <Rectangle Grid.Row="3" Grid.Column="7" Fill="Red" />
+            <Rectangle Grid.Row="3" Grid.Column="8" Fill="Red" />
+            <Rectangle Grid.Row="3" Grid.Column="9" Fill="Red" />
+            <Rectangle Grid.Row="3" Grid.Column="10" Fill="Red" />
+            <Rectangle Grid.Row="3" Grid.Column="11" Fill="Red" />
+            <Rectangle Grid.Row="3" Grid.Column="12" Fill="Red" />
+            <Rectangle Grid.Row="3" Grid.Column="13" Fill="Red" />
+            <Rectangle Grid.Row="3" Grid.Column="14" Fill="Red" />
+            <Rectangle Grid.Row="3" Grid.Column="15" Fill="Red" />
+            <Rectangle Grid.Row="3" Grid.Column="16" Fill="Red" />
+            <Rectangle Grid.Row="3" Grid.Column="17" Fill="Red" />
+            <Rectangle Grid.Row="3" Grid.Column="18" Fill="Red" />
+            <Rectangle Grid.Row="3" Grid.Column="19" Fill="Red" />
+
+            <Rectangle Grid.Row="4" Grid.Column="0" Fill="Red" />
+            <Rectangle Grid.Row="4" Grid.Column="1" Fill="Red" />
+            <Rectangle Grid.Row="4" Grid.Column="2" Fill="Red" />
+            <Rectangle Grid.Row="4" Grid.Column="3" Fill="Red" />
+            <Rectangle Grid.Row="4" Grid.Column="4" Fill="Red" />
+            <Rectangle Grid.Row="4" Grid.Column="5" Fill="Red" />
+            <Rectangle Grid.Row="4" Grid.Column="6" Fill="Red" />
+            <Rectangle Grid.Row="4" Grid.Column="7" Fill="Red" />
+            <Rectangle Grid.Row="4" Grid.Column="8" Fill="Red" />
+            <Rectangle Grid.Row="4" Grid.Column="9" Fill="Red" />
+            <Rectangle Grid.Row="4" Grid.Column="10" Fill="Red" />
+            <Rectangle Grid.Row="4" Grid.Column="11" Fill="Red" />
+            <Rectangle Grid.Row="4" Grid.Column="12" Fill="Red" />
+            <Rectangle Grid.Row="4" Grid.Column="13" Fill="Red" />
+            <Rectangle Grid.Row="4" Grid.Column="14" Fill="Red" />
+            <Rectangle Grid.Row="4" Grid.Column="15" Fill="Red" />
+            <Rectangle Grid.Row="4" Grid.Column="16" Fill="Red" />
+            <Rectangle Grid.Row="4" Grid.Column="17" Fill="Red" />
+            <Rectangle Grid.Row="4" Grid.Column="18" Fill="Red" />
+            <Rectangle Grid.Row="4" Grid.Column="19" Fill="Red" />
+
+            <Rectangle Grid.Row="5" Grid.Column="0" Fill="Red" />
+            <Rectangle Grid.Row="5" Grid.Column="1" Fill="Red" />
+            <Rectangle Grid.Row="5" Grid.Column="2" Fill="Red" />
+            <Rectangle Grid.Row="5" Grid.Column="3" Fill="Red" />
+            <Rectangle Grid.Row="5" Grid.Column="4" Fill="Red" />
+            <Rectangle Grid.Row="5" Grid.Column="5" Fill="Red" />
+            <Rectangle Grid.Row="5" Grid.Column="6" Fill="Red" />
+            <Rectangle Grid.Row="5" Grid.Column="7" Fill="Red" />
+            <Rectangle Grid.Row="5" Grid.Column="8" Fill="Red" />
+            <Rectangle Grid.Row="5" Grid.Column="9" Fill="Red" />
+            <Rectangle Grid.Row="5" Grid.Column="10" Fill="Red" />
+            <Rectangle Grid.Row="5" Grid.Column="11" Fill="Red" />
+            <Rectangle Grid.Row="5" Grid.Column="12" Fill="Red" />
+            <Rectangle Grid.Row="5" Grid.Column="13" Fill="Red" />
+            <Rectangle Grid.Row="5" Grid.Column="14" Fill="Red" />
+            <Rectangle Grid.Row="5" Grid.Column="15" Fill="Red" />
+            <Rectangle Grid.Row="5" Grid.Column="16" Fill="Red" />
+            <Rectangle Grid.Row="5" Grid.Column="17" Fill="Red" />
+            <Rectangle Grid.Row="5" Grid.Column="18" Fill="Red" />
+            <Rectangle Grid.Row="5" Grid.Column="19" Fill="Red" />
+
+            <Rectangle Grid.Row="6" Grid.Column="0" Fill="Red" />
+            <Rectangle Grid.Row="6" Grid.Column="1" Fill="Red" />
+            <Rectangle Grid.Row="6" Grid.Column="2" Fill="Red" />
+            <Rectangle Grid.Row="6" Grid.Column="3" Fill="Red" />
+            <Rectangle Grid.Row="6" Grid.Column="4" Fill="Red" />
+            <Rectangle Grid.Row="6" Grid.Column="5" Fill="Red" />
+            <Rectangle Grid.Row="6" Grid.Column="6" Fill="Red" />
+            <Rectangle Grid.Row="6" Grid.Column="7" Fill="Red" />
+            <Rectangle Grid.Row="6" Grid.Column="8" Fill="Red" />
+            <Rectangle Grid.Row="6" Grid.Column="9" Fill="Red" />
+            <Rectangle Grid.Row="6" Grid.Column="10" Fill="Red" />
+            <Rectangle Grid.Row="6" Grid.Column="11" Fill="Red" />
+            <Rectangle Grid.Row="6" Grid.Column="12" Fill="Red" />
+            <Rectangle Grid.Row="6" Grid.Column="13" Fill="Red" />
+            <Rectangle Grid.Row="6" Grid.Column="14" Fill="Red" />
+            <Rectangle Grid.Row="6" Grid.Column="15" Fill="Red" />
+            <Rectangle Grid.Row="6" Grid.Column="16" Fill="Red" />
+            <Rectangle Grid.Row="6" Grid.Column="17" Fill="Red" />
+            <Rectangle Grid.Row="6" Grid.Column="18" Fill="Red" />
+            <Rectangle Grid.Row="6" Grid.Column="19" Fill="Red" />
+
+            <Rectangle Grid.Row="7" Grid.Column="0" Fill="Red" />
+            <Rectangle Grid.Row="7" Grid.Column="1" Fill="Red" />
+            <Rectangle Grid.Row="7" Grid.Column="2" Fill="Red" />
+            <Rectangle Grid.Row="7" Grid.Column="3" Fill="Red" />
+            <Rectangle Grid.Row="7" Grid.Column="4" Fill="Red" />
+            <Rectangle Grid.Row="7" Grid.Column="5" Fill="Red" />
+            <Rectangle Grid.Row="7" Grid.Column="6" Fill="Red" />
+            <Rectangle Grid.Row="7" Grid.Column="7" Fill="Red" />
+            <Rectangle Grid.Row="7" Grid.Column="8" Fill="Red" />
+            <Rectangle Grid.Row="7" Grid.Column="9" Fill="Red" />
+            <Rectangle Grid.Row="7" Grid.Column="10" Fill="Red" />
+            <Rectangle Grid.Row="7" Grid.Column="11" Fill="Red" />
+            <Rectangle Grid.Row="7" Grid.Column="12" Fill="Red" />
+            <Rectangle Grid.Row="7" Grid.Column="13" Fill="Red" />
+            <Rectangle Grid.Row="7" Grid.Column="14" Fill="Red" />
+            <Rectangle Grid.Row="7" Grid.Column="15" Fill="Red" />
+            <Rectangle Grid.Row="7" Grid.Column="16" Fill="Red" />
+            <Rectangle Grid.Row="7" Grid.Column="17" Fill="Red" />
+            <Rectangle Grid.Row="7" Grid.Column="18" Fill="Red" />
+            <Rectangle Grid.Row="7" Grid.Column="19" Fill="Red" />
+
+            <Rectangle Grid.Row="8" Grid.Column="0" Fill="Red" />
+            <Rectangle Grid.Row="8" Grid.Column="1" Fill="Red" />
+            <Rectangle Grid.Row="8" Grid.Column="2" Fill="Red" />
+            <Rectangle Grid.Row="8" Grid.Column="3" Fill="Red" />
+            <Rectangle Grid.Row="8" Grid.Column="4" Fill="Red" />
+            <Rectangle Grid.Row="8" Grid.Column="5" Fill="Red" />
+            <Rectangle Grid.Row="8" Grid.Column="6" Fill="Red" />
+            <Rectangle Grid.Row="8" Grid.Column="7" Fill="Red" />
+            <Rectangle Grid.Row="8" Grid.Column="8" Fill="Red" />
+            <Rectangle Grid.Row="8" Grid.Column="9" Fill="Red" />
+            <Rectangle Grid.Row="8" Grid.Column="10" Fill="Red" />
+            <Rectangle Grid.Row="8" Grid.Column="11" Fill="Red" />
+            <Rectangle Grid.Row="8" Grid.Column="12" Fill="Red" />
+            <Rectangle Grid.Row="8" Grid.Column="13" Fill="Red" />
+            <Rectangle Grid.Row="8" Grid.Column="14" Fill="Red" />
+            <Rectangle Grid.Row="8" Grid.Column="15" Fill="Red" />
+            <Rectangle Grid.Row="8" Grid.Column="16" Fill="Red" />
+            <Rectangle Grid.Row="8" Grid.Column="17" Fill="Red" />
+            <Rectangle Grid.Row="8" Grid.Column="18" Fill="Red" />
+            <Rectangle Grid.Row="8" Grid.Column="19" Fill="Red" />
+
+            <Rectangle Grid.Row="9" Grid.Column="0" Fill="Red" />
+            <Rectangle Grid.Row="9" Grid.Column="1" Fill="Red" />
+            <Rectangle Grid.Row="9" Grid.Column="2" Fill="Red" />
+            <Rectangle Grid.Row="9" Grid.Column="3" Fill="Red" />
+            <Rectangle Grid.Row="9" Grid.Column="4" Fill="Red" />
+            <Rectangle Grid.Row="9" Grid.Column="5" Fill="Red" />
+            <Rectangle Grid.Row="9" Grid.Column="6" Fill="Red" />
+            <Rectangle Grid.Row="9" Grid.Column="7" Fill="Red" />
+            <Rectangle Grid.Row="9" Grid.Column="8" Fill="Red" />
+            <Rectangle Grid.Row="9" Grid.Column="9" Fill="Red" />
+            <Rectangle Grid.Row="9" Grid.Column="10" Fill="Red" />
+            <Rectangle Grid.Row="9" Grid.Column="11" Fill="Red" />
+            <Rectangle Grid.Row="9" Grid.Column="12" Fill="Red" />
+            <Rectangle Grid.Row="9" Grid.Column="13" Fill="Red" />
+            <Rectangle Grid.Row="9" Grid.Column="14" Fill="Red" />
+            <Rectangle Grid.Row="9" Grid.Column="15" Fill="Red" />
+            <Rectangle Grid.Row="9" Grid.Column="16" Fill="Red" />
+            <Rectangle Grid.Row="9" Grid.Column="17" Fill="Red" />
+            <Rectangle Grid.Row="9" Grid.Column="18" Fill="Red" />
+            <Rectangle Grid.Row="9" Grid.Column="19" Fill="Red" />
+            <!--<Viewbox c Grid.Cumn="0" Grid.Row="0" Stretch="Uniform">
                 
             </Viewbox>-->
 
