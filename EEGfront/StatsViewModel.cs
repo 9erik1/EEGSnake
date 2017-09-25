@@ -35,6 +35,11 @@ namespace EEGfront
             }
         }
 
+        public string DisplayedImage
+        {
+            get { return "/img/Background.jpg"; }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
