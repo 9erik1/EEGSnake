@@ -130,7 +130,7 @@ namespace EEGfront
                 RightToggle = Visibility.Visible;
                 return;
             }
-            if(s == AppState.Stats)
+            if (s == AppState.Stats)
             {
                 var pca = new StatsWindow();
                 pca.DataContext = new StatsViewModel();
@@ -239,7 +239,7 @@ namespace EEGfront
                     Console.WriteLine("Default case");
                     break;
             }
-            
+
             formatter.Serialize(s, T_I_M);
             s.Position = 0;
             await restService.UpdateModelRaw("8", s);
@@ -408,6 +408,11 @@ namespace EEGfront
                     NotifyPropertyChanged();
                 }
             }
+        }
+
+        public string DisplayedImage
+        {
+            get { return "/img/BackgroundInvert.jpg"; }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

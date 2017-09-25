@@ -2,6 +2,9 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="720" Width="1280" WindowState="Maximized" Closing="Kill" Closed="KillEnd">
+    <Window.Background>
+        <ImageBrush ImageSource="{Binding DisplayedImage}"></ImageBrush>
+    </Window.Background>
     <Grid >
 
 
@@ -10,7 +13,7 @@
         <WindowsFormsHost Name="Heven" Initialized="GLviewTop" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="{Binding UpToggle}" Margin="536,10,536,0"  ></WindowsFormsHost>
         <WindowsFormsHost Name="Hell" Initialized="GLviewBot" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Visibility="{Binding DownToggle}" Margin="536,0,536,10"  ></WindowsFormsHost>
         <WindowsFormsHost Name="Game" Initialized="GLviewGame" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding GameToggle}"  ></WindowsFormsHost>
-        
+
         <ComboBox IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding MenuItem}" SelectedValue="{Binding CurrentOption}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120">
 
         </ComboBox>
@@ -25,6 +28,6 @@
                 <TextBox Height="20" Width="50" Text="{Binding Trials}"></TextBox>
             </StackPanel>
         </StackPanel>
-    
+
     </Grid>
 </Window>
