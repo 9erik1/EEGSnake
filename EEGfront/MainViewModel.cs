@@ -9,12 +9,11 @@ using System;
 using System.Windows;
 using System.Net;
 using System.IO;
-using Accord.IO;
 using Accord.MachineLearning.VectorMachines;
 using Accord.Statistics.Kernels;
-using Accord.MachineLearning.VectorMachines.Learning;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using Accord.IO;
 
 namespace EEGfront
 {
@@ -27,6 +26,8 @@ namespace EEGfront
             Stats
         }
 
+        //The collected raws for the current user
+        TrainingInputManager T_I_M;
 
         private bool IsDraw = true;
         Thread draw;
@@ -35,31 +36,22 @@ namespace EEGfront
         private Rest restService;
         private SVMClassifier machineStudent;
 
+        string re;
+
         MulticlassSupportVectorMachine<Gaussian> currentClassifier;
         public MainViewModel(string idTag)
         {
-            TrainingInputManager tim = new TrainingInputManager();
-            tim.AddUp(new double[] { 1, 2 }, DateTime.Now);
-            IFormatter formatter = new BinaryFormatter();
-            Stream s = new MemoryStream();
-            formatter.Serialize(s, tim);
-            s.Position = 0;
-
-            TrainingInputManager t = (TrainingInputManager)formatter.Deserialize(s);
-            Console.WriteLine(t);
-
-
-            s.Close();
-
-
-
-
             restService = Rest.Instance;
             stream = EmotiveAquisition.Instance;
             machineStudent = new SVMClassifier();
 
+            T_I_M = new TrainingInputManager();
 
-
+            Task.Run(async () =>
+            {
+                T_I_M = await restService.PostCurrentRaw("8");
+                Console.WriteLine(T_I_M);
+            });
 
             //Dispatcher.BeginInvoke((Action)(() =>
             //{
@@ -142,7 +134,6 @@ namespace EEGfront
         {
             try
             {
-
                 //Console.WriteLine(await loginModule.Shake(User,Pass));
             }
             catch (Exception e)
@@ -195,21 +186,35 @@ namespace EEGfront
                         break;
                 }
 
-                //var x = machineStudent.MachineLearn(stream.dataWindow);
-
-                machineStudent.UpdateSVM(stream.dataWindow, Dir);
-
-                var payload = new MemoryStream();
-
-                Serializer.Save(machineStudent.Learn, payload);
-                payload.Position = 0;
-
-                await restService.UpdateModel("13", payload);
+                PackRaw();
             }
             catch (Exception e)
             {
                 Console.WriteLine("Failed for basic reason: " + e);
             }
+        }
+        private async void PackLearn()
+        {
+            var x = machineStudent.MachineLearn(stream.dataWindow);
+
+            machineStudent.UpdateSVM(stream.dataWindow, Dir);
+
+            var payload = new MemoryStream();
+
+            Serializer.Save(machineStudent.Learn, payload);
+            payload.Position = 0;
+            await restService.UpdateModelRaw("8", payload);
+            payload.Close();
+        }
+        private async void PackRaw()
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream s = new MemoryStream();
+            T_I_M.AddUp(new double[] { 6, 6, 6 }, DateTime.Now);
+            formatter.Serialize(s, T_I_M);
+            s.Position = 0;
+            await restService.UpdateModelRaw("8", s);
+            s.Close();
         }
 
         private async void AutoTest()
