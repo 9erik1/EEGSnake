@@ -2,9 +2,9 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="720" Width="1280" WindowState="Maximized" Closing="Kill" Closed="KillEnd">
-    <Window.Background>
+    <!--<Window.Background>
         <ImageBrush ImageSource="{Binding DisplayedImage}"></ImageBrush>
-    </Window.Background>
+    </Window.Background>-->
     <Grid >
 
 
@@ -12,7 +12,50 @@
         <WindowsFormsHost Name="Rightey" Initialized="GLviewRight" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="{Binding RightToggle}" Margin="0,244,10,245"  ></WindowsFormsHost>
         <WindowsFormsHost Name="Heven" Initialized="GLviewTop" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="{Binding UpToggle}" Margin="536,10,536,0"  ></WindowsFormsHost>
         <WindowsFormsHost Name="Hell" Initialized="GLviewBot" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Visibility="{Binding DownToggle}" Margin="536,0,536,10"  ></WindowsFormsHost>
-        <WindowsFormsHost Name="Game" Initialized="GLviewGame" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding GameToggle}"  ></WindowsFormsHost>
+        <!--<WindowsFormsHost Name="Game" Initialized="GLviewGame" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding GameToggle}"  ></WindowsFormsHost>-->
+        <Grid Background="Black" Name="Game" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding GameToggle}" Margin="536,255,536,234">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+
+            <Rectangle Grid.Row="0" Grid.Column="0" Fill="AliceBlue" />
+            <Rectangle Grid.Row="0" Grid.Column="1" Fill="AliceBlue" />
+            <Rectangle Grid.Row="0" Grid.Column="5" Fill="AliceBlue" />
+            <Rectangle Grid.Row="8" Grid.Column="9" Fill="AliceBlue" />
+            <Rectangle Grid.Row="0" Grid.Column="8" Fill="AliceBlue" />
+            <Rectangle Grid.Row="6" Grid.Column="6" Fill="AliceBlue" />
+            <Rectangle Grid.Row="3" Grid.Column="0" Fill="AliceBlue" />
+            <Rectangle Grid.Row="0" Grid.Column="5" Fill="AliceBlue" />
+            <Rectangle Grid.Row="4" Grid.Column="0" Fill="AliceBlue" />
+            <Rectangle Grid.Row="5" Grid.Column="5" Fill="AliceBlue" />
+            <Rectangle Grid.Row="5" Grid.Column="7" Fill="AliceBlue" />
+            <!--<Viewbox c Grid.Column="0" Grid.Row="0" Stretch="Uniform">
+                
+            </Viewbox>-->
+
+        </Grid>
 
         <ComboBox IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding MenuItem}" SelectedValue="{Binding CurrentOption}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120">
 

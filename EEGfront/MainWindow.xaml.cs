@@ -52,14 +52,14 @@ namespace EEGfront
             drawT.Start();
             drawB = new Thread(new ThreadStart(DrawB));
             drawB.Start();
-            deawGame = new Thread(new ThreadStart(GameThread));
-            deawGame.Start();
+            //deawGame = new Thread(new ThreadStart(GameThread));
+            //deawGame.Start();
 
             left = (GLControl)Lefty.Child;
             right = (GLControl)Rightey.Child;
             top = (GLControl)Heven.Child;
             bot = (GLControl)Hell.Child;
-            game = (GLControl)Game.Child;
+            //game = (GLControl)Game.Child;
 
             stream = EmotiveAquisition.Instance;
         }
