@@ -16,6 +16,8 @@ namespace EEGfront
     /// </summary>
     public partial class MainWindow : Window
     {
+        private EmotiveAquisition stream;
+
         private Object drawLock = new Object();
 
         private GLControl left;
@@ -58,6 +60,8 @@ namespace EEGfront
             top = (GLControl)Heven.Child;
             bot = (GLControl)Hell.Child;
             game = (GLControl)Game.Child;
+
+            stream = EmotiveAquisition.Instance;
         }
 
         private async void GameThread()
@@ -261,6 +265,7 @@ namespace EEGfront
         private void Kill(object sender, System.ComponentModel.CancelEventArgs e)
         {
             isDraw = false;
+            stream.Kill();
             Console.WriteLine("Draw Thread End");
         }
 

@@ -10,6 +10,16 @@ namespace EEGfront
 {
     public class EmotiveAquisition
     {
+        private bool IsDraw = true;
+        public void Kill()
+        {
+            IsDraw = false;
+        }
+        public void ReverseKill()
+        {
+            IsDraw = true;
+        }
+
         private static EmotiveAquisition instance;
         public static EmotiveAquisition Instance
         {
@@ -102,7 +112,7 @@ namespace EEGfront
 
         private async void Update()
         {
-            while (true)
+            while (IsDraw)
             {
                 bool pass;
                 try

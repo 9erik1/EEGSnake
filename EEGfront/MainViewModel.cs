@@ -41,6 +41,7 @@ namespace EEGfront
         {
             restService = Rest.Instance;
             stream = EmotiveAquisition.Instance;
+            stream.ReverseKill();
             machineStudent = new SVMClassifier();
 
             T_I_M = new TrainingInputManager();
@@ -132,12 +133,19 @@ namespace EEGfront
             }
             if (s == AppState.Stats)
             {
-                var pca = new StatsWindow();
-                pca.DataContext = new StatsViewModel();
+                var stat = new StatsWindow();
+                stat.DataContext = new StatsViewModel();
 
-                pca.Show();
-                //pca.Closing += Pca_Closed;
+                stat.Show();
+                stat.Closing += Stat_Closing;
             }
+        }
+
+        private void Stat_Closing(object sender, CancelEventArgs e)
+        {
+            StatsWindow statWin = sender as StatsWindow;
+            StatsViewModel statVM = statWin.DataContext as StatsViewModel;
+            statVM.Shutdown();
         }
 
         private void Clickey()
