@@ -118,6 +118,7 @@ namespace EEGfront
                 DownToggle = Visibility.Hidden;
                 LeftToggle = Visibility.Hidden;
                 RightToggle = Visibility.Hidden;
+                return;
             }
             if (s == AppState.Game)
             {
@@ -127,6 +128,15 @@ namespace EEGfront
                 DownToggle = Visibility.Visible;
                 LeftToggle = Visibility.Visible;
                 RightToggle = Visibility.Visible;
+                return;
+            }
+            if(s == AppState.Stats)
+            {
+                var pca = new StatsWindow();
+                pca.DataContext = new StatsViewModel();
+
+                pca.Show();
+                //pca.Closing += Pca_Closed;
             }
         }
 
