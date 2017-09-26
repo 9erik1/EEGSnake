@@ -135,7 +135,7 @@ namespace EEGfront
         {
             Console.WriteLine("Up");
             snakeGameProx[yPos][xPos] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 0));
-            yPos++;
+            yPos--;
             snakeGameProx[yPos][xPos] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
             SnakeGame = (SolidColorBrush[][])snakeGameProx.Clone();
         }
@@ -144,7 +144,7 @@ namespace EEGfront
         {
             Console.WriteLine("Down");            
             snakeGameProx[yPos][xPos] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 0));
-            yPos--;
+            yPos++;
             snakeGameProx[yPos][xPos] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
             SnakeGame = (SolidColorBrush[][])snakeGameProx.Clone();
         }
