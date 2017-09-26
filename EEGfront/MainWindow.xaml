@@ -64,421 +64,421 @@
             <Rectangle Grid.Row="0" Grid.Column="1" Fill="{Binding SnakeGame[0][1]}" />
             <Rectangle Grid.Row="0" Grid.Column="2" Fill="{Binding SnakeGame[0][2]}" />
             <Rectangle Grid.Row="0" Grid.Column="3" Fill="{Binding SnakeGame[0][3]}" />
-            <Rectangle Grid.Row="0" Grid.Column="4" Fill="Red" />
-            <Rectangle Grid.Row="0" Grid.Column="5" Fill="Red" />
-            <Rectangle Grid.Row="0" Grid.Column="6" Fill="Red" />
-            <Rectangle Grid.Row="0" Grid.Column="7" Fill="Red" />
-            <Rectangle Grid.Row="0" Grid.Column="8" Fill="Red" />
-            <Rectangle Grid.Row="0" Grid.Column="9" Fill="Red" />
-            <Rectangle Grid.Row="0" Grid.Column="10" Fill="Red" />
-            <Rectangle Grid.Row="0" Grid.Column="11" Fill="Red" />
-            <Rectangle Grid.Row="0" Grid.Column="12" Fill="Red" />
-            <Rectangle Grid.Row="0" Grid.Column="13" Fill="Red" />
-            <Rectangle Grid.Row="0" Grid.Column="14" Fill="Red" />
-            <Rectangle Grid.Row="0" Grid.Column="15" Fill="Red" />
-            <Rectangle Grid.Row="0" Grid.Column="16" Fill="Red" />
-            <Rectangle Grid.Row="0" Grid.Column="17" Fill="Red" />
-            <Rectangle Grid.Row="0" Grid.Column="18" Fill="Red" />
-            <Rectangle Grid.Row="0" Grid.Column="19" Fill="Red" />
+            <Rectangle Grid.Row="0" Grid.Column="4" Fill="{Binding SnakeGame[0][4]}" />
+            <Rectangle Grid.Row="0" Grid.Column="5" Fill="{Binding SnakeGame[0][5]}" />
+            <Rectangle Grid.Row="0" Grid.Column="6" Fill="{Binding SnakeGame[0][6]}" />
+            <Rectangle Grid.Row="0" Grid.Column="7" Fill="{Binding SnakeGame[0][7]}" />
+            <Rectangle Grid.Row="0" Grid.Column="8" Fill="{Binding SnakeGame[0][8]}" />
+            <Rectangle Grid.Row="0" Grid.Column="9" Fill="{Binding SnakeGame[0][9]}" />
+            <Rectangle Grid.Row="0" Grid.Column="10" Fill="{Binding SnakeGame[0][10]}" />
+            <Rectangle Grid.Row="0" Grid.Column="11" Fill="{Binding SnakeGame[0][11]}" />
+            <Rectangle Grid.Row="0" Grid.Column="12" Fill="{Binding SnakeGame[0][12]}" />
+            <Rectangle Grid.Row="0" Grid.Column="13" Fill="{Binding SnakeGame[0][13]}" />
+            <Rectangle Grid.Row="0" Grid.Column="14" Fill="{Binding SnakeGame[0][14]}" />
+            <Rectangle Grid.Row="0" Grid.Column="15" Fill="{Binding SnakeGame[0][15]}" />
+            <Rectangle Grid.Row="0" Grid.Column="16" Fill="{Binding SnakeGame[0][16]}" />
+            <Rectangle Grid.Row="0" Grid.Column="17" Fill="{Binding SnakeGame[0][17]}" />
+            <Rectangle Grid.Row="0" Grid.Column="18" Fill="{Binding SnakeGame[0][18]}" />
+            <Rectangle Grid.Row="0" Grid.Column="19" Fill="{Binding SnakeGame[0][19]}" />
 
-            <Rectangle Grid.Row="1" Grid.Column="0" Fill="Red" />
-            <Rectangle Grid.Row="1" Grid.Column="1" Fill="Red" />
-            <Rectangle Grid.Row="1" Grid.Column="2" Fill="Red" />
-            <Rectangle Grid.Row="1" Grid.Column="3" Fill="Red" />
-            <Rectangle Grid.Row="1" Grid.Column="4" Fill="Red" />
-            <Rectangle Grid.Row="1" Grid.Column="5" Fill="Red" />
-            <Rectangle Grid.Row="1" Grid.Column="6" Fill="Red" />
-            <Rectangle Grid.Row="1" Grid.Column="7" Fill="Red" />
-            <Rectangle Grid.Row="1" Grid.Column="8" Fill="Red" />
-            <Rectangle Grid.Row="1" Grid.Column="9" Fill="Red" />
-            <Rectangle Grid.Row="1" Grid.Column="10" Fill="Red" />
-            <Rectangle Grid.Row="1" Grid.Column="11" Fill="Red" />
-            <Rectangle Grid.Row="1" Grid.Column="12" Fill="Red" />
-            <Rectangle Grid.Row="1" Grid.Column="13" Fill="Red" />
-            <Rectangle Grid.Row="1" Grid.Column="14" Fill="Red" />
-            <Rectangle Grid.Row="1" Grid.Column="15" Fill="Red" />
-            <Rectangle Grid.Row="1" Grid.Column="16" Fill="Red" />
-            <Rectangle Grid.Row="1" Grid.Column="17" Fill="Red" />
-            <Rectangle Grid.Row="1" Grid.Column="18" Fill="Red" />
-            <Rectangle Grid.Row="1" Grid.Column="19" Fill="Red" />
-            
-            <Rectangle Grid.Row="2" Grid.Column="0" Fill="Red" />
-            <Rectangle Grid.Row="2" Grid.Column="1" Fill="Red" />
-            <Rectangle Grid.Row="2" Grid.Column="2" Fill="Red" />
-            <Rectangle Grid.Row="2" Grid.Column="3" Fill="Red" />
-            <Rectangle Grid.Row="2" Grid.Column="4" Fill="Red" />
-            <Rectangle Grid.Row="2" Grid.Column="5" Fill="Red" />
-            <Rectangle Grid.Row="2" Grid.Column="6" Fill="Red" />
-            <Rectangle Grid.Row="2" Grid.Column="7" Fill="Red" />
-            <Rectangle Grid.Row="2" Grid.Column="8" Fill="Red" />
-            <Rectangle Grid.Row="2" Grid.Column="9" Fill="Red" />
-            <Rectangle Grid.Row="2" Grid.Column="10" Fill="Red" />
-            <Rectangle Grid.Row="2" Grid.Column="11" Fill="Red" />
-            <Rectangle Grid.Row="2" Grid.Column="12" Fill="Red" />
-            <Rectangle Grid.Row="2" Grid.Column="13" Fill="Red" />
-            <Rectangle Grid.Row="2" Grid.Column="14" Fill="Red" />
-            <Rectangle Grid.Row="2" Grid.Column="15" Fill="Red" />
-            <Rectangle Grid.Row="2" Grid.Column="16" Fill="Red" />
-            <Rectangle Grid.Row="2" Grid.Column="17" Fill="Red" />
-            <Rectangle Grid.Row="2" Grid.Column="18" Fill="Red" />
-            <Rectangle Grid.Row="2" Grid.Column="19" Fill="Red" />
+            <Rectangle Grid.Row="1" Grid.Column="0" Fill="{Binding SnakeGame[1][0]}" />
+            <Rectangle Grid.Row="1" Grid.Column="1" Fill="{Binding SnakeGame[1][1]}" />
+            <Rectangle Grid.Row="1" Grid.Column="2" Fill="{Binding SnakeGame[1][2]}" />
+            <Rectangle Grid.Row="1" Grid.Column="3" Fill="{Binding SnakeGame[1][3]}" />
+            <Rectangle Grid.Row="1" Grid.Column="4" Fill="{Binding SnakeGame[1][4]}" />
+            <Rectangle Grid.Row="1" Grid.Column="5" Fill="{Binding SnakeGame[1][5]}" />
+            <Rectangle Grid.Row="1" Grid.Column="6" Fill="{Binding SnakeGame[1][6]}" />
+            <Rectangle Grid.Row="1" Grid.Column="7" Fill="{Binding SnakeGame[1][7]}" />
+            <Rectangle Grid.Row="1" Grid.Column="8" Fill="{Binding SnakeGame[1][8]}" />
+            <Rectangle Grid.Row="1" Grid.Column="9" Fill="{Binding SnakeGame[1][9]}" />
+            <Rectangle Grid.Row="1" Grid.Column="10" Fill="{Binding SnakeGame[1][10]}" />
+            <Rectangle Grid.Row="1" Grid.Column="11" Fill="{Binding SnakeGame[1][11]}" />
+            <Rectangle Grid.Row="1" Grid.Column="12" Fill="{Binding SnakeGame[1][12]}" />
+            <Rectangle Grid.Row="1" Grid.Column="13" Fill="{Binding SnakeGame[1][13]}" />
+            <Rectangle Grid.Row="1" Grid.Column="14" Fill="{Binding SnakeGame[1][14]}" />
+            <Rectangle Grid.Row="1" Grid.Column="15" Fill="{Binding SnakeGame[1][15]}" />
+            <Rectangle Grid.Row="1" Grid.Column="16" Fill="{Binding SnakeGame[1][16]}" />
+            <Rectangle Grid.Row="1" Grid.Column="17" Fill="{Binding SnakeGame[1][17]}" />
+            <Rectangle Grid.Row="1" Grid.Column="18" Fill="{Binding SnakeGame[1][18]}" />
+            <Rectangle Grid.Row="1" Grid.Column="19" Fill="{Binding SnakeGame[1][19]}" />
 
-            <Rectangle Grid.Row="3" Grid.Column="0" Fill="Red" />
-            <Rectangle Grid.Row="3" Grid.Column="1" Fill="Red" />
-            <Rectangle Grid.Row="3" Grid.Column="2" Fill="Red" />
-            <Rectangle Grid.Row="3" Grid.Column="3" Fill="Red" />
-            <Rectangle Grid.Row="3" Grid.Column="4" Fill="Red" />
-            <Rectangle Grid.Row="3" Grid.Column="5" Fill="Red" />
-            <Rectangle Grid.Row="3" Grid.Column="6" Fill="Red" />
-            <Rectangle Grid.Row="3" Grid.Column="7" Fill="Red" />
-            <Rectangle Grid.Row="3" Grid.Column="8" Fill="Red" />
-            <Rectangle Grid.Row="3" Grid.Column="9" Fill="Red" />
-            <Rectangle Grid.Row="3" Grid.Column="10" Fill="Red" />
-            <Rectangle Grid.Row="3" Grid.Column="11" Fill="Red" />
-            <Rectangle Grid.Row="3" Grid.Column="12" Fill="Red" />
-            <Rectangle Grid.Row="3" Grid.Column="13" Fill="Red" />
-            <Rectangle Grid.Row="3" Grid.Column="14" Fill="Red" />
-            <Rectangle Grid.Row="3" Grid.Column="15" Fill="Red" />
-            <Rectangle Grid.Row="3" Grid.Column="16" Fill="Red" />
-            <Rectangle Grid.Row="3" Grid.Column="17" Fill="Red" />
-            <Rectangle Grid.Row="3" Grid.Column="18" Fill="Red" />
-            <Rectangle Grid.Row="3" Grid.Column="19" Fill="Red" />
+            <Rectangle Grid.Row="2" Grid.Column="0" Fill="{Binding SnakeGame[2][0]}" />
+            <Rectangle Grid.Row="2" Grid.Column="1" Fill="{Binding SnakeGame[2][1]}" />
+            <Rectangle Grid.Row="2" Grid.Column="2" Fill="{Binding SnakeGame[2][2]}" />
+            <Rectangle Grid.Row="2" Grid.Column="3" Fill="{Binding SnakeGame[2][3]}" />
+            <Rectangle Grid.Row="2" Grid.Column="4" Fill="{Binding SnakeGame[2][4]}" />
+            <Rectangle Grid.Row="2" Grid.Column="5" Fill="{Binding SnakeGame[2][5]}" />
+            <Rectangle Grid.Row="2" Grid.Column="6" Fill="{Binding SnakeGame[2][6]}" />
+            <Rectangle Grid.Row="2" Grid.Column="7" Fill="{Binding SnakeGame[2][7]}" />
+            <Rectangle Grid.Row="2" Grid.Column="8" Fill="{Binding SnakeGame[2][8]}" />
+            <Rectangle Grid.Row="2" Grid.Column="9" Fill="{Binding SnakeGame[2][9]}" />
+            <Rectangle Grid.Row="2" Grid.Column="10" Fill="{Binding SnakeGame[2][10]}" />
+            <Rectangle Grid.Row="2" Grid.Column="11" Fill="{Binding SnakeGame[2][11]}" />
+            <Rectangle Grid.Row="2" Grid.Column="12" Fill="{Binding SnakeGame[2][12]}" />
+            <Rectangle Grid.Row="2" Grid.Column="13" Fill="{Binding SnakeGame[2][13]}" />
+            <Rectangle Grid.Row="2" Grid.Column="14" Fill="{Binding SnakeGame[2][14]}" />
+            <Rectangle Grid.Row="2" Grid.Column="15" Fill="{Binding SnakeGame[2][15]}" />
+            <Rectangle Grid.Row="2" Grid.Column="16" Fill="{Binding SnakeGame[2][16]}" />
+            <Rectangle Grid.Row="2" Grid.Column="17" Fill="{Binding SnakeGame[2][17]}" />
+            <Rectangle Grid.Row="2" Grid.Column="18" Fill="{Binding SnakeGame[2][18]}" />
+            <Rectangle Grid.Row="2" Grid.Column="19" Fill="{Binding SnakeGame[2][19]}" />
 
-            <Rectangle Grid.Row="4" Grid.Column="0" Fill="Red" />
-            <Rectangle Grid.Row="4" Grid.Column="1" Fill="Red" />
-            <Rectangle Grid.Row="4" Grid.Column="2" Fill="Red" />
-            <Rectangle Grid.Row="4" Grid.Column="3" Fill="Red" />
-            <Rectangle Grid.Row="4" Grid.Column="4" Fill="Red" />
-            <Rectangle Grid.Row="4" Grid.Column="5" Fill="Red" />
-            <Rectangle Grid.Row="4" Grid.Column="6" Fill="Red" />
-            <Rectangle Grid.Row="4" Grid.Column="7" Fill="Red" />
-            <Rectangle Grid.Row="4" Grid.Column="8" Fill="Red" />
-            <Rectangle Grid.Row="4" Grid.Column="9" Fill="Red" />
-            <Rectangle Grid.Row="4" Grid.Column="10" Fill="Red" />
-            <Rectangle Grid.Row="4" Grid.Column="11" Fill="Red" />
-            <Rectangle Grid.Row="4" Grid.Column="12" Fill="Red" />
-            <Rectangle Grid.Row="4" Grid.Column="13" Fill="Red" />
-            <Rectangle Grid.Row="4" Grid.Column="14" Fill="Red" />
-            <Rectangle Grid.Row="4" Grid.Column="15" Fill="Red" />
-            <Rectangle Grid.Row="4" Grid.Column="16" Fill="Red" />
-            <Rectangle Grid.Row="4" Grid.Column="17" Fill="Red" />
-            <Rectangle Grid.Row="4" Grid.Column="18" Fill="Red" />
-            <Rectangle Grid.Row="4" Grid.Column="19" Fill="Red" />
+            <Rectangle Grid.Row="3" Grid.Column="0" Fill="{Binding SnakeGame[3][0]}" />
+            <Rectangle Grid.Row="3" Grid.Column="1" Fill="{Binding SnakeGame[3][1]}" />
+            <Rectangle Grid.Row="3" Grid.Column="2" Fill="{Binding SnakeGame[3][2]}" />
+            <Rectangle Grid.Row="3" Grid.Column="3" Fill="{Binding SnakeGame[3][3]}" />
+            <Rectangle Grid.Row="3" Grid.Column="4" Fill="{Binding SnakeGame[3][4]}" />
+            <Rectangle Grid.Row="3" Grid.Column="5" Fill="{Binding SnakeGame[3][5]}" />
+            <Rectangle Grid.Row="3" Grid.Column="6" Fill="{Binding SnakeGame[3][6]}" />
+            <Rectangle Grid.Row="3" Grid.Column="7" Fill="{Binding SnakeGame[3][7]}" />
+            <Rectangle Grid.Row="3" Grid.Column="8" Fill="{Binding SnakeGame[3][8]}" />
+            <Rectangle Grid.Row="3" Grid.Column="9" Fill="{Binding SnakeGame[3][9]}" />
+            <Rectangle Grid.Row="3" Grid.Column="10" Fill="{Binding SnakeGame[3][10]}" />
+            <Rectangle Grid.Row="3" Grid.Column="11" Fill="{Binding SnakeGame[3][11]}" />
+            <Rectangle Grid.Row="3" Grid.Column="12" Fill="{Binding SnakeGame[3][12]}" />
+            <Rectangle Grid.Row="3" Grid.Column="13" Fill="{Binding SnakeGame[3][13]}" />
+            <Rectangle Grid.Row="3" Grid.Column="14" Fill="{Binding SnakeGame[3][14]}" />
+            <Rectangle Grid.Row="3" Grid.Column="15" Fill="{Binding SnakeGame[3][15]}" />
+            <Rectangle Grid.Row="3" Grid.Column="16" Fill="{Binding SnakeGame[3][16]}" />
+            <Rectangle Grid.Row="3" Grid.Column="17" Fill="{Binding SnakeGame[3][17]}" />
+            <Rectangle Grid.Row="3" Grid.Column="18" Fill="{Binding SnakeGame[3][18]}" />
+            <Rectangle Grid.Row="3" Grid.Column="19" Fill="{Binding SnakeGame[3][19]}" />
 
-            <Rectangle Grid.Row="5" Grid.Column="0" Fill="Red" />
-            <Rectangle Grid.Row="5" Grid.Column="1" Fill="Red" />
-            <Rectangle Grid.Row="5" Grid.Column="2" Fill="Red" />
-            <Rectangle Grid.Row="5" Grid.Column="3" Fill="Red" />
-            <Rectangle Grid.Row="5" Grid.Column="4" Fill="Red" />
-            <Rectangle Grid.Row="5" Grid.Column="5" Fill="Red" />
-            <Rectangle Grid.Row="5" Grid.Column="6" Fill="Red" />
-            <Rectangle Grid.Row="5" Grid.Column="7" Fill="Red" />
-            <Rectangle Grid.Row="5" Grid.Column="8" Fill="Red" />
-            <Rectangle Grid.Row="5" Grid.Column="9" Fill="Red" />
-            <Rectangle Grid.Row="5" Grid.Column="10" Fill="Red" />
-            <Rectangle Grid.Row="5" Grid.Column="11" Fill="Red" />
-            <Rectangle Grid.Row="5" Grid.Column="12" Fill="Red" />
-            <Rectangle Grid.Row="5" Grid.Column="13" Fill="Red" />
-            <Rectangle Grid.Row="5" Grid.Column="14" Fill="Red" />
-            <Rectangle Grid.Row="5" Grid.Column="15" Fill="Red" />
-            <Rectangle Grid.Row="5" Grid.Column="16" Fill="Red" />
-            <Rectangle Grid.Row="5" Grid.Column="17" Fill="Red" />
-            <Rectangle Grid.Row="5" Grid.Column="18" Fill="Red" />
-            <Rectangle Grid.Row="5" Grid.Column="19" Fill="Red" />
+            <Rectangle Grid.Row="4" Grid.Column="0" Fill="{Binding SnakeGame[4][0]}" />
+            <Rectangle Grid.Row="4" Grid.Column="1" Fill="{Binding SnakeGame[4][1]}" />
+            <Rectangle Grid.Row="4" Grid.Column="2" Fill="{Binding SnakeGame[4][2]}" />
+            <Rectangle Grid.Row="4" Grid.Column="3" Fill="{Binding SnakeGame[4][3]}" />
+            <Rectangle Grid.Row="4" Grid.Column="4" Fill="{Binding SnakeGame[4][4]}" />
+            <Rectangle Grid.Row="4" Grid.Column="5" Fill="{Binding SnakeGame[4][5]}" />
+            <Rectangle Grid.Row="4" Grid.Column="6" Fill="{Binding SnakeGame[4][6]}" />
+            <Rectangle Grid.Row="4" Grid.Column="7" Fill="{Binding SnakeGame[4][7]}" />
+            <Rectangle Grid.Row="4" Grid.Column="8" Fill="{Binding SnakeGame[4][8]}" />
+            <Rectangle Grid.Row="4" Grid.Column="9" Fill="{Binding SnakeGame[4][9]}" />
+            <Rectangle Grid.Row="4" Grid.Column="10" Fill="{Binding SnakeGame[4][10]}" />
+            <Rectangle Grid.Row="4" Grid.Column="11" Fill="{Binding SnakeGame[4][11]}" />
+            <Rectangle Grid.Row="4" Grid.Column="12" Fill="{Binding SnakeGame[4][12]}" />
+            <Rectangle Grid.Row="4" Grid.Column="13" Fill="{Binding SnakeGame[4][13]}" />
+            <Rectangle Grid.Row="4" Grid.Column="14" Fill="{Binding SnakeGame[4][14]}" />
+            <Rectangle Grid.Row="4" Grid.Column="15" Fill="{Binding SnakeGame[4][15]}" />
+            <Rectangle Grid.Row="4" Grid.Column="16" Fill="{Binding SnakeGame[4][16]}" />
+            <Rectangle Grid.Row="4" Grid.Column="17" Fill="{Binding SnakeGame[4][17]}" />
+            <Rectangle Grid.Row="4" Grid.Column="18" Fill="{Binding SnakeGame[4][18]}" />
+            <Rectangle Grid.Row="4" Grid.Column="19" Fill="{Binding SnakeGame[4][19]}" />
 
-            <Rectangle Grid.Row="6" Grid.Column="0" Fill="Red" />
-            <Rectangle Grid.Row="6" Grid.Column="1" Fill="Red" />
-            <Rectangle Grid.Row="6" Grid.Column="2" Fill="Red" />
-            <Rectangle Grid.Row="6" Grid.Column="3" Fill="Red" />
-            <Rectangle Grid.Row="6" Grid.Column="4" Fill="Red" />
-            <Rectangle Grid.Row="6" Grid.Column="5" Fill="Red" />
-            <Rectangle Grid.Row="6" Grid.Column="6" Fill="Red" />
-            <Rectangle Grid.Row="6" Grid.Column="7" Fill="Red" />
-            <Rectangle Grid.Row="6" Grid.Column="8" Fill="Red" />
-            <Rectangle Grid.Row="6" Grid.Column="9" Fill="Red" />
-            <Rectangle Grid.Row="6" Grid.Column="10" Fill="Red" />
-            <Rectangle Grid.Row="6" Grid.Column="11" Fill="Red" />
-            <Rectangle Grid.Row="6" Grid.Column="12" Fill="Red" />
-            <Rectangle Grid.Row="6" Grid.Column="13" Fill="Red" />
-            <Rectangle Grid.Row="6" Grid.Column="14" Fill="Red" />
-            <Rectangle Grid.Row="6" Grid.Column="15" Fill="Red" />
-            <Rectangle Grid.Row="6" Grid.Column="16" Fill="Red" />
-            <Rectangle Grid.Row="6" Grid.Column="17" Fill="Red" />
-            <Rectangle Grid.Row="6" Grid.Column="18" Fill="Red" />
-            <Rectangle Grid.Row="6" Grid.Column="19" Fill="Red" />
+            <Rectangle Grid.Row="5" Grid.Column="0" Fill="{Binding SnakeGame[5][0]}" />
+            <Rectangle Grid.Row="5" Grid.Column="1" Fill="{Binding SnakeGame[5][1]}" />
+            <Rectangle Grid.Row="5" Grid.Column="2" Fill="{Binding SnakeGame[5][2]}" />
+            <Rectangle Grid.Row="5" Grid.Column="3" Fill="{Binding SnakeGame[5][3]}" />
+            <Rectangle Grid.Row="5" Grid.Column="4" Fill="{Binding SnakeGame[5][4]}" />
+            <Rectangle Grid.Row="5" Grid.Column="5" Fill="{Binding SnakeGame[5][5]}" />
+            <Rectangle Grid.Row="5" Grid.Column="6" Fill="{Binding SnakeGame[5][6]}" />
+            <Rectangle Grid.Row="5" Grid.Column="7" Fill="{Binding SnakeGame[5][7]}" />
+            <Rectangle Grid.Row="5" Grid.Column="8" Fill="{Binding SnakeGame[5][8]}" />
+            <Rectangle Grid.Row="5" Grid.Column="9" Fill="{Binding SnakeGame[5][9]}" />
+            <Rectangle Grid.Row="5" Grid.Column="10" Fill="{Binding SnakeGame[5][10]}" />
+            <Rectangle Grid.Row="5" Grid.Column="11" Fill="{Binding SnakeGame[5][11]}" />
+            <Rectangle Grid.Row="5" Grid.Column="12" Fill="{Binding SnakeGame[5][12]}" />
+            <Rectangle Grid.Row="5" Grid.Column="13" Fill="{Binding SnakeGame[5][13]}" />
+            <Rectangle Grid.Row="5" Grid.Column="14" Fill="{Binding SnakeGame[5][14]}" />
+            <Rectangle Grid.Row="5" Grid.Column="15" Fill="{Binding SnakeGame[5][15]}" />
+            <Rectangle Grid.Row="5" Grid.Column="16" Fill="{Binding SnakeGame[5][16]}" />
+            <Rectangle Grid.Row="5" Grid.Column="17" Fill="{Binding SnakeGame[5][17]}" />
+            <Rectangle Grid.Row="5" Grid.Column="18" Fill="{Binding SnakeGame[5][18]}" />
+            <Rectangle Grid.Row="5" Grid.Column="19" Fill="{Binding SnakeGame[5][19]}" />
 
-            <Rectangle Grid.Row="7" Grid.Column="0" Fill="Red" />
-            <Rectangle Grid.Row="7" Grid.Column="1" Fill="Red" />
-            <Rectangle Grid.Row="7" Grid.Column="2" Fill="Red" />
-            <Rectangle Grid.Row="7" Grid.Column="3" Fill="Red" />
-            <Rectangle Grid.Row="7" Grid.Column="4" Fill="Red" />
-            <Rectangle Grid.Row="7" Grid.Column="5" Fill="Red" />
-            <Rectangle Grid.Row="7" Grid.Column="6" Fill="Red" />
-            <Rectangle Grid.Row="7" Grid.Column="7" Fill="Red" />
-            <Rectangle Grid.Row="7" Grid.Column="8" Fill="Red" />
-            <Rectangle Grid.Row="7" Grid.Column="9" Fill="Red" />
-            <Rectangle Grid.Row="7" Grid.Column="10" Fill="Red" />
-            <Rectangle Grid.Row="7" Grid.Column="11" Fill="Red" />
-            <Rectangle Grid.Row="7" Grid.Column="12" Fill="Red" />
-            <Rectangle Grid.Row="7" Grid.Column="13" Fill="Red" />
-            <Rectangle Grid.Row="7" Grid.Column="14" Fill="Red" />
-            <Rectangle Grid.Row="7" Grid.Column="15" Fill="Red" />
-            <Rectangle Grid.Row="7" Grid.Column="16" Fill="Red" />
-            <Rectangle Grid.Row="7" Grid.Column="17" Fill="Red" />
-            <Rectangle Grid.Row="7" Grid.Column="18" Fill="Red" />
-            <Rectangle Grid.Row="7" Grid.Column="19" Fill="Red" />
+            <Rectangle Grid.Row="6" Grid.Column="0" Fill="{Binding SnakeGame[6][0]}" />
+            <Rectangle Grid.Row="6" Grid.Column="1" Fill="{Binding SnakeGame[6][1]}" />
+            <Rectangle Grid.Row="6" Grid.Column="2" Fill="{Binding SnakeGame[6][2]}" />
+            <Rectangle Grid.Row="6" Grid.Column="3" Fill="{Binding SnakeGame[6][3]}" />
+            <Rectangle Grid.Row="6" Grid.Column="4" Fill="{Binding SnakeGame[6][4]}" />
+            <Rectangle Grid.Row="6" Grid.Column="5" Fill="{Binding SnakeGame[6][5]}" />
+            <Rectangle Grid.Row="6" Grid.Column="6" Fill="{Binding SnakeGame[6][6]}" />
+            <Rectangle Grid.Row="6" Grid.Column="7" Fill="{Binding SnakeGame[6][7]}" />
+            <Rectangle Grid.Row="6" Grid.Column="8" Fill="{Binding SnakeGame[6][8]}" />
+            <Rectangle Grid.Row="6" Grid.Column="9" Fill="{Binding SnakeGame[6][9]}" />
+            <Rectangle Grid.Row="6" Grid.Column="10" Fill="{Binding SnakeGame[6][10]}" />
+            <Rectangle Grid.Row="6" Grid.Column="11" Fill="{Binding SnakeGame[6][11]}" />
+            <Rectangle Grid.Row="6" Grid.Column="12" Fill="{Binding SnakeGame[6][12]}" />
+            <Rectangle Grid.Row="6" Grid.Column="13" Fill="{Binding SnakeGame[6][13]}" />
+            <Rectangle Grid.Row="6" Grid.Column="14" Fill="{Binding SnakeGame[6][14]}" />
+            <Rectangle Grid.Row="6" Grid.Column="15" Fill="{Binding SnakeGame[6][15]}" />
+            <Rectangle Grid.Row="6" Grid.Column="16" Fill="{Binding SnakeGame[6][16]}" />
+            <Rectangle Grid.Row="6" Grid.Column="17" Fill="{Binding SnakeGame[6][17]}" />
+            <Rectangle Grid.Row="6" Grid.Column="18" Fill="{Binding SnakeGame[6][18]}" />
+            <Rectangle Grid.Row="6" Grid.Column="19" Fill="{Binding SnakeGame[6][19]}" />
 
-            <Rectangle Grid.Row="8" Grid.Column="0" Fill="Red" />
-            <Rectangle Grid.Row="8" Grid.Column="1" Fill="Red" />
-            <Rectangle Grid.Row="8" Grid.Column="2" Fill="Red" />
-            <Rectangle Grid.Row="8" Grid.Column="3" Fill="Red" />
-            <Rectangle Grid.Row="8" Grid.Column="4" Fill="Red" />
-            <Rectangle Grid.Row="8" Grid.Column="5" Fill="Red" />
-            <Rectangle Grid.Row="8" Grid.Column="6" Fill="Red" />
-            <Rectangle Grid.Row="8" Grid.Column="7" Fill="Red" />
-            <Rectangle Grid.Row="8" Grid.Column="8" Fill="Red" />
-            <Rectangle Grid.Row="8" Grid.Column="9" Fill="Red" />
-            <Rectangle Grid.Row="8" Grid.Column="10" Fill="Red" />
-            <Rectangle Grid.Row="8" Grid.Column="11" Fill="Red" />
-            <Rectangle Grid.Row="8" Grid.Column="12" Fill="Red" />
-            <Rectangle Grid.Row="8" Grid.Column="13" Fill="Red" />
-            <Rectangle Grid.Row="8" Grid.Column="14" Fill="Red" />
-            <Rectangle Grid.Row="8" Grid.Column="15" Fill="Red" />
-            <Rectangle Grid.Row="8" Grid.Column="16" Fill="Red" />
-            <Rectangle Grid.Row="8" Grid.Column="17" Fill="Red" />
-            <Rectangle Grid.Row="8" Grid.Column="18" Fill="Red" />
-            <Rectangle Grid.Row="8" Grid.Column="19" Fill="Red" />
+            <Rectangle Grid.Row="7" Grid.Column="0" Fill="{Binding SnakeGame[7][0]}" />
+            <Rectangle Grid.Row="7" Grid.Column="1" Fill="{Binding SnakeGame[7][1]}" />
+            <Rectangle Grid.Row="7" Grid.Column="2" Fill="{Binding SnakeGame[7][2]}" />
+            <Rectangle Grid.Row="7" Grid.Column="3" Fill="{Binding SnakeGame[7][3]}" />
+            <Rectangle Grid.Row="7" Grid.Column="4" Fill="{Binding SnakeGame[7][4]}" />
+            <Rectangle Grid.Row="7" Grid.Column="5" Fill="{Binding SnakeGame[7][5]}" />
+            <Rectangle Grid.Row="7" Grid.Column="6" Fill="{Binding SnakeGame[7][6]}" />
+            <Rectangle Grid.Row="7" Grid.Column="7" Fill="{Binding SnakeGame[7][7]}" />
+            <Rectangle Grid.Row="7" Grid.Column="8" Fill="{Binding SnakeGame[7][8]}" />
+            <Rectangle Grid.Row="7" Grid.Column="9" Fill="{Binding SnakeGame[7][9]}" />
+            <Rectangle Grid.Row="7" Grid.Column="10" Fill="{Binding SnakeGame[7][10]}" />
+            <Rectangle Grid.Row="7" Grid.Column="11" Fill="{Binding SnakeGame[7][11]}" />
+            <Rectangle Grid.Row="7" Grid.Column="12" Fill="{Binding SnakeGame[7][12]}" />
+            <Rectangle Grid.Row="7" Grid.Column="13" Fill="{Binding SnakeGame[7][13]}" />
+            <Rectangle Grid.Row="7" Grid.Column="14" Fill="{Binding SnakeGame[7][14]}" />
+            <Rectangle Grid.Row="7" Grid.Column="15" Fill="{Binding SnakeGame[7][15]}" />
+            <Rectangle Grid.Row="7" Grid.Column="16" Fill="{Binding SnakeGame[7][16]}" />
+            <Rectangle Grid.Row="7" Grid.Column="17" Fill="{Binding SnakeGame[7][17]}" />
+            <Rectangle Grid.Row="7" Grid.Column="18" Fill="{Binding SnakeGame[7][18]}" />
+            <Rectangle Grid.Row="7" Grid.Column="19" Fill="{Binding SnakeGame[7][19]}" />
 
-            <Rectangle Grid.Row="9" Grid.Column="0" Fill="Red" />
-            <Rectangle Grid.Row="9" Grid.Column="1" Fill="Red" />
-            <Rectangle Grid.Row="9" Grid.Column="2" Fill="Red" />
-            <Rectangle Grid.Row="9" Grid.Column="3" Fill="Red" />
-            <Rectangle Grid.Row="9" Grid.Column="4" Fill="Red" />
-            <Rectangle Grid.Row="9" Grid.Column="5" Fill="Red" />
-            <Rectangle Grid.Row="9" Grid.Column="6" Fill="Red" />
-            <Rectangle Grid.Row="9" Grid.Column="7" Fill="Red" />
-            <Rectangle Grid.Row="9" Grid.Column="8" Fill="Red" />
-            <Rectangle Grid.Row="9" Grid.Column="9" Fill="Red" />
-            <Rectangle Grid.Row="9" Grid.Column="10" Fill="Red" />
-            <Rectangle Grid.Row="9" Grid.Column="11" Fill="Red" />
-            <Rectangle Grid.Row="9" Grid.Column="12" Fill="Red" />
-            <Rectangle Grid.Row="9" Grid.Column="13" Fill="Red" />
-            <Rectangle Grid.Row="9" Grid.Column="14" Fill="Red" />
-            <Rectangle Grid.Row="9" Grid.Column="15" Fill="Red" />
-            <Rectangle Grid.Row="9" Grid.Column="16" Fill="Red" />
-            <Rectangle Grid.Row="9" Grid.Column="17" Fill="Red" />
-            <Rectangle Grid.Row="9" Grid.Column="18" Fill="Red" />
-            <Rectangle Grid.Row="9" Grid.Column="19" Fill="Red" />
+            <Rectangle Grid.Row="8" Grid.Column="0" Fill="{Binding SnakeGame[8][0]}" />
+            <Rectangle Grid.Row="8" Grid.Column="1" Fill="{Binding SnakeGame[8][1]}" />
+            <Rectangle Grid.Row="8" Grid.Column="2" Fill="{Binding SnakeGame[8][2]}" />
+            <Rectangle Grid.Row="8" Grid.Column="3" Fill="{Binding SnakeGame[8][3]}" />
+            <Rectangle Grid.Row="8" Grid.Column="4" Fill="{Binding SnakeGame[8][4]}" />
+            <Rectangle Grid.Row="8" Grid.Column="5" Fill="{Binding SnakeGame[8][5]}" />
+            <Rectangle Grid.Row="8" Grid.Column="6" Fill="{Binding SnakeGame[8][6]}" />
+            <Rectangle Grid.Row="8" Grid.Column="7" Fill="{Binding SnakeGame[8][7]}" />
+            <Rectangle Grid.Row="8" Grid.Column="8" Fill="{Binding SnakeGame[8][8]}" />
+            <Rectangle Grid.Row="8" Grid.Column="9" Fill="{Binding SnakeGame[8][9]}" />
+            <Rectangle Grid.Row="8" Grid.Column="10" Fill="{Binding SnakeGame[8][10]}" />
+            <Rectangle Grid.Row="8" Grid.Column="11" Fill="{Binding SnakeGame[8][11]}" />
+            <Rectangle Grid.Row="8" Grid.Column="12" Fill="{Binding SnakeGame[8][12]}" />
+            <Rectangle Grid.Row="8" Grid.Column="13" Fill="{Binding SnakeGame[8][13]}" />
+            <Rectangle Grid.Row="8" Grid.Column="14" Fill="{Binding SnakeGame[8][14]}" />
+            <Rectangle Grid.Row="8" Grid.Column="15" Fill="{Binding SnakeGame[8][15]}" />
+            <Rectangle Grid.Row="8" Grid.Column="16" Fill="{Binding SnakeGame[8][16]}" />
+            <Rectangle Grid.Row="8" Grid.Column="17" Fill="{Binding SnakeGame[8][17]}" />
+            <Rectangle Grid.Row="8" Grid.Column="18" Fill="{Binding SnakeGame[8][18]}" />
+            <Rectangle Grid.Row="8" Grid.Column="19" Fill="{Binding SnakeGame[8][19]}" />
 
-            <Rectangle Grid.Row="10" Grid.Column="0" Fill="Red" />
-            <Rectangle Grid.Row="10" Grid.Column="1" Fill="Red" />
-            <Rectangle Grid.Row="10" Grid.Column="2" Fill="Red" />
-            <Rectangle Grid.Row="10" Grid.Column="3" Fill="Red" />
-            <Rectangle Grid.Row="10" Grid.Column="4" Fill="Red" />
-            <Rectangle Grid.Row="10" Grid.Column="5" Fill="Red" />
-            <Rectangle Grid.Row="10" Grid.Column="6" Fill="Red" />
-            <Rectangle Grid.Row="10" Grid.Column="7" Fill="Red" />
-            <Rectangle Grid.Row="10" Grid.Column="8" Fill="Red" />
-            <Rectangle Grid.Row="10" Grid.Column="9" Fill="Red" />
-            <Rectangle Grid.Row="10" Grid.Column="10" Fill="Red" />
-            <Rectangle Grid.Row="10" Grid.Column="11" Fill="Red" />
-            <Rectangle Grid.Row="10" Grid.Column="12" Fill="Red" />
-            <Rectangle Grid.Row="10" Grid.Column="13" Fill="Red" />
-            <Rectangle Grid.Row="10" Grid.Column="14" Fill="Red" />
-            <Rectangle Grid.Row="10" Grid.Column="15" Fill="Red" />
-            <Rectangle Grid.Row="10" Grid.Column="16" Fill="Red" />
-            <Rectangle Grid.Row="10" Grid.Column="17" Fill="Red" />
-            <Rectangle Grid.Row="10" Grid.Column="18" Fill="Red" />
-            <Rectangle Grid.Row="10" Grid.Column="19" Fill="Red" />
+            <Rectangle Grid.Row="9" Grid.Column="0" Fill="{Binding SnakeGame[9][0]}" />
+            <Rectangle Grid.Row="9" Grid.Column="1" Fill="{Binding SnakeGame[9][1]}" />
+            <Rectangle Grid.Row="9" Grid.Column="2" Fill="{Binding SnakeGame[9][2]}" />
+            <Rectangle Grid.Row="9" Grid.Column="3" Fill="{Binding SnakeGame[9][3]}" />
+            <Rectangle Grid.Row="9" Grid.Column="4" Fill="{Binding SnakeGame[9][4]}" />
+            <Rectangle Grid.Row="9" Grid.Column="5" Fill="{Binding SnakeGame[9][5]}" />
+            <Rectangle Grid.Row="9" Grid.Column="6" Fill="{Binding SnakeGame[9][6]}" />
+            <Rectangle Grid.Row="9" Grid.Column="7" Fill="{Binding SnakeGame[9][7]}" />
+            <Rectangle Grid.Row="9" Grid.Column="8" Fill="{Binding SnakeGame[9][8]}" />
+            <Rectangle Grid.Row="9" Grid.Column="9" Fill="{Binding SnakeGame[9][9]}" />
+            <Rectangle Grid.Row="9" Grid.Column="10" Fill="{Binding SnakeGame[9][10]}" />
+            <Rectangle Grid.Row="9" Grid.Column="11" Fill="{Binding SnakeGame[9][11]}" />
+            <Rectangle Grid.Row="9" Grid.Column="12" Fill="{Binding SnakeGame[9][12]}" />
+            <Rectangle Grid.Row="9" Grid.Column="13" Fill="{Binding SnakeGame[9][13]}" />
+            <Rectangle Grid.Row="9" Grid.Column="14" Fill="{Binding SnakeGame[9][14]}" />
+            <Rectangle Grid.Row="9" Grid.Column="15" Fill="{Binding SnakeGame[9][15]}" />
+            <Rectangle Grid.Row="9" Grid.Column="16" Fill="{Binding SnakeGame[9][16]}" />
+            <Rectangle Grid.Row="9" Grid.Column="17" Fill="{Binding SnakeGame[9][17]}" />
+            <Rectangle Grid.Row="9" Grid.Column="18" Fill="{Binding SnakeGame[9][18]}" />
+            <Rectangle Grid.Row="9" Grid.Column="19" Fill="{Binding SnakeGame[9][19]}" />
 
-            <Rectangle Grid.Row="11" Grid.Column="0" Fill="Red" />
-            <Rectangle Grid.Row="11" Grid.Column="1" Fill="Red" />
-            <Rectangle Grid.Row="11" Grid.Column="2" Fill="Red" />
-            <Rectangle Grid.Row="11" Grid.Column="3" Fill="Red" />
-            <Rectangle Grid.Row="11" Grid.Column="4" Fill="Red" />
-            <Rectangle Grid.Row="11" Grid.Column="5" Fill="Red" />
-            <Rectangle Grid.Row="11" Grid.Column="6" Fill="Red" />
-            <Rectangle Grid.Row="11" Grid.Column="7" Fill="Red" />
-            <Rectangle Grid.Row="11" Grid.Column="8" Fill="Red" />
-            <Rectangle Grid.Row="11" Grid.Column="9" Fill="Red" />
-            <Rectangle Grid.Row="11" Grid.Column="10" Fill="Red" />
-            <Rectangle Grid.Row="11" Grid.Column="11" Fill="Red" />
-            <Rectangle Grid.Row="11" Grid.Column="12" Fill="Red" />
-            <Rectangle Grid.Row="11" Grid.Column="13" Fill="Red" />
-            <Rectangle Grid.Row="11" Grid.Column="14" Fill="Red" />
-            <Rectangle Grid.Row="11" Grid.Column="15" Fill="Red" />
-            <Rectangle Grid.Row="11" Grid.Column="16" Fill="Red" />
-            <Rectangle Grid.Row="11" Grid.Column="17" Fill="Red" />
-            <Rectangle Grid.Row="11" Grid.Column="18" Fill="Red" />
-            <Rectangle Grid.Row="11" Grid.Column="19" Fill="Red" />
+            <Rectangle Grid.Row="10" Grid.Column="0" Fill="{Binding SnakeGame[10][0]}" />
+            <Rectangle Grid.Row="10" Grid.Column="1" Fill="{Binding SnakeGame[10][1]}" />
+            <Rectangle Grid.Row="10" Grid.Column="2" Fill="{Binding SnakeGame[10][2]}" />
+            <Rectangle Grid.Row="10" Grid.Column="3" Fill="{Binding SnakeGame[10][3]}" />
+            <Rectangle Grid.Row="10" Grid.Column="4" Fill="{Binding SnakeGame[10][4]}" />
+            <Rectangle Grid.Row="10" Grid.Column="5" Fill="{Binding SnakeGame[10][5]}" />
+            <Rectangle Grid.Row="10" Grid.Column="6" Fill="{Binding SnakeGame[10][6]}" />
+            <Rectangle Grid.Row="10" Grid.Column="7" Fill="{Binding SnakeGame[10][7]}" />
+            <Rectangle Grid.Row="10" Grid.Column="8" Fill="{Binding SnakeGame[10][8]}" />
+            <Rectangle Grid.Row="10" Grid.Column="9" Fill="{Binding SnakeGame[10][9]}" />
+            <Rectangle Grid.Row="10" Grid.Column="10" Fill="{Binding SnakeGame[10][10]}" />
+            <Rectangle Grid.Row="10" Grid.Column="11" Fill="{Binding SnakeGame[10][11]}" />
+            <Rectangle Grid.Row="10" Grid.Column="12" Fill="{Binding SnakeGame[10][12]}" />
+            <Rectangle Grid.Row="10" Grid.Column="13" Fill="{Binding SnakeGame[10][13]}" />
+            <Rectangle Grid.Row="10" Grid.Column="14" Fill="{Binding SnakeGame[10][14]}" />
+            <Rectangle Grid.Row="10" Grid.Column="15" Fill="{Binding SnakeGame[10][15]}" />
+            <Rectangle Grid.Row="10" Grid.Column="16" Fill="{Binding SnakeGame[10][16]}" />
+            <Rectangle Grid.Row="10" Grid.Column="17" Fill="{Binding SnakeGame[10][17]}" />
+            <Rectangle Grid.Row="10" Grid.Column="18" Fill="{Binding SnakeGame[10][18]}" />
+            <Rectangle Grid.Row="10" Grid.Column="19" Fill="{Binding SnakeGame[10][19]}" />
 
-            <Rectangle Grid.Row="12" Grid.Column="0" Fill="Red" />
-            <Rectangle Grid.Row="12" Grid.Column="1" Fill="Red" />
-            <Rectangle Grid.Row="12" Grid.Column="2" Fill="Red" />
-            <Rectangle Grid.Row="12" Grid.Column="3" Fill="Red" />
-            <Rectangle Grid.Row="12" Grid.Column="4" Fill="Red" />
-            <Rectangle Grid.Row="12" Grid.Column="5" Fill="Red" />
-            <Rectangle Grid.Row="12" Grid.Column="6" Fill="Red" />
-            <Rectangle Grid.Row="12" Grid.Column="7" Fill="Red" />
-            <Rectangle Grid.Row="12" Grid.Column="8" Fill="Red" />
-            <Rectangle Grid.Row="12" Grid.Column="9" Fill="Red" />
-            <Rectangle Grid.Row="12" Grid.Column="10" Fill="Red" />
-            <Rectangle Grid.Row="12" Grid.Column="11" Fill="Red" />
-            <Rectangle Grid.Row="12" Grid.Column="12" Fill="Red" />
-            <Rectangle Grid.Row="12" Grid.Column="13" Fill="Red" />
-            <Rectangle Grid.Row="12" Grid.Column="14" Fill="Red" />
-            <Rectangle Grid.Row="12" Grid.Column="15" Fill="Red" />
-            <Rectangle Grid.Row="12" Grid.Column="16" Fill="Red" />
-            <Rectangle Grid.Row="12" Grid.Column="17" Fill="Red" />
-            <Rectangle Grid.Row="12" Grid.Column="18" Fill="Red" />
-            <Rectangle Grid.Row="12" Grid.Column="19" Fill="Red" />
+            <Rectangle Grid.Row="11" Grid.Column="0" Fill="{Binding SnakeGame[11][0]}" />
+            <Rectangle Grid.Row="11" Grid.Column="1" Fill="{Binding SnakeGame[11][1]}" />
+            <Rectangle Grid.Row="11" Grid.Column="2" Fill="{Binding SnakeGame[11][2]}" />
+            <Rectangle Grid.Row="11" Grid.Column="3" Fill="{Binding SnakeGame[11][3]}" />
+            <Rectangle Grid.Row="11" Grid.Column="4" Fill="{Binding SnakeGame[11][4]}" />
+            <Rectangle Grid.Row="11" Grid.Column="5" Fill="{Binding SnakeGame[11][5]}" />
+            <Rectangle Grid.Row="11" Grid.Column="6" Fill="{Binding SnakeGame[11][6]}" />
+            <Rectangle Grid.Row="11" Grid.Column="7" Fill="{Binding SnakeGame[11][7]}" />
+            <Rectangle Grid.Row="11" Grid.Column="8" Fill="{Binding SnakeGame[11][8]}" />
+            <Rectangle Grid.Row="11" Grid.Column="9" Fill="{Binding SnakeGame[11][9]}" />
+            <Rectangle Grid.Row="11" Grid.Column="10" Fill="{Binding SnakeGame[11][10]}" />
+            <Rectangle Grid.Row="11" Grid.Column="11" Fill="{Binding SnakeGame[11][11]}" />
+            <Rectangle Grid.Row="11" Grid.Column="12" Fill="{Binding SnakeGame[11][12]}" />
+            <Rectangle Grid.Row="11" Grid.Column="13" Fill="{Binding SnakeGame[11][13]}" />
+            <Rectangle Grid.Row="11" Grid.Column="14" Fill="{Binding SnakeGame[11][14]}" />
+            <Rectangle Grid.Row="11" Grid.Column="15" Fill="{Binding SnakeGame[11][15]}" />
+            <Rectangle Grid.Row="11" Grid.Column="16" Fill="{Binding SnakeGame[11][16]}" />
+            <Rectangle Grid.Row="11" Grid.Column="17" Fill="{Binding SnakeGame[11][17]}" />
+            <Rectangle Grid.Row="11" Grid.Column="18" Fill="{Binding SnakeGame[11][18]}" />
+            <Rectangle Grid.Row="11" Grid.Column="19" Fill="{Binding SnakeGame[11][19]}" />
 
-            <Rectangle Grid.Row="13" Grid.Column="0" Fill="Red" />
-            <Rectangle Grid.Row="13" Grid.Column="1" Fill="Red" />
-            <Rectangle Grid.Row="13" Grid.Column="2" Fill="Red" />
-            <Rectangle Grid.Row="13" Grid.Column="3" Fill="Red" />
-            <Rectangle Grid.Row="13" Grid.Column="4" Fill="Red" />
-            <Rectangle Grid.Row="13" Grid.Column="5" Fill="Red" />
-            <Rectangle Grid.Row="13" Grid.Column="6" Fill="Red" />
-            <Rectangle Grid.Row="13" Grid.Column="7" Fill="Red" />
-            <Rectangle Grid.Row="13" Grid.Column="8" Fill="Red" />
-            <Rectangle Grid.Row="13" Grid.Column="9" Fill="Red" />
-            <Rectangle Grid.Row="13" Grid.Column="10" Fill="Red" />
-            <Rectangle Grid.Row="13" Grid.Column="11" Fill="Red" />
-            <Rectangle Grid.Row="13" Grid.Column="12" Fill="Red" />
-            <Rectangle Grid.Row="13" Grid.Column="13" Fill="Red" />
-            <Rectangle Grid.Row="13" Grid.Column="14" Fill="Red" />
-            <Rectangle Grid.Row="13" Grid.Column="15" Fill="Red" />
-            <Rectangle Grid.Row="13" Grid.Column="16" Fill="Red" />
-            <Rectangle Grid.Row="13" Grid.Column="17" Fill="Red" />
-            <Rectangle Grid.Row="13" Grid.Column="18" Fill="Red" />
-            <Rectangle Grid.Row="13" Grid.Column="19" Fill="Red" />
+            <Rectangle Grid.Row="12" Grid.Column="0" Fill="{Binding SnakeGame[12][0]}" />
+            <Rectangle Grid.Row="12" Grid.Column="1" Fill="{Binding SnakeGame[12][1]}" />
+            <Rectangle Grid.Row="12" Grid.Column="2" Fill="{Binding SnakeGame[12][2]}" />
+            <Rectangle Grid.Row="12" Grid.Column="3" Fill="{Binding SnakeGame[12][3]}" />
+            <Rectangle Grid.Row="12" Grid.Column="4" Fill="{Binding SnakeGame[12][4]}" />
+            <Rectangle Grid.Row="12" Grid.Column="5" Fill="{Binding SnakeGame[12][5]}" />
+            <Rectangle Grid.Row="12" Grid.Column="6" Fill="{Binding SnakeGame[12][6]}" />
+            <Rectangle Grid.Row="12" Grid.Column="7" Fill="{Binding SnakeGame[12][7]}" />
+            <Rectangle Grid.Row="12" Grid.Column="8" Fill="{Binding SnakeGame[12][8]}" />
+            <Rectangle Grid.Row="12" Grid.Column="9" Fill="{Binding SnakeGame[12][9]}" />
+            <Rectangle Grid.Row="12" Grid.Column="10" Fill="{Binding SnakeGame[12][10]}" />
+            <Rectangle Grid.Row="12" Grid.Column="11" Fill="{Binding SnakeGame[12][11]}" />
+            <Rectangle Grid.Row="12" Grid.Column="12" Fill="{Binding SnakeGame[12][12]}" />
+            <Rectangle Grid.Row="12" Grid.Column="13" Fill="{Binding SnakeGame[12][13]}" />
+            <Rectangle Grid.Row="12" Grid.Column="14" Fill="{Binding SnakeGame[12][14]}" />
+            <Rectangle Grid.Row="12" Grid.Column="15" Fill="{Binding SnakeGame[12][15]}" />
+            <Rectangle Grid.Row="12" Grid.Column="16" Fill="{Binding SnakeGame[12][16]}" />
+            <Rectangle Grid.Row="12" Grid.Column="17" Fill="{Binding SnakeGame[12][17]}" />
+            <Rectangle Grid.Row="12" Grid.Column="18" Fill="{Binding SnakeGame[12][18]}" />
+            <Rectangle Grid.Row="12" Grid.Column="19" Fill="{Binding SnakeGame[12][19]}" />
 
-            <Rectangle Grid.Row="14" Grid.Column="0" Fill="Red" />
-            <Rectangle Grid.Row="14" Grid.Column="1" Fill="Red" />
-            <Rectangle Grid.Row="14" Grid.Column="2" Fill="Red" />
-            <Rectangle Grid.Row="14" Grid.Column="3" Fill="Red" />
-            <Rectangle Grid.Row="14" Grid.Column="4" Fill="Red" />
-            <Rectangle Grid.Row="14" Grid.Column="5" Fill="Red" />
-            <Rectangle Grid.Row="14" Grid.Column="6" Fill="Red" />
-            <Rectangle Grid.Row="14" Grid.Column="7" Fill="Red" />
-            <Rectangle Grid.Row="14" Grid.Column="8" Fill="Red" />
-            <Rectangle Grid.Row="14" Grid.Column="9" Fill="Red" />
-            <Rectangle Grid.Row="14" Grid.Column="10" Fill="Red" />
-            <Rectangle Grid.Row="14" Grid.Column="11" Fill="Red" />
-            <Rectangle Grid.Row="14" Grid.Column="12" Fill="Red" />
-            <Rectangle Grid.Row="14" Grid.Column="13" Fill="Red" />
-            <Rectangle Grid.Row="14" Grid.Column="14" Fill="Red" />
-            <Rectangle Grid.Row="14" Grid.Column="15" Fill="Red" />
-            <Rectangle Grid.Row="14" Grid.Column="16" Fill="Red" />
-            <Rectangle Grid.Row="14" Grid.Column="17" Fill="Red" />
-            <Rectangle Grid.Row="14" Grid.Column="18" Fill="Red" />
-            <Rectangle Grid.Row="14" Grid.Column="19" Fill="Red" />
+            <Rectangle Grid.Row="13" Grid.Column="0" Fill="{Binding SnakeGame[13][0]}" />
+            <Rectangle Grid.Row="13" Grid.Column="1" Fill="{Binding SnakeGame[13][1]}" />
+            <Rectangle Grid.Row="13" Grid.Column="2" Fill="{Binding SnakeGame[13][2]}" />
+            <Rectangle Grid.Row="13" Grid.Column="3" Fill="{Binding SnakeGame[13][3]}" />
+            <Rectangle Grid.Row="13" Grid.Column="4" Fill="{Binding SnakeGame[13][4]}" />
+            <Rectangle Grid.Row="13" Grid.Column="5" Fill="{Binding SnakeGame[13][5]}" />
+            <Rectangle Grid.Row="13" Grid.Column="6" Fill="{Binding SnakeGame[13][6]}" />
+            <Rectangle Grid.Row="13" Grid.Column="7" Fill="{Binding SnakeGame[13][7]}" />
+            <Rectangle Grid.Row="13" Grid.Column="8" Fill="{Binding SnakeGame[13][8]}" />
+            <Rectangle Grid.Row="13" Grid.Column="9" Fill="{Binding SnakeGame[13][9]}" />
+            <Rectangle Grid.Row="13" Grid.Column="10" Fill="{Binding SnakeGame[13][10]}" />
+            <Rectangle Grid.Row="13" Grid.Column="11" Fill="{Binding SnakeGame[13][11]}" />
+            <Rectangle Grid.Row="13" Grid.Column="12" Fill="{Binding SnakeGame[13][12]}" />
+            <Rectangle Grid.Row="13" Grid.Column="13" Fill="{Binding SnakeGame[13][13]}" />
+            <Rectangle Grid.Row="13" Grid.Column="14" Fill="{Binding SnakeGame[13][14]}" />
+            <Rectangle Grid.Row="13" Grid.Column="15" Fill="{Binding SnakeGame[13][15]}" />
+            <Rectangle Grid.Row="13" Grid.Column="16" Fill="{Binding SnakeGame[13][16]}" />
+            <Rectangle Grid.Row="13" Grid.Column="17" Fill="{Binding SnakeGame[13][17]}" />
+            <Rectangle Grid.Row="13" Grid.Column="18" Fill="{Binding SnakeGame[13][18]}" />
+            <Rectangle Grid.Row="13" Grid.Column="19" Fill="{Binding SnakeGame[13][19]}" />
 
-            <Rectangle Grid.Row="15" Grid.Column="0" Fill="Red" />
-            <Rectangle Grid.Row="15" Grid.Column="1" Fill="Red" />
-            <Rectangle Grid.Row="15" Grid.Column="2" Fill="Red" />
-            <Rectangle Grid.Row="15" Grid.Column="3" Fill="Red" />
-            <Rectangle Grid.Row="15" Grid.Column="4" Fill="Red" />
-            <Rectangle Grid.Row="15" Grid.Column="5" Fill="Red" />
-            <Rectangle Grid.Row="15" Grid.Column="6" Fill="Red" />
-            <Rectangle Grid.Row="15" Grid.Column="7" Fill="Red" />
-            <Rectangle Grid.Row="15" Grid.Column="8" Fill="Red" />
-            <Rectangle Grid.Row="15" Grid.Column="9" Fill="Red" />
-            <Rectangle Grid.Row="15" Grid.Column="10" Fill="Red" />
-            <Rectangle Grid.Row="15" Grid.Column="11" Fill="Red" />
-            <Rectangle Grid.Row="15" Grid.Column="12" Fill="Red" />
-            <Rectangle Grid.Row="15" Grid.Column="13" Fill="Red" />
-            <Rectangle Grid.Row="15" Grid.Column="14" Fill="Red" />
-            <Rectangle Grid.Row="15" Grid.Column="15" Fill="Red" />
-            <Rectangle Grid.Row="15" Grid.Column="16" Fill="Red" />
-            <Rectangle Grid.Row="15" Grid.Column="17" Fill="Red" />
-            <Rectangle Grid.Row="15" Grid.Column="18" Fill="Red" />
-            <Rectangle Grid.Row="15" Grid.Column="19" Fill="Red" />
+            <Rectangle Grid.Row="14" Grid.Column="0" Fill="{Binding SnakeGame[14][0]}" />
+            <Rectangle Grid.Row="14" Grid.Column="1" Fill="{Binding SnakeGame[14][1]}" />
+            <Rectangle Grid.Row="14" Grid.Column="2" Fill="{Binding SnakeGame[14][2]}" />
+            <Rectangle Grid.Row="14" Grid.Column="3" Fill="{Binding SnakeGame[14][3]}" />
+            <Rectangle Grid.Row="14" Grid.Column="4" Fill="{Binding SnakeGame[14][4]}" />
+            <Rectangle Grid.Row="14" Grid.Column="5" Fill="{Binding SnakeGame[14][5]}" />
+            <Rectangle Grid.Row="14" Grid.Column="6" Fill="{Binding SnakeGame[14][6]}" />
+            <Rectangle Grid.Row="14" Grid.Column="7" Fill="{Binding SnakeGame[14][7]}" />
+            <Rectangle Grid.Row="14" Grid.Column="8" Fill="{Binding SnakeGame[14][8]}" />
+            <Rectangle Grid.Row="14" Grid.Column="9" Fill="{Binding SnakeGame[14][9]}" />
+            <Rectangle Grid.Row="14" Grid.Column="10" Fill="{Binding SnakeGame[14][10]}" />
+            <Rectangle Grid.Row="14" Grid.Column="11" Fill="{Binding SnakeGame[14][11]}" />
+            <Rectangle Grid.Row="14" Grid.Column="12" Fill="{Binding SnakeGame[14][12]}" />
+            <Rectangle Grid.Row="14" Grid.Column="13" Fill="{Binding SnakeGame[14][13]}" />
+            <Rectangle Grid.Row="14" Grid.Column="14" Fill="{Binding SnakeGame[14][14]}" />
+            <Rectangle Grid.Row="14" Grid.Column="15" Fill="{Binding SnakeGame[14][15]}" />
+            <Rectangle Grid.Row="14" Grid.Column="16" Fill="{Binding SnakeGame[14][16]}" />
+            <Rectangle Grid.Row="14" Grid.Column="17" Fill="{Binding SnakeGame[14][17]}" />
+            <Rectangle Grid.Row="14" Grid.Column="18" Fill="{Binding SnakeGame[14][18]}" />
+            <Rectangle Grid.Row="14" Grid.Column="19" Fill="{Binding SnakeGame[14][19]}" />
 
-            <Rectangle Grid.Row="16" Grid.Column="0" Fill="Red" />
-            <Rectangle Grid.Row="16" Grid.Column="1" Fill="Red" />
-            <Rectangle Grid.Row="16" Grid.Column="2" Fill="Red" />
-            <Rectangle Grid.Row="16" Grid.Column="3" Fill="Red" />
-            <Rectangle Grid.Row="16" Grid.Column="4" Fill="Red" />
-            <Rectangle Grid.Row="16" Grid.Column="5" Fill="Red" />
-            <Rectangle Grid.Row="16" Grid.Column="6" Fill="Red" />
-            <Rectangle Grid.Row="16" Grid.Column="7" Fill="Red" />
-            <Rectangle Grid.Row="16" Grid.Column="8" Fill="Red" />
-            <Rectangle Grid.Row="16" Grid.Column="9" Fill="Red" />
-            <Rectangle Grid.Row="16" Grid.Column="10" Fill="Red" />
-            <Rectangle Grid.Row="16" Grid.Column="11" Fill="Red" />
-            <Rectangle Grid.Row="16" Grid.Column="12" Fill="Red" />
-            <Rectangle Grid.Row="16" Grid.Column="13" Fill="Red" />
-            <Rectangle Grid.Row="16" Grid.Column="14" Fill="Red" />
-            <Rectangle Grid.Row="16" Grid.Column="15" Fill="Red" />
-            <Rectangle Grid.Row="16" Grid.Column="16" Fill="Red" />
-            <Rectangle Grid.Row="16" Grid.Column="17" Fill="Red" />
-            <Rectangle Grid.Row="16" Grid.Column="18" Fill="Red" />
-            <Rectangle Grid.Row="16" Grid.Column="19" Fill="Red" />
+            <Rectangle Grid.Row="15" Grid.Column="0" Fill="{Binding SnakeGame[15][0]}" />
+            <Rectangle Grid.Row="15" Grid.Column="1" Fill="{Binding SnakeGame[15][1]}" />
+            <Rectangle Grid.Row="15" Grid.Column="2" Fill="{Binding SnakeGame[15][2]}" />
+            <Rectangle Grid.Row="15" Grid.Column="3" Fill="{Binding SnakeGame[15][3]}" />
+            <Rectangle Grid.Row="15" Grid.Column="4" Fill="{Binding SnakeGame[15][4]}" />
+            <Rectangle Grid.Row="15" Grid.Column="5" Fill="{Binding SnakeGame[15][5]}" />
+            <Rectangle Grid.Row="15" Grid.Column="6" Fill="{Binding SnakeGame[15][6]}" />
+            <Rectangle Grid.Row="15" Grid.Column="7" Fill="{Binding SnakeGame[15][7]}" />
+            <Rectangle Grid.Row="15" Grid.Column="8" Fill="{Binding SnakeGame[15][8]}" />
+            <Rectangle Grid.Row="15" Grid.Column="9" Fill="{Binding SnakeGame[15][9]}" />
+            <Rectangle Grid.Row="15" Grid.Column="10" Fill="{Binding SnakeGame[15][10]}" />
+            <Rectangle Grid.Row="15" Grid.Column="11" Fill="{Binding SnakeGame[15][11]}" />
+            <Rectangle Grid.Row="15" Grid.Column="12" Fill="{Binding SnakeGame[15][12]}" />
+            <Rectangle Grid.Row="15" Grid.Column="13" Fill="{Binding SnakeGame[15][13]}" />
+            <Rectangle Grid.Row="15" Grid.Column="14" Fill="{Binding SnakeGame[15][14]}" />
+            <Rectangle Grid.Row="15" Grid.Column="15" Fill="{Binding SnakeGame[15][15]}" />
+            <Rectangle Grid.Row="15" Grid.Column="16" Fill="{Binding SnakeGame[15][16]}" />
+            <Rectangle Grid.Row="15" Grid.Column="17" Fill="{Binding SnakeGame[15][17]}" />
+            <Rectangle Grid.Row="15" Grid.Column="18" Fill="{Binding SnakeGame[15][18]}" />
+            <Rectangle Grid.Row="15" Grid.Column="19" Fill="{Binding SnakeGame[15][19]}" />
 
-            <Rectangle Grid.Row="17" Grid.Column="0" Fill="Red" />
-            <Rectangle Grid.Row="17" Grid.Column="1" Fill="Red" />
-            <Rectangle Grid.Row="17" Grid.Column="2" Fill="Red" />
-            <Rectangle Grid.Row="17" Grid.Column="3" Fill="Red" />
-            <Rectangle Grid.Row="17" Grid.Column="4" Fill="Red" />
-            <Rectangle Grid.Row="17" Grid.Column="5" Fill="Red" />
-            <Rectangle Grid.Row="17" Grid.Column="6" Fill="Red" />
-            <Rectangle Grid.Row="17" Grid.Column="7" Fill="Red" />
-            <Rectangle Grid.Row="17" Grid.Column="8" Fill="Red" />
-            <Rectangle Grid.Row="17" Grid.Column="9" Fill="Red" />
-            <Rectangle Grid.Row="17" Grid.Column="10" Fill="Red" />
-            <Rectangle Grid.Row="17" Grid.Column="11" Fill="Red" />
-            <Rectangle Grid.Row="17" Grid.Column="12" Fill="Red" />
-            <Rectangle Grid.Row="17" Grid.Column="13" Fill="Red" />
-            <Rectangle Grid.Row="17" Grid.Column="14" Fill="Red" />
-            <Rectangle Grid.Row="17" Grid.Column="15" Fill="Red" />
-            <Rectangle Grid.Row="17" Grid.Column="16" Fill="Red" />
-            <Rectangle Grid.Row="17" Grid.Column="17" Fill="Red" />
-            <Rectangle Grid.Row="17" Grid.Column="18" Fill="Red" />
-            <Rectangle Grid.Row="17" Grid.Column="19" Fill="Red" />
+            <Rectangle Grid.Row="16" Grid.Column="0" Fill="{Binding SnakeGame[16][0]}" />
+            <Rectangle Grid.Row="16" Grid.Column="1" Fill="{Binding SnakeGame[16][1]}" />
+            <Rectangle Grid.Row="16" Grid.Column="2" Fill="{Binding SnakeGame[16][2]}" />
+            <Rectangle Grid.Row="16" Grid.Column="3" Fill="{Binding SnakeGame[16][3]}" />
+            <Rectangle Grid.Row="16" Grid.Column="4" Fill="{Binding SnakeGame[16][4]}" />
+            <Rectangle Grid.Row="16" Grid.Column="5" Fill="{Binding SnakeGame[16][5]}" />
+            <Rectangle Grid.Row="16" Grid.Column="6" Fill="{Binding SnakeGame[16][6]}" />
+            <Rectangle Grid.Row="16" Grid.Column="7" Fill="{Binding SnakeGame[16][7]}" />
+            <Rectangle Grid.Row="16" Grid.Column="8" Fill="{Binding SnakeGame[16][8]}" />
+            <Rectangle Grid.Row="16" Grid.Column="9" Fill="{Binding SnakeGame[16][9]}" />
+            <Rectangle Grid.Row="16" Grid.Column="10" Fill="{Binding SnakeGame[16][10]}" />
+            <Rectangle Grid.Row="16" Grid.Column="11" Fill="{Binding SnakeGame[16][11]}" />
+            <Rectangle Grid.Row="16" Grid.Column="12" Fill="{Binding SnakeGame[16][12]}" />
+            <Rectangle Grid.Row="16" Grid.Column="13" Fill="{Binding SnakeGame[16][13]}" />
+            <Rectangle Grid.Row="16" Grid.Column="14" Fill="{Binding SnakeGame[16][14]}" />
+            <Rectangle Grid.Row="16" Grid.Column="15" Fill="{Binding SnakeGame[16][15]}" />
+            <Rectangle Grid.Row="16" Grid.Column="16" Fill="{Binding SnakeGame[16][16]}" />
+            <Rectangle Grid.Row="16" Grid.Column="17" Fill="{Binding SnakeGame[16][17]}" />
+            <Rectangle Grid.Row="16" Grid.Column="18" Fill="{Binding SnakeGame[16][18]}" />
+            <Rectangle Grid.Row="16" Grid.Column="19" Fill="{Binding SnakeGame[16][19]}" />
 
-            <Rectangle Grid.Row="18" Grid.Column="0" Fill="Red" />
-            <Rectangle Grid.Row="18" Grid.Column="1" Fill="Red" />
-            <Rectangle Grid.Row="18" Grid.Column="2" Fill="Red" />
-            <Rectangle Grid.Row="18" Grid.Column="3" Fill="Red" />
-            <Rectangle Grid.Row="18" Grid.Column="4" Fill="Red" />
-            <Rectangle Grid.Row="18" Grid.Column="5" Fill="Red" />
-            <Rectangle Grid.Row="18" Grid.Column="6" Fill="Red" />
-            <Rectangle Grid.Row="18" Grid.Column="7" Fill="Red" />
-            <Rectangle Grid.Row="18" Grid.Column="8" Fill="Red" />
-            <Rectangle Grid.Row="18" Grid.Column="9" Fill="Red" />
-            <Rectangle Grid.Row="18" Grid.Column="10" Fill="Red" />
-            <Rectangle Grid.Row="18" Grid.Column="11" Fill="Red" />
-            <Rectangle Grid.Row="18" Grid.Column="12" Fill="Red" />
-            <Rectangle Grid.Row="18" Grid.Column="13" Fill="Red" />
-            <Rectangle Grid.Row="18" Grid.Column="14" Fill="Red" />
-            <Rectangle Grid.Row="18" Grid.Column="15" Fill="Red" />
-            <Rectangle Grid.Row="18" Grid.Column="16" Fill="Red" />
-            <Rectangle Grid.Row="18" Grid.Column="17" Fill="Red" />
-            <Rectangle Grid.Row="18" Grid.Column="18" Fill="Red" />
-            <Rectangle Grid.Row="18" Grid.Column="19" Fill="Red" />
+            <Rectangle Grid.Row="17" Grid.Column="0" Fill="{Binding SnakeGame[17][0]}" />
+            <Rectangle Grid.Row="17" Grid.Column="1" Fill="{Binding SnakeGame[17][1]}" />
+            <Rectangle Grid.Row="17" Grid.Column="2" Fill="{Binding SnakeGame[17][2]}" />
+            <Rectangle Grid.Row="17" Grid.Column="3" Fill="{Binding SnakeGame[17][3]}" />
+            <Rectangle Grid.Row="17" Grid.Column="4" Fill="{Binding SnakeGame[17][4]}" />
+            <Rectangle Grid.Row="17" Grid.Column="5" Fill="{Binding SnakeGame[17][5]}" />
+            <Rectangle Grid.Row="17" Grid.Column="6" Fill="{Binding SnakeGame[17][6]}" />
+            <Rectangle Grid.Row="17" Grid.Column="7" Fill="{Binding SnakeGame[17][7]}" />
+            <Rectangle Grid.Row="17" Grid.Column="8" Fill="{Binding SnakeGame[17][8]}" />
+            <Rectangle Grid.Row="17" Grid.Column="9" Fill="{Binding SnakeGame[17][9]}" />
+            <Rectangle Grid.Row="17" Grid.Column="10" Fill="{Binding SnakeGame[17][10]}" />
+            <Rectangle Grid.Row="17" Grid.Column="11" Fill="{Binding SnakeGame[17][11]}" />
+            <Rectangle Grid.Row="17" Grid.Column="12" Fill="{Binding SnakeGame[17][12]}" />
+            <Rectangle Grid.Row="17" Grid.Column="13" Fill="{Binding SnakeGame[17][13]}" />
+            <Rectangle Grid.Row="17" Grid.Column="14" Fill="{Binding SnakeGame[17][14]}" />
+            <Rectangle Grid.Row="17" Grid.Column="15" Fill="{Binding SnakeGame[17][15]}" />
+            <Rectangle Grid.Row="17" Grid.Column="16" Fill="{Binding SnakeGame[17][16]}" />
+            <Rectangle Grid.Row="17" Grid.Column="17" Fill="{Binding SnakeGame[17][17]}" />
+            <Rectangle Grid.Row="17" Grid.Column="18" Fill="{Binding SnakeGame[17][18]}" />
+            <Rectangle Grid.Row="17" Grid.Column="19" Fill="{Binding SnakeGame[17][19]}" />
 
-            <Rectangle Grid.Row="19" Grid.Column="0" Fill="Red" />
-            <Rectangle Grid.Row="19" Grid.Column="1" Fill="Red" />
-            <Rectangle Grid.Row="19" Grid.Column="2" Fill="Red" />
-            <Rectangle Grid.Row="19" Grid.Column="3" Fill="Red" />
-            <Rectangle Grid.Row="19" Grid.Column="4" Fill="Red" />
-            <Rectangle Grid.Row="19" Grid.Column="5" Fill="Red" />
-            <Rectangle Grid.Row="19" Grid.Column="6" Fill="Red" />
-            <Rectangle Grid.Row="19" Grid.Column="7" Fill="Red" />
-            <Rectangle Grid.Row="19" Grid.Column="8" Fill="Red" />
-            <Rectangle Grid.Row="19" Grid.Column="9" Fill="Red" />
-            <Rectangle Grid.Row="19" Grid.Column="10" Fill="Red" />
-            <Rectangle Grid.Row="19" Grid.Column="11" Fill="Red" />
-            <Rectangle Grid.Row="19" Grid.Column="12" Fill="Red" />
-            <Rectangle Grid.Row="19" Grid.Column="13" Fill="Red" />
-            <Rectangle Grid.Row="19" Grid.Column="14" Fill="Red" />
-            <Rectangle Grid.Row="19" Grid.Column="15" Fill="Red" />
-            <Rectangle Grid.Row="19" Grid.Column="16" Fill="Red" />
-            <Rectangle Grid.Row="19" Grid.Column="17" Fill="Red" />
-            <Rectangle Grid.Row="19" Grid.Column="18" Fill="Red" />
-            <Rectangle Grid.Row="19" Grid.Column="19" Fill="Red" />
+            <Rectangle Grid.Row="18" Grid.Column="0" Fill="{Binding SnakeGame[18][0]}" />
+            <Rectangle Grid.Row="18" Grid.Column="1" Fill="{Binding SnakeGame[18][1]}" />
+            <Rectangle Grid.Row="18" Grid.Column="2" Fill="{Binding SnakeGame[18][2]}" />
+            <Rectangle Grid.Row="18" Grid.Column="3" Fill="{Binding SnakeGame[18][3]}" />
+            <Rectangle Grid.Row="18" Grid.Column="4" Fill="{Binding SnakeGame[18][4]}" />
+            <Rectangle Grid.Row="18" Grid.Column="5" Fill="{Binding SnakeGame[18][5]}" />
+            <Rectangle Grid.Row="18" Grid.Column="6" Fill="{Binding SnakeGame[18][6]}" />
+            <Rectangle Grid.Row="18" Grid.Column="7" Fill="{Binding SnakeGame[18][7]}" />
+            <Rectangle Grid.Row="18" Grid.Column="8" Fill="{Binding SnakeGame[18][8]}" />
+            <Rectangle Grid.Row="18" Grid.Column="9" Fill="{Binding SnakeGame[18][9]}" />
+            <Rectangle Grid.Row="18" Grid.Column="10" Fill="{Binding SnakeGame[18][10]}" />
+            <Rectangle Grid.Row="18" Grid.Column="11" Fill="{Binding SnakeGame[18][11]}" />
+            <Rectangle Grid.Row="18" Grid.Column="12" Fill="{Binding SnakeGame[18][12]}" />
+            <Rectangle Grid.Row="18" Grid.Column="13" Fill="{Binding SnakeGame[18][13]}" />
+            <Rectangle Grid.Row="18" Grid.Column="14" Fill="{Binding SnakeGame[18][14]}" />
+            <Rectangle Grid.Row="18" Grid.Column="15" Fill="{Binding SnakeGame[18][15]}" />
+            <Rectangle Grid.Row="18" Grid.Column="16" Fill="{Binding SnakeGame[18][16]}" />
+            <Rectangle Grid.Row="18" Grid.Column="17" Fill="{Binding SnakeGame[18][17]}" />
+            <Rectangle Grid.Row="18" Grid.Column="18" Fill="{Binding SnakeGame[18][18]}" />
+            <Rectangle Grid.Row="18" Grid.Column="19" Fill="{Binding SnakeGame[18][19]}" />
+
+            <Rectangle Grid.Row="19" Grid.Column="0" Fill="{Binding SnakeGame[19][0]}" />
+            <Rectangle Grid.Row="19" Grid.Column="1" Fill="{Binding SnakeGame[19][1]}" />
+            <Rectangle Grid.Row="19" Grid.Column="2" Fill="{Binding SnakeGame[19][2]}" />
+            <Rectangle Grid.Row="19" Grid.Column="3" Fill="{Binding SnakeGame[19][3]}" />
+            <Rectangle Grid.Row="19" Grid.Column="4" Fill="{Binding SnakeGame[19][4]}" />
+            <Rectangle Grid.Row="19" Grid.Column="5" Fill="{Binding SnakeGame[19][5]}" />
+            <Rectangle Grid.Row="19" Grid.Column="6" Fill="{Binding SnakeGame[19][6]}" />
+            <Rectangle Grid.Row="19" Grid.Column="7" Fill="{Binding SnakeGame[19][7]}" />
+            <Rectangle Grid.Row="19" Grid.Column="8" Fill="{Binding SnakeGame[19][8]}" />
+            <Rectangle Grid.Row="19" Grid.Column="9" Fill="{Binding SnakeGame[19][9]}" />
+            <Rectangle Grid.Row="19" Grid.Column="10" Fill="{Binding SnakeGame[19][10]}" />
+            <Rectangle Grid.Row="19" Grid.Column="11" Fill="{Binding SnakeGame[19][11]}" />
+            <Rectangle Grid.Row="19" Grid.Column="12" Fill="{Binding SnakeGame[19][12]}" />
+            <Rectangle Grid.Row="19" Grid.Column="13" Fill="{Binding SnakeGame[19][13]}" />
+            <Rectangle Grid.Row="19" Grid.Column="14" Fill="{Binding SnakeGame[19][14]}" />
+            <Rectangle Grid.Row="19" Grid.Column="15" Fill="{Binding SnakeGame[19][15]}" />
+            <Rectangle Grid.Row="19" Grid.Column="16" Fill="{Binding SnakeGame[19][16]}" />
+            <Rectangle Grid.Row="19" Grid.Column="17" Fill="{Binding SnakeGame[19][17]}" />
+            <Rectangle Grid.Row="19" Grid.Column="18" Fill="{Binding SnakeGame[19][18]}" />
+            <Rectangle Grid.Row="19" Grid.Column="19" Fill="{Binding SnakeGame[19][19]}" />
 
             <!--<Viewbox c Grid.Cumn="0" Grid.Row="0" Stretch="Uniform">
                 
