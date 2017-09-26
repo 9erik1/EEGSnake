@@ -95,7 +95,23 @@ namespace EEGfront
             draw = new Thread(new ThreadStart(Draw));
             draw.Start();
             //private Brush _colorr = Brushes.Red;
-            //SnakeGame = Brushes.Green;
+            //SnakeGame = Brushes.Green
+            //snakeGame = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
+            //int[,] array6 = new int[10, 10];
+
+            for(int i = 0; i < 20; i++)
+            {
+                snakeGame[i] = new SolidColorBrush[20];
+            }
+
+            for (int j = 0; j < 20; j++)
+            {
+                for (int k = 0; k < 20; k++)
+                {
+                    snakeGame[j][k] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
+                }
+            }
+           
         }
 
         public void Shutdown()
@@ -424,8 +440,8 @@ namespace EEGfront
 
 
 
-        private SolidColorBrush snakeGame = new SolidColorBrush(System.Windows.Media.Color.FromRgb(125,125,125));
-        public SolidColorBrush SnakeGame
+        private SolidColorBrush[][] snakeGame = new SolidColorBrush[20][];
+        public SolidColorBrush[][] SnakeGame
         {
             get
             {
