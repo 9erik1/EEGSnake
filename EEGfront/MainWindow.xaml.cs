@@ -16,6 +16,8 @@ namespace EEGfront
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainViewModel snakeGameInput = MainViewModel.Instance;
+
         private EmotiveAquisition stream;
 
         private Object drawLock = new Object();
@@ -272,6 +274,41 @@ namespace EEGfront
         private void KillEnd(object sender, EventArgs e)
         {
             Console.WriteLine("APP KILL END");
+        }
+
+        private void Game_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Left)
+                snakeGameInput.Left();
+
+            if (e.Key == System.Windows.Input.Key.Right)
+                snakeGameInput.Right();
+
+            if (e.Key == System.Windows.Input.Key.Up)
+                snakeGameInput.Up();
+
+            if (e.Key == System.Windows.Input.Key.Down)
+                snakeGameInput.Down();
+        }
+
+        private void Grid_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            Console.WriteLine("input");
+        }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Left)
+                snakeGameInput.Left();
+
+            if (e.Key == System.Windows.Input.Key.Right)
+                snakeGameInput.Right();
+
+            if (e.Key == System.Windows.Input.Key.Up)
+                snakeGameInput.Up();
+
+            if (e.Key == System.Windows.Input.Key.Down)
+                snakeGameInput.Down();
         }
     }
 }

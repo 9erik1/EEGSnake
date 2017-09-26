@@ -37,11 +37,11 @@ namespace EEGfront
                 if (!string.IsNullOrEmpty(answer.Split(',')[2].Split(':')[1]))
                     userid = answer.Split(',')[2].Split(':')[1];
                 Console.WriteLine(userid.Substring(0,userid.Length-1));
-                var initmainview = new MainViewModel("");
+
                 if(!string.IsNullOrEmpty(userid))
                 {
                     var pca = new MainWindow();
-                    pca.DataContext = initmainview;
+                    pca.DataContext = MainViewModel.Instance;
 
                     pca.Show();
                     pca.Closing += Pca_Closed;

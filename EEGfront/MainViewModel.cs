@@ -21,12 +21,27 @@ namespace EEGfront
 {
     public class MainViewModel : INotifyPropertyChanged
     {
+        private static MainViewModel instance;
+        public static MainViewModel Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new MainViewModel("");
+                }
+                return instance;
+            }
+        }
         public enum AppState
         {
             Game,
             Train,
             Stats
         }
+
+        private int xPos = 0;
+        private int yPos = 0;
 
         //The collected raws for the current user
         TrainingInputManager T_I_M;
@@ -39,7 +54,7 @@ namespace EEGfront
         private SVMClassifier machineStudent;
 
         MulticlassSupportVectorMachine<Gaussian> currentClassifier;
-        public MainViewModel(string idTag)
+        private MainViewModel(string idTag)
         {
             restService = Rest.Instance;
             stream = EmotiveAquisition.Instance;
@@ -102,16 +117,54 @@ namespace EEGfront
             for(int i = 0; i < 20; i++)
             {
                 snakeGame[i] = new SolidColorBrush[20];
+                snakeGameProx[i] = new SolidColorBrush[20];
             }
 
             for (int j = 0; j < 20; j++)
             {
                 for (int k = 0; k < 20; k++)
                 {
-                    snakeGame[j][k] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
+                    snakeGame[j][k] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 0));
+                    snakeGameProx[j][k] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 0));
                 }
             }
-           
+            snakeGame[0][0] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
+        }
+
+        public void Up()
+        {
+            Console.WriteLine("Up");
+            snakeGameProx[yPos][xPos] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 0));
+            yPos++;
+            snakeGameProx[yPos][xPos] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
+            SnakeGame = (SolidColorBrush[][])snakeGameProx.Clone();
+        }
+
+        public void Down()
+        {
+            Console.WriteLine("Down");            
+            snakeGameProx[yPos][xPos] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 0));
+            yPos--;
+            snakeGameProx[yPos][xPos] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
+            SnakeGame = (SolidColorBrush[][])snakeGameProx.Clone();
+        }
+
+        public void Left()
+        {
+            Console.WriteLine("Left");
+            snakeGameProx[yPos][xPos] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 0));
+            xPos--;
+            snakeGameProx[yPos][xPos] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
+            SnakeGame = (SolidColorBrush[][])snakeGameProx.Clone();
+        }
+
+        public void Right()
+        {
+            Console.WriteLine("Right");
+            snakeGameProx[yPos][xPos] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 0));
+            xPos++;
+            snakeGameProx[yPos][xPos] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
+            SnakeGame = (SolidColorBrush[][])snakeGameProx.Clone();
         }
 
         public void Shutdown()
@@ -439,7 +492,7 @@ namespace EEGfront
         }
 
 
-
+        private SolidColorBrush[][] snakeGameProx = new SolidColorBrush[20][];
         private SolidColorBrush[][] snakeGame = new SolidColorBrush[20][];
         public SolidColorBrush[][] SnakeGame
         {
