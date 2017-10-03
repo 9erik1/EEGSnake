@@ -56,10 +56,14 @@ namespace EEGfront
         private EmotiveAquisition stream;
         private Rest restService;
         private SVMClassifier machineStudent;
-
         MulticlassSupportVectorMachine<Gaussian> currentClassifier;
+        private Random randy;
+        private int appleX;
+        private int appleY;
+
         private MainViewModel(string idTag)
         {
+            randy = new Random();
             restService = Rest.Instance;
             stream = EmotiveAquisition.Instance;
             stream.ReverseKill();
@@ -128,37 +132,60 @@ namespace EEGfront
             {
                 for (int k = 0; k < XMAX; k++)
                 {
-                    snakeGame[j][k] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 0));
                     snakeGameProx[j][k] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 0));
                 }
             }
-            snakeGame[0][0] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
+            snakeGameProx[0][0] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
+
+            appleX = NewApplePos();
+            appleY = NewApplePos();
+
+            snakeGameProx[appleX][appleY] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
+            SnakeGame = (SolidColorBrush[][])snakeGameProx.Clone();
+        }
+
+        private int NewApplePos()
+        {
+            return randy.Next(1, 20);
         }
 
         private void CollisionDetect()
         {
+
+
+
             if (xPos < 0)
             {
                 xPos = XMAX - 1;
-                return;
+                //return;
             }
             if (yPos < 0)
             {
                 yPos = YMAX - 1;
-                return;
+                //return;
             }
 
             if (xPos > 19)
             {
                 xPos = 0;
-                return;
+                //return;
             }
             if (yPos > 19)
             {
                 yPos = 0;
-                return;
+                //return;
             }
+
+            if (xPos == appleY && yPos == appleX)
+            {
+                snakeGameProx[appleX][appleY] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 0));
+                appleX = NewApplePos();
+                appleY = NewApplePos();
+                snakeGameProx[appleX][appleY] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
+            }
+
         }
+
 
         public void Up()
         {
@@ -168,7 +195,7 @@ namespace EEGfront
             CollisionDetect();
             snakeGameProx[yPos][xPos] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
             SnakeGame = (SolidColorBrush[][])snakeGameProx.Clone();
-            Console.WriteLine("X: " + xPos + " Y: " + yPos);
+            Console.WriteLine("X: " + xPos + " Y: " + yPos + " AX: " + appleX + " AY: " + appleY);
         }
 
         public void Down()
@@ -179,7 +206,7 @@ namespace EEGfront
             CollisionDetect();
             snakeGameProx[yPos][xPos] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
             SnakeGame = (SolidColorBrush[][])snakeGameProx.Clone();
-            Console.WriteLine("X: " + xPos + " Y: " + yPos);
+            Console.WriteLine("X: " + xPos + " Y: " + yPos + " AX: " + appleX + " AY: " + appleY);
         }
 
         public void Left()
@@ -190,7 +217,7 @@ namespace EEGfront
             CollisionDetect();
             snakeGameProx[yPos][xPos] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
             SnakeGame = (SolidColorBrush[][])snakeGameProx.Clone();
-            Console.WriteLine("X: " + xPos + " Y: " + yPos);
+            Console.WriteLine("X: " + xPos + " Y: " + yPos + " AX: " + appleX + " AY: " + appleY);
         }
 
         public void Right()
@@ -201,7 +228,7 @@ namespace EEGfront
             CollisionDetect();
             snakeGameProx[yPos][xPos] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
             SnakeGame = (SolidColorBrush[][])snakeGameProx.Clone();
-            Console.WriteLine("X: " + xPos + " Y: " + yPos);
+            Console.WriteLine("X: " + xPos + " Y: " + yPos + " AX: " + appleX + " AY: " + appleY);
         }
 
         public void Shutdown()

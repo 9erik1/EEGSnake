@@ -6,8 +6,6 @@
         <ImageBrush ImageSource="{Binding DisplayedImage}"></ImageBrush>
     </Window.Background>
     <Grid KeyDown="Grid_KeyDown" >
-
-        <Rectangle HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="100" Fill="{Binding SnakeGame[0][0]}" />
         <WindowsFormsHost Name="Lefty" Initialized="GLviewLeft" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="{Binding LeftToggle}" Margin="10,244,0,245"  ></WindowsFormsHost>
         <WindowsFormsHost Name="Rightey" Initialized="GLviewRight" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="{Binding RightToggle}" Margin="0,244,10,245"  ></WindowsFormsHost>
         <WindowsFormsHost Name="Heven" Initialized="GLviewTop" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="{Binding UpToggle}" Margin="536,10,536,0"  ></WindowsFormsHost>
