@@ -13,7 +13,7 @@
         <WindowsFormsHost Name="Heven" Initialized="GLviewTop" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="{Binding UpToggle}" Margin="536,10,536,0"  ></WindowsFormsHost>
         <WindowsFormsHost Name="Hell" Initialized="GLviewBot" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Visibility="{Binding DownToggle}" Margin="536,0,536,10"  ></WindowsFormsHost>
         <!--<WindowsFormsHost Name="Game" Initialized="GLviewGame" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding GameToggle}"  ></WindowsFormsHost>-->
-        <Grid Background="Black" Name="Game" Panel.ZIndex="50" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding GameToggle}" Margin="536,255,536,234" KeyDown="Game_KeyDown">
+        <Grid Background="Black" Name="Game" Panel.ZIndex="50" Height="300" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding GameToggle}" Margin="536,255,536,234" KeyDown="Game_KeyDown">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
