@@ -33,6 +33,18 @@ namespace EEGfront
             }
         }
 
+        private double sampleFrequency = 128d;
+        public double SampleFrequency
+        {
+            get { return sampleFrequency; }
+        }
+
+        private double[] frequencyBins;
+        public double[] FrequencyBins
+        {
+            get { return frequencyBins; }
+        }
+
         private Dictionary<EdkDll.EE_DataChannel_t, double[]> dataAquired;
         private int fps;
         private double N;//Max
@@ -57,6 +69,9 @@ namespace EEGfront
 
             double f_s = 128;
             N = 16 * f_s;
+            frequencyBins = new double[(int)N / 2];
+            for (int k = 0; k < frequencyBins.Length; k++)
+                frequencyBins[k] = k * f_s / N;
 
             engine = EmoEngine.Instance;
             engine.EmoEngineConnected += Engine_EmoEngineConnected;
@@ -119,34 +134,33 @@ namespace EEGfront
 
         private void SimulationUpdate()
         {
-            double sampleFrequency = 128d;
             double amplitude = 0.1d;
             double dataPoints = N;
 
             for (int i = 0; i < N; i++)
             {
-                dataWindow[0].Enqueue(amplitude * Math.Sin(2*Math.PI*i/sampleFrequency));
+                dataWindow[0].Enqueue(amplitude * Math.Sin(5*2 * Math.PI * i / sampleFrequency));
                 if (dataWindow[0].Count > N)
                     dataWindow[0].Dequeue();
             }
 
             for (int i = 0; i < N; i++)
             {
-                dataWindow[1].Enqueue(amplitude * Math.Sin(2 * 2 * Math.PI * i / sampleFrequency));
+                dataWindow[1].Enqueue(amplitude * Math.Sin(10 * 2 * Math.PI * i / sampleFrequency));
                 if (dataWindow[1].Count > N)
                     dataWindow[1].Dequeue();
             }
 
             for (int i = 0; i < N; i++)
             {
-                dataWindow[2].Enqueue(amplitude * Math.Sin(3 * 2 * Math.PI * i / sampleFrequency));
+                dataWindow[2].Enqueue(amplitude * Math.Sin(32 * 2 * Math.PI * i / sampleFrequency));
                 if (dataWindow[2].Count > N)
                     dataWindow[2].Dequeue();
             }
 
             for (int i = 0; i < N; i++)
             {
-                dataWindow[3].Enqueue(amplitude * Math.Sin(4 * 2 * Math.PI * i / sampleFrequency));
+                dataWindow[3].Enqueue(amplitude * Math.Sin(64 * 2 * Math.PI * i / sampleFrequency));
                 if (dataWindow[3].Count > N)
                     dataWindow[3].Dequeue();
             }

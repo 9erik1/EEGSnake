@@ -23,7 +23,7 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <ComboBox Grid.Row="0" Grid.Column="1" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding ScienceViews}" SelectedValue="{Binding CurrentOption}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120">
+        <ComboBox Grid.Row="0" Grid.Column="1" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding ScienceViews}" SelectedValue="{Binding CurrentScienceState, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120">
 
         </ComboBox>
 

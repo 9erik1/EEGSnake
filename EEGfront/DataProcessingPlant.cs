@@ -23,7 +23,7 @@ namespace EEGfront
         ///// CONVERT DOUBLE TO COMPLEX, THEN FFT ///////////
         ///// Currently only uses BW_hi_5 ///////////////////
         /////////////////////////////////////////////////////
-        public Complex[] Conversion_fft(double[] raw_proxy)
+        public double[] Conversion_fft(double[] raw_proxy)
         {
             //var p = raw; // redundant
             //Complex[] complex = new Complex[p.Count()]; // redundant
@@ -39,7 +39,12 @@ namespace EEGfront
             }
             Accord.Math.Transforms.FourierTransform2.FFT(complex_raw_proxy, FourierTransform.Direction.Forward);
 
-            return complex_raw_proxy;
+            int firstHalfFFT = complex_raw_proxy.Length / 2;
+            double[] magnitudes = new double[firstHalfFFT];
+            for(int i = 0; i < firstHalfFFT; i++)           
+                magnitudes[i] = complex_raw_proxy[i].Magnitude;            
+
+            return magnitudes;
         }
 
         /////////////////////////////////////////////////////

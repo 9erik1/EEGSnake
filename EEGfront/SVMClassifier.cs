@@ -57,7 +57,7 @@ namespace EEGfront
             for (int f = 0; f < actual.Count(); f++)
             {
                 transformed_data[f] = new Complex[actual[f].Count()];
-                transformed_data[f] = mathServ.Conversion_fft(actual[f]);
+                //transformed_data[f] = mathServ.Conversion_fft(actual[f]);//this is need
             }
 
             return actual;

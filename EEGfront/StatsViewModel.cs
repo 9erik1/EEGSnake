@@ -48,6 +48,7 @@ namespace EEGfront
 
         public StatsViewModel()
         {
+            mathServ = DataProcessingPlant.Instance;
             stream = EmotiveAquisition.Instance;
 
             points = new ObservableCollection<DataPoint>[4];
@@ -127,10 +128,24 @@ namespace EEGfront
             foreach (Queue<double> dw in data)
             {
                 points[i].Clear();
-                int j = 0;
-                foreach(double d in dw.ToArray())
+
+                double[] rawData = dw.ToArray();
+
+                if (currentScienceState == ScienceState.ButtersWorth)
+                    rawData = mathServ.BW_hi_5(rawData);
+                else if (currentScienceState == ScienceState.FFT)
                 {
-                    points[i].Add(new DataPoint(j,d));
+                    rawData = mathServ.BW_hi_5(rawData);
+                    rawData = mathServ.Conversion_fft(rawData);
+                }
+
+                int j = 0;
+                foreach (double d in rawData)
+                {
+                    if (currentScienceState == ScienceState.FFT)
+                        points[i].Add(new DataPoint(stream.FrequencyBins[j], d));
+                    else
+                        points[i].Add(new DataPoint(j, d));
                     j++;
                 }
                 i--;
@@ -168,13 +183,24 @@ namespace EEGfront
             }
         }
 
+        private ScienceState currentScienceState;
+        public ScienceState CurrentScienceState
+        {
+            get { return currentScienceState; }
+            set
+            {
+                if (value != currentScienceState)
+                {
+                    this.currentScienceState = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
         private IList<ScienceState> scienceViews;
         public ObservableCollection<ScienceState> ScienceViews
         {
-            get
-            {
-                return (ObservableCollection<ScienceState>)scienceViews;
-            }
+            get { return (ObservableCollection<ScienceState>)scienceViews; }
             set
             {
                 if (value != scienceViews)
