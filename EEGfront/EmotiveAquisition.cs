@@ -119,30 +119,34 @@ namespace EEGfront
 
         private void SimulationUpdate()
         {
+            double sampleFrequency = 128d;
+            double amplitude = 0.1d;
+            double dataPoints = N;
+
             for (int i = 0; i < N; i++)
             {
-                dataWindow[0].Enqueue(i);
+                dataWindow[0].Enqueue(amplitude * Math.Sin(2*Math.PI*i/sampleFrequency));
                 if (dataWindow[0].Count > N)
                     dataWindow[0].Dequeue();
             }
 
             for (int i = 0; i < N; i++)
             {
-                dataWindow[1].Enqueue(i);
+                dataWindow[1].Enqueue(amplitude * Math.Sin(2 * 2 * Math.PI * i / sampleFrequency));
                 if (dataWindow[1].Count > N)
                     dataWindow[1].Dequeue();
             }
 
             for (int i = 0; i < N; i++)
             {
-                dataWindow[2].Enqueue(i);
+                dataWindow[2].Enqueue(amplitude * Math.Sin(3 * 2 * Math.PI * i / sampleFrequency));
                 if (dataWindow[2].Count > N)
                     dataWindow[2].Dequeue();
             }
 
             for (int i = 0; i < N; i++)
             {
-                dataWindow[3].Enqueue(i);
+                dataWindow[3].Enqueue(amplitude * Math.Sin(4 * 2 * Math.PI * i / sampleFrequency));
                 if (dataWindow[3].Count > N)
                     dataWindow[3].Dequeue();
             }
