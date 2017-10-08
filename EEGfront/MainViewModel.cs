@@ -350,9 +350,9 @@ namespace EEGfront
         }
         private async void PackLearn(int dir)
         {
-            var x = machineStudent.MachineLearn(stream.dataWindow);
+            var x = machineStudent.MachineLearn(stream.DataWindow);
 
-            machineStudent.UpdateSVM(stream.dataWindow, dir);
+            machineStudent.UpdateSVM(stream.DataWindow, dir);
 
             var payload = new MemoryStream();
 
@@ -369,16 +369,16 @@ namespace EEGfront
             switch (dir)
             {
                 case 0:
-                    T_I_M.AddUp(stream.dataWindow, DateTime.Now);
+                    T_I_M.AddUp(stream.DataWindow, DateTime.Now);
                     break;
                 case 1:
-                    T_I_M.AddRight(stream.dataWindow, DateTime.Now);
+                    T_I_M.AddRight(stream.DataWindow, DateTime.Now);
                     break;
                 case 2:
-                    T_I_M.AddDown(stream.dataWindow, DateTime.Now);
+                    T_I_M.AddDown(stream.DataWindow, DateTime.Now);
                     break;
                 case 3:
-                    T_I_M.AddLeft(stream.dataWindow, DateTime.Now);
+                    T_I_M.AddLeft(stream.DataWindow, DateTime.Now);
                     break;
                 default:
                     Console.WriteLine("Default case");
@@ -397,7 +397,7 @@ namespace EEGfront
             {
                 //var x = await restService.PostCurrent("8");
 
-                var y = machineStudent.AnswerSVM(stream.dataWindow);
+                var y = machineStudent.AnswerSVM(stream.DataWindow);
 
                 Console.WriteLine("Auto Test" + y);
             }

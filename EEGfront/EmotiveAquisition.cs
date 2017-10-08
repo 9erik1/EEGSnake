@@ -35,11 +35,15 @@ namespace EEGfront
 
         private Dictionary<EdkDll.EE_DataChannel_t, double[]> dataAquired;
         private int fps;
-        private double N;
+        private double N;//Max
         private Thread update;
         private EmoEngine engine;
         //All view modles have access to this
-        public Queue<double>[] dataWindow;
+        private Queue<double>[] dataWindow;
+        public Queue<double>[] DataWindow
+        {
+            get { return dataWindow.Clone() as Queue<double>[]; }
+        }
         public bool isConnected;
         public bool isActive;
         public int fpsDes;
@@ -47,6 +51,7 @@ namespace EEGfront
         private EmotiveAquisition()
         {
             Console.WriteLine("EMO Engine Ini");
+
             isConnected = false;
             isActive = false;
 
@@ -95,18 +100,51 @@ namespace EEGfront
             {
                 engine.DataAcquisitionEnable(0, true);
                 await Task.Delay(2000);
-                if(update==null)
+                if (update == null)
                 {
                     update = new Thread(new ThreadStart(Update));
                     update.Start();
                 }
-                
+
                 Console.WriteLine("EMO Engine DataAquisition Success");
                 isConnected = true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine("EMO Engine DataAquisition Fail" + " | Exteption: " + ex.Message);
+                update = new Thread(new ThreadStart(SimulationUpdate));
+                update.Start();
+            }
+        }
+
+        private void SimulationUpdate()
+        {
+            for (int i = 0; i < N; i++)
+            {
+                dataWindow[0].Enqueue(i);
+                if (dataWindow[0].Count > N)
+                    dataWindow[0].Dequeue();
+            }
+
+            for (int i = 0; i < N; i++)
+            {
+                dataWindow[1].Enqueue(i);
+                if (dataWindow[1].Count > N)
+                    dataWindow[1].Dequeue();
+            }
+
+            for (int i = 0; i < N; i++)
+            {
+                dataWindow[2].Enqueue(i);
+                if (dataWindow[2].Count > N)
+                    dataWindow[2].Dequeue();
+            }
+
+            for (int i = 0; i < N; i++)
+            {
+                dataWindow[3].Enqueue(i);
+                if (dataWindow[3].Count > N)
+                    dataWindow[3].Dequeue();
             }
         }
 
@@ -167,7 +205,7 @@ namespace EEGfront
                         if (dataWindow[3].Count > N)
                             dataWindow[3].Dequeue();
                     }
-                    foreach(Queue<double> windough in dataWindow)
+                    foreach (Queue<double> windough in dataWindow)
                     {
                         if (windough.Count > N)
                             windough.Dequeue();

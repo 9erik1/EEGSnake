@@ -74,7 +74,7 @@ namespace EEGfront
             Title[2] = "O1";
             Title[3] = "O2";
 
-            OxyAxisLabels = new string[Title.Length * 2];            
+            OxyAxisLabels = new string[Title.Length * 2];
             OxyAxisLabels[0] = "Frequency (Hz)";       // 1st x-axis            
             OxyAxisLabels[1] = "Signal (ADUs)";        // 1st y-axis            
             OxyAxisLabels[2] = "Frequency (Hz)";       // 2nd x-axis            
@@ -109,39 +109,44 @@ namespace EEGfront
             fpsTimer.Start();
         }
 
-        private void Fuck(string[] asshole)
-        {
-            Title = asshole;            
-        }
-
         private void DrawFirstPlot()
         {
             points[0].Clear();
-            var x = stream.dataWindow[0].ToArray();
+            var x = stream.DataWindow[0].ToArray();
             //x = mathServ.BW_hi_5(x);
-            for (int i = 0; i < x.Length-1; i++)
+            for (int i = 0; i < x.Length - 1; i++)
             {
-                points[0].Add(new DataPoint(i,x[i]));
+                points[0].Add(new DataPoint(i, x[i]));
+            }
+        }
+
+        private void DrawDataWindow()
+        {
+            Queue<double>[] data = stream.DataWindow;
+            int i = data.Length - 1;
+            foreach (Queue<double> dw in data)
+            {
+                points[i].Clear();
+                int j = 0;
+                foreach(double d in dw.ToArray())
+                {
+                    points[i].Add(new DataPoint(j,d));
+                    j++;
+                }
+                i--;
             }
         }
 
         private async void Draw()
         {
-            int raw = 0;
             while (isDraw)
             {
                 Application.Current.Dispatcher.Invoke(new Action(() =>
                 {
-                    raw++;
-                    DrawFirstPlot();
-                    Console.WriteLine(raw.ToString());
-                    points[0].Add(new DataPoint(raw / 2, raw));
-                    points[1].Add(new DataPoint(raw / 3, raw));
-                    points[2].Add(new DataPoint(raw / 4, raw));
-                    points[3].Add(new DataPoint(raw / 5, raw));
+                    DrawDataWindow();
                 }));
                 await Task.Delay(250);
-            }            
+            }
         }
 
         public void Shutdown()
@@ -179,7 +184,7 @@ namespace EEGfront
                 }
             }
         }
-       
+
         private int fpswpfVal;
 
         private string fpswpf;
