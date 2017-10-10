@@ -17,9 +17,6 @@ namespace EEGfront
         private bool isDraw = true;
         Thread draw;
         private DataProcessingPlant mathServ;
-
-
-
         private EmotiveAquisition stream;
         private IList<DataPoint>[] points;
         public ObservableCollection<DataPoint>[] Points

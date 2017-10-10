@@ -44,8 +44,29 @@ namespace EEGfront
             Stats
         }
 
-        private int xPos = 0;
-        private int yPos = 0;
+        private LinkedList<Vector> Snake;
+        private int SnakeX
+        {
+            get { return (int)Snake.First.Value.X; }
+            set
+            {
+                if (value != Snake.First.Value.X)
+                {
+                    Snake.First.Value = new Vector(value,SnakeY);
+                }
+            }
+        }
+        private int SnakeY
+        {
+            get { return (int)Snake.First.Value.Y; }
+            set
+            {
+                if (value != Snake.First.Value.Y)
+                {
+                    Snake.First.Value = new Vector(SnakeX, value);
+                }
+            }
+        }
 
         //The collected raws for the current user
         TrainingInputManager T_I_M;
@@ -121,6 +142,8 @@ namespace EEGfront
             //SnakeGame = Brushes.Green
             //snakeGame = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
             //int[,] array6 = new int[10, 10];
+            Snake = new LinkedList<Vector>();
+            Snake.AddFirst(new Vector(0d, 0d));
 
             for (int i = 0; i < XMAX; i++)
             {
@@ -149,86 +172,160 @@ namespace EEGfront
             return randy.Next(1, 20);
         }
 
-        private void CollisionDetect()
+        private bool CollisionDetect()
         {
-
-
-
-            if (xPos < 0)
+            if (SnakeX < 0)
             {
-                xPos = XMAX - 1;
-                //return;
+                SnakeX = XMAX - 1;
+                return false;
             }
-            if (yPos < 0)
+            if (SnakeY < 0)
             {
-                yPos = YMAX - 1;
-                //return;
+                SnakeY = YMAX - 1;
+                return false;
             }
 
-            if (xPos > 19)
+            if (SnakeX > 19)
             {
-                xPos = 0;
-                //return;
+                SnakeX = 0;
+                return false;
             }
-            if (yPos > 19)
+            if (SnakeY > 19)
             {
-                yPos = 0;
-                //return;
+                SnakeY = 0;
+                return false;
             }
 
-            if (xPos == appleY && yPos == appleX)
+            if (SnakeX == appleX && SnakeY == appleY)
             {
                 snakeGameProx[appleX][appleY] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 0));
                 appleX = NewApplePos();
                 appleY = NewApplePos();
                 snakeGameProx[appleX][appleY] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
+                Snake.AddLast(new Vector(SnakeX,SnakeY));
+                return true;
             }
-
+            return false;
         }
 
+        private void RedrawBoard(bool isHit)
+        {
+            // repaints board red
+            for (int j = 0; j < XMAX; j++)
+                for (int k = 0; k < XMAX; k++)
+                    snakeGameProx[j][k] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 0));
+
+            // draw snake
+            foreach(Vector v in Snake)
+                snakeGameProx[(int)v.X][(int)v.Y] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
+
+            // draw apple
+            snakeGameProx[appleX][appleY] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
+
+            // bind it to xaml
+            SnakeGame = (SolidColorBrush[][])snakeGameProx.Clone();
+        }
+
+        private void MoveSnake()
+        {
+            if (Snake.First != null)
+            {
+                LinkedListNode<Vector> currentNode = Snake.First;
+                while (currentNode != null)
+                {
+                    if (currentNode.Previous == null)
+                    {
+                        currentNode = currentNode.Next;
+                    }
+                    else
+                    {
+                        Vector lastPos = currentNode.Previous.Value;
+                        Vector currentPos = currentNode.Value;
+
+                        if (lastPos.X == currentPos.X)
+                        {
+                            if (lastPos.X < currentPos.X)
+                                currentPos.X--;
+                            else
+                                currentPos.X++;
+                        }
+                        if (lastPos.Y == currentPos.Y)
+                        {
+                            if (lastPos.Y < currentPos.Y)
+                                currentPos.Y--;
+                            else
+                                currentPos.Y++;
+                        }
+
+                        currentNode.Value = currentPos;
+
+                        currentNode = currentNode.Next;
+                    }
+                }
+            }
+        }
 
         public void Up()
         {
             Console.WriteLine("Up");
-            snakeGameProx[yPos][xPos] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 0));
-            yPos--;
-            CollisionDetect();
-            snakeGameProx[yPos][xPos] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
-            SnakeGame = (SolidColorBrush[][])snakeGameProx.Clone();
-            Console.WriteLine("X: " + xPos + " Y: " + yPos + " AX: " + appleX + " AY: " + appleY);
+            
+            SnakeX--;
+
+            //if (headNode.next != null)
+            //{
+            //    Node currentNode = headNode;
+            //    while (currentNode != null)
+            //    {
+            //        Console.WriteLine(currentNode.data + "\n");
+            //        currentNode = currentNode.next;
+            //    }
+            //}
+            //else
+            //    Console.WriteLine("Not Available");
+
+            MoveSnake();
+
+
+            bool hit = CollisionDetect();
+            RedrawBoard(hit);
+
+            Console.WriteLine("X: " + SnakeX + " Y: " + SnakeY + " AX: " + appleX + " AY: " + appleY);
         }
 
         public void Down()
         {
             Console.WriteLine("Down");
-            snakeGameProx[yPos][xPos] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 0));
-            yPos++;
-            CollisionDetect();
-            snakeGameProx[yPos][xPos] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
-            SnakeGame = (SolidColorBrush[][])snakeGameProx.Clone();
-            Console.WriteLine("X: " + xPos + " Y: " + yPos + " AX: " + appleX + " AY: " + appleY);
+
+            SnakeX++;
+            MoveSnake();
+            bool hit = CollisionDetect();
+            RedrawBoard(hit);
+
+            Console.WriteLine("X: " + SnakeX + " Y: " + SnakeY + " AX: " + appleX + " AY: " + appleY);
         }
 
         public void Left()
         {
             Console.WriteLine("Left");
-            snakeGameProx[yPos][xPos] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 0));
-            xPos--;
-            CollisionDetect();
-            snakeGameProx[yPos][xPos] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
-            SnakeGame = (SolidColorBrush[][])snakeGameProx.Clone();
-            Console.WriteLine("X: " + xPos + " Y: " + yPos + " AX: " + appleX + " AY: " + appleY);
+
+            SnakeY--;
+            MoveSnake();
+            bool hit = CollisionDetect();
+            RedrawBoard(hit);
+
+            Console.WriteLine("X: " + SnakeX + " Y: " + SnakeY + " AX: " + appleX + " AY: " + appleY);
         }
 
         public void Right()
         {
             Console.WriteLine("Right");
-            snakeGameProx[yPos][xPos] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 0));
-            xPos++;
-            CollisionDetect();
-            snakeGameProx[yPos][xPos] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
-            SnakeGame = (SolidColorBrush[][])snakeGameProx.Clone();
-            Console.WriteLine("X: " + xPos + " Y: " + yPos + " AX: " + appleX + " AY: " + appleY);
+
+            SnakeY++;
+            MoveSnake();
+            bool hit = CollisionDetect();
+            RedrawBoard(hit);
+
+            Console.WriteLine("X: " + SnakeX + " Y: " + SnakeY + " AX: " + appleX + " AY: " + appleY);
         }
 
         public void Shutdown()
