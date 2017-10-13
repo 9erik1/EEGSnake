@@ -23,10 +23,28 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <ComboBox Grid.Row="0" Grid.Column="1" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding ScienceViews}" SelectedValue="{Binding CurrentScienceState, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120">
 
-        </ComboBox>
 
+        <!--<ComboBox Grid.Row="0" Grid.Column="1" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding ScienceViews}" SelectedValue="{Binding CurrentScienceState, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120">
+
+        </ComboBox>-->
+
+        <Grid Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <CheckBox HorizontalAlignment="Center" Grid.Column="0" Content="Budder" ToolTip="lick my ass" />
+            <CheckBox HorizontalAlignment="Center" Grid.Column="1" Content="fft" ToolTip="lick my hole" />
+            <CheckBox HorizontalAlignment="Center" Grid.Column="2" Content="pca" ToolTip="lick my asshole" />
+            <CheckBox HorizontalAlignment="Center" Grid.Column="3" Content="pca components" ToolTip="lick my balls" />
+            <CheckBox HorizontalAlignment="Center" Grid.Column="4" Content="raw" ToolTip="lick my dong" />
+        </Grid>
+        
         <oxy:Plot Grid.Row="1" Grid.Column="1" Name ="Wave" Title="{Binding Title[0]}">
             <oxy:Plot.Axes>
                 <oxy:LinearAxis Title="{Binding OxyAxisLabels[0]}" Position="Bottom"/>
