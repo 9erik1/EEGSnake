@@ -108,7 +108,7 @@ namespace EEGfront
             Task.Run(async () => currentClassifier = await restService.PostCurrent("13"));
 
             // Example 
-            //await restService.Get("https://192.168.0.173:5900/rest/");
+            //await restService.Get("https://zotac.mikedev.ca:5900/rest/");
             //await restService.PostCurrent("8");
             //await restService.PostPrev("8");
 
@@ -116,9 +116,7 @@ namespace EEGfront
 
             Dir = 0;
             Trials = 0;
-            // because we use untrusted ssl ;)
-            ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
-
+            
             //stream = EmotiveAquisition.Instance;
 
             menuItems = new ObservableCollection<AppState>();

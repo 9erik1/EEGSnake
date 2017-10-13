@@ -38,7 +38,7 @@ namespace GateKeep
 
             var content = new FormUrlEncodedContent(values);
 
-            var response = await client.PostAsync("https://99.224.57.104:5900/rest/login/",content);
+            var response = await client.PostAsync("https://zotac.mikedev.ca:5900/rest/login/",content);
 
             string responseString = await response.Content.ReadAsStringAsync();
 

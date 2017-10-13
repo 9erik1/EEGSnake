@@ -64,7 +64,7 @@ namespace EEGfront
 
             var content = new FormUrlEncodedContent(values);
 
-            var response = await client.PostAsync("https://99.224.57.104:5900/rest/prevmodel/", content);
+            var response = await client.PostAsync("https://zotac.mikedev.ca:5900/rest/prevmodel/", content);
 
             string responseString = await response.Content.ReadAsStringAsync();
             LogResponse(response);
@@ -81,7 +81,7 @@ namespace EEGfront
 
             var content = new FormUrlEncodedContent(values);
 
-            var response = await client.PostAsync("https://99.224.57.104:5900/rest/currentmodel/", content);
+            var response = await client.PostAsync("https://zotac.mikedev.ca:5900/rest/currentmodel/", content);
 
             Stream c = await response.Content.ReadAsStreamAsync();
 
@@ -99,7 +99,7 @@ namespace EEGfront
             formdata.Add(new StringContent(user_id), "user_id");
             formdata.Add(new StreamContent(content), "current_model", "learn.zip");
 
-            HttpResponseMessage response = await client.PostAsync("https://99.224.57.104:5900/rest/updatemodel", formdata);
+            HttpResponseMessage response = await client.PostAsync("https://zotac.mikedev.ca:5900/rest/updatemodel", formdata);
 
             string responsestring = await response.Content.ReadAsStringAsync();
             LogResponse(response);
@@ -115,7 +115,7 @@ namespace EEGfront
 
             var content = new FormUrlEncodedContent(values);
 
-            var response = await client.PostAsync("https://99.224.57.104:5900/rest/prevraw/", content);
+            var response = await client.PostAsync("https://zotac.mikedev.ca:5900/rest/prevraw/", content);
 
             string responseString = await response.Content.ReadAsStringAsync();
             LogResponse(response);
@@ -134,7 +134,7 @@ namespace EEGfront
 
             var content = new FormUrlEncodedContent(values);
 
-            var response = await client.PostAsync("https://99.224.57.104:5900/rest/currentraw/", content);
+            var response = await client.PostAsync("https://zotac.mikedev.ca:5900/rest/currentraw/", content);
 
             Stream c = await response.Content.ReadAsStreamAsync();
 
@@ -152,7 +152,7 @@ namespace EEGfront
             formdata.Add(new StringContent(user_id), "user_id");
             formdata.Add(new StreamContent(content), "current_raw", "raw.zip");
 
-            HttpResponseMessage response = await client.PostAsync("https://99.224.57.104:5900/rest/updateraw", formdata);
+            HttpResponseMessage response = await client.PostAsync("https://zotac.mikedev.ca:5900/rest/updateraw", formdata);
 
             string responsestring = await response.Content.ReadAsStringAsync();
             LogResponse(response);
