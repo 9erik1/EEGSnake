@@ -1,5 +1,8 @@
 ﻿
 using Accord.Math;
+using Accord.Statistics.Analysis;
+using System;
+using System.Collections.Generic;
 using System.Numerics;
 
 namespace EEGfront
@@ -19,10 +22,40 @@ namespace EEGfront
             }
         }
 
-        /////////////////////////////////////////////////////
-        ///// CONVERT DOUBLE TO COMPLEX, THEN FFT ///////////
-        ///// Currently only uses BW_hi_5 ///////////////////
-        /////////////////////////////////////////////////////
+        /// <summary>ApplyPCA is a method in the DataProcessingPlant class.
+        /// <para>Here's how you apply pca on the 4 channels.</para>
+        /// <seealso cref="DataProcessingPlant.cs"/>
+        /// </summary>
+        public double[][] ApplyPCA(Queue<Double>[] rawStream)
+        {
+            PrincipalComponentAnalysis pcaLib = new PrincipalComponentAnalysis(PrincipalComponentMethod.Center);
+
+            var pca = new double[4][];
+            pca[0] = rawStream[0].ToArray();
+            pca[1] = rawStream[1].ToArray();
+            pca[2] = rawStream[2].ToArray();
+            pca[3] = rawStream[3].ToArray();
+
+            // Apply PCA
+            var x = pcaLib.Learn(pca.Transpose());
+            double[][] actual = pcaLib.Transform(pca.Transpose());
+
+
+            // Apply Reverse PCA to Time-Series
+            double[][] removedComp = new double[2][];
+            removedComp[0] = pcaLib.ComponentVectors[0];
+            removedComp[1] = pcaLib.ComponentVectors[1];
+
+            actual = actual.Dot(pcaLib.ComponentVectors);
+            actual = actual.Transpose();
+
+            return actual;
+        }
+
+        /// <summary>Conversion_fft is a method in the DataProcessingPlant class.
+        /// <para>Here's how you CONVERT DOUBLE TO COMPLEX, THEN FFT.</para>
+        /// <seealso cref="DataProcessingPlant.cs"/>
+        /// </summary>
         public double[] Conversion_fft(double[] raw_proxy)
         {
             //var p = raw; // redundant
@@ -47,10 +80,10 @@ namespace EEGfront
             return magnitudes;
         }
 
-        /////////////////////////////////////////////////////
-        ///// BUTTERWORTH HIGH PASS FILTER, f_c = 5 Hz //////
-        ///// References: [1], [2] //////////////////////////
-        /////////////////////////////////////////////////////
+        /// <summary>BW_hi_5 is a method in the DataProcessingPlant class.
+        /// <para>Here's how you BUTTERWORTH HIGH PASS FILTER, f_c = 5 Hz.</para>
+        /// <seealso cref="DataProcessingPlant.cs"/>
+        /// </summary>
         public double[] BW_hi_5(double[] dd8)
         {
             double GAIN = 1.379370774e+00;

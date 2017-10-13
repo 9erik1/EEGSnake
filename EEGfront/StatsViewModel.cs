@@ -47,7 +47,6 @@ namespace EEGfront
         {
             mathServ = DataProcessingPlant.Instance;
             stream = EmotiveAquisition.Instance;
-
             points = new ObservableCollection<DataPoint>[4];
             points[0] = new ObservableCollection<DataPoint>();
             points[1] = new ObservableCollection<DataPoint>();
@@ -121,31 +120,42 @@ namespace EEGfront
         private void DrawDataWindow()
         {
             Queue<double>[] data = stream.DataWindow;
-            int i = data.Length - 1;
-            foreach (Queue<double> dw in data)
+
+            if (currentScienceState == ScienceState.ButtersWorth)
             {
-                points[i].Clear();
 
-                double[] rawData = dw.ToArray();
-
-                if (currentScienceState == ScienceState.ButtersWorth)
-                    rawData = mathServ.BW_hi_5(rawData);
-                else if (currentScienceState == ScienceState.FFT)
+            }
+            else
+            {
+                int i = data.Length - 1;
+                foreach (Queue<double> dw in data)
                 {
-                    rawData = mathServ.BW_hi_5(rawData);
-                    rawData = mathServ.Conversion_fft(rawData);
-                }
+                    points[i].Clear();
 
-                int j = 0;
-                foreach (double d in rawData)
-                {
-                    if (currentScienceState == ScienceState.FFT)
-                        points[i].Add(new DataPoint(stream.FrequencyBins[j], d));
-                    else
-                        points[i].Add(new DataPoint(j, d));
-                    j++;
+                    double[] rawData = dw.ToArray();
+
+                    if (currentScienceState == ScienceState.ButtersWorth)
+                        rawData = mathServ.BW_hi_5(rawData);
+                    else if (currentScienceState == ScienceState.FFT)
+                    {
+                        rawData = mathServ.Conversion_fft(rawData);
+                    }
+                    else if (currentScienceState == ScienceState.Pca)
+                    {
+                        rawData = mathServ.Conversion_fft(rawData);
+                    }
+
+                    int j = 0;
+                    foreach (double d in rawData)
+                    {
+                        if (currentScienceState == ScienceState.FFT)
+                            points[i].Add(new DataPoint(stream.FrequencyBins[j], d));
+                        else
+                            points[i].Add(new DataPoint(j, d));
+                        j++;
+                    }
+                    i--;
                 }
-                i--;
             }
         }
 

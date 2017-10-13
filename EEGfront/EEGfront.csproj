@@ -167,7 +167,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DataProcessingPlant.cs" />
-    <Compile Include="InputManager.cs" />
     <Compile Include="StatsViewModel.cs" />
     <Compile Include="StatsWindow.xaml.cs">
       <DependentUpon>StatsWindow.xaml</DependentUpon>
