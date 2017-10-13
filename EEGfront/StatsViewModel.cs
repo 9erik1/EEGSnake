@@ -121,9 +121,29 @@ namespace EEGfront
         {
             Queue<double>[] data = stream.DataWindow;
 
-            if (currentScienceState == ScienceState.ButtersWorth)
+            if (currentScienceState == ScienceState.Pca)
             {
-
+                double[][] pcaRaw = mathServ.ApplyPCA(data);
+                for (int i = 0; i < pcaRaw.Length; i++)
+                {
+                    points[i].Clear();
+                    for (int j = 0; j < pcaRaw[i].Length; j++)
+                    {
+                        points[i].Add(new DataPoint(j, pcaRaw[i][j]));
+                    }
+                }
+            }
+            else if (currentScienceState == ScienceState.PcaComponents)
+            {
+                double[][] pcaRaw = mathServ.GetPcaComponent(data);
+                for (int i = 0; i < pcaRaw.Length; i++)
+                {
+                    points[i].Clear();
+                    for (int j = 0; j < pcaRaw[i].Length; j++)
+                    {
+                        points[i].Add(new DataPoint(j, pcaRaw[i][j]));
+                    }
+                }
             }
             else
             {
@@ -137,10 +157,6 @@ namespace EEGfront
                     if (currentScienceState == ScienceState.ButtersWorth)
                         rawData = mathServ.BW_hi_5(rawData);
                     else if (currentScienceState == ScienceState.FFT)
-                    {
-                        rawData = mathServ.Conversion_fft(rawData);
-                    }
-                    else if (currentScienceState == ScienceState.Pca)
                     {
                         rawData = mathServ.Conversion_fft(rawData);
                     }

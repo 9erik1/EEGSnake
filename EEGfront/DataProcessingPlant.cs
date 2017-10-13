@@ -23,7 +23,8 @@ namespace EEGfront
         }
 
         /// <summary>ApplyPCA is a method in the DataProcessingPlant class.
-        /// <para>Here's how you apply pca on the 4 channels.</para>
+        /// <para>Here's how you apply pca on the 4 channels.
+        /// returns: PCA applied subtracting the first and last components</para>
         /// <seealso cref="DataProcessingPlant.cs"/>
         /// </summary>
         public double[][] ApplyPCA(Queue<Double>[] rawStream)
@@ -37,19 +38,39 @@ namespace EEGfront
             pca[3] = rawStream[3].ToArray();
 
             // Apply PCA
-            var x = pcaLib.Learn(pca.Transpose());
+            pcaLib.Learn(pca.Transpose());
             double[][] actual = pcaLib.Transform(pca.Transpose());
-
 
             // Apply Reverse PCA to Time-Series
             double[][] removedComp = new double[2][];
-            removedComp[0] = pcaLib.ComponentVectors[0];
-            removedComp[1] = pcaLib.ComponentVectors[1];
+            removedComp[0] = pcaLib.ComponentVectors[1];
+            removedComp[1] = pcaLib.ComponentVectors[2];
 
-            actual = actual.Dot(pcaLib.ComponentVectors);
+            actual = actual.Dot(removedComp);
             actual = actual.Transpose();
-
             return actual;
+        }
+
+        /// <summary>GetPcaComponent is a method in the DataProcessingPlant class.
+        /// <para>Here's how you apply pca on the 4 channels and retrieve the components.
+        /// returns the Principle Components</para>
+        /// <seealso cref="DataProcessingPlant.cs"/>
+        /// </summary>
+        public double[][] GetPcaComponent(Queue<Double>[] rawStream)
+        {
+            PrincipalComponentAnalysis pcaLib = new PrincipalComponentAnalysis(PrincipalComponentMethod.Center);
+
+            var pca = new double[4][];
+            pca[0] = rawStream[0].ToArray();
+            pca[1] = rawStream[1].ToArray();
+            pca[2] = rawStream[2].ToArray();
+            pca[3] = rawStream[3].ToArray();
+
+            // Apply PCA
+            pcaLib.Learn(pca.Transpose());
+            double[][] actual = pcaLib.Transform(pca.Transpose());
+
+            return actual.Transpose();
         }
 
         /// <summary>Conversion_fft is a method in the DataProcessingPlant class.
