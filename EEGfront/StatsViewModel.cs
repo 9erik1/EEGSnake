@@ -121,6 +121,10 @@ namespace EEGfront
         {
             Queue<double>[] data = stream.DataWindow;
 
+
+
+
+
             if (currentScienceState == ScienceState.Pca)
             {
                 double[][] pcaRaw = mathServ.ApplyPCA(data);
@@ -172,6 +176,26 @@ namespace EEGfront
                     }
                     i--;
                 }
+            }
+        }
+
+        private void GraphRawOnly()
+        {
+            Queue<double>[] data = stream.DataWindow;
+            int i = data.Length - 1;
+            foreach (Queue<double> dw in data)
+            {
+                points[i].Clear();
+
+                double[] rawData = dw.ToArray();
+
+                int j = 0;
+                foreach (double d in rawData)
+                {
+                    points[i].Add(new DataPoint(j, d));
+                    j++;
+                }
+                i--;
             }
         }
 
