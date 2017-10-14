@@ -280,6 +280,84 @@ namespace EEGfront
             }
         }
 
+        private bool isBudder = false;
+        public bool IsBudder
+        {
+            get { return isBudder; }
+            set
+            {
+                if (IsRaw)
+                    IsRaw = false;
+                isBudder = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool isFFT = false;
+        public bool IsFFT
+        {
+            get { return isFFT; }
+            set
+            {
+                if (IsRaw)
+                    IsRaw = false;
+                isFFT = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool isPCA = false;
+        public bool IsPCA
+        {
+            get { return isPCA; }
+            set
+            {
+                if (IsRaw)
+                    IsRaw = false;
+                if (IsPCAComponent)
+                    IsPCAComponent = false;
+
+                isPCA = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool isPCAComponent = false;
+        public bool IsPCAComponent
+        {
+            get { return isPCAComponent; }
+            set
+            {
+                if (IsRaw)
+                    IsRaw = false;
+                if (IsPCA)
+                    IsPCA = false;
+
+                isPCAComponent = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool isRaw = false;
+        public bool IsRaw
+        {
+            get { return isRaw; }
+            set
+            {
+                if (IsPCA)
+                    IsPCA = false;
+                if (IsPCAComponent)
+                    IsPCAComponent = false;
+                if (IsFFT)
+                    IsFFT = false;
+                if (IsBudder)
+                    IsBudder = false;
+
+                isRaw = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public string DisplayedImage
         {
             get { return "/img/Background.jpg"; }
