@@ -26,33 +26,38 @@ namespace EEGfront
 
         private async void Clickey()
         {
-            Console.WriteLine("----------START LOGIN----------");
-            try
-            {
-                string answer = await loginModule.Shake(User, Pass);
-                Err = answer;
-                Console.WriteLine(answer);
-                string userid = string.Empty;
+            var pca = new MainWindow();
+            pca.DataContext = MainViewModel.Instance;
 
-                if (!string.IsNullOrEmpty(answer.Split(',')[2].Split(':')[1]))
-                    userid = answer.Split(',')[2].Split(':')[1];
-                Console.WriteLine(userid.Substring(0,userid.Length-1));
+            pca.Show();
+            pca.Closing += Pca_Closed;
+            //Console.WriteLine("----------START LOGIN----------");
+            //try
+            //{
+            //    string answer = await loginModule.Shake(User, Pass);
+            //    Err = answer;
+            //    Console.WriteLine(answer);
+            //    string userid = string.Empty;
 
-                if(!string.IsNullOrEmpty(userid))
-                {
-                    var pca = new MainWindow();
-                    pca.DataContext = MainViewModel.Instance;
+            //    if (!string.IsNullOrEmpty(answer.Split(',')[2].Split(':')[1]))
+            //        userid = answer.Split(',')[2].Split(':')[1];
+            //    Console.WriteLine(userid.Substring(0,userid.Length-1));
 
-                    pca.Show();
-                    pca.Closing += Pca_Closed;
-                }
+            //    if(!string.IsNullOrEmpty(userid))
+            //    {
+            //        var pca = new MainWindow();
+            //        pca.DataContext = MainViewModel.Instance;
 
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Failed for basic reason: " + e);
-                //Err = e.Message;
-            }
+            //        pca.Show();
+            //        pca.Closing += Pca_Closed;
+            //    }
+
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine("Failed for basic reason: " + e);
+            //    //Err = e.Message;
+            //}
             Console.WriteLine("-----------END LOGIN-----------");
         }
         private void Pca_Closed(object sender, EventArgs e)

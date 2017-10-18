@@ -117,66 +117,228 @@ namespace EEGfront
             }
         }
 
+        private void DrawLines(Queue<double>[] data)
+        {
+            int i = data.Length - 1;
+            foreach (Queue<double> dw in data)
+            {
+                points[i].Clear();
+                int j = 0;
+                foreach (double d in dw.ToArray())
+                {
+                    points[i].Add(new DataPoint(j, d));
+                    j++;
+                }
+                i--;
+            }
+        }
+
         private void DrawDataWindow()
         {
+            // obvious duplicated draw and obvious mathserv should take Queue<double>
             Queue<double>[] data = stream.DataWindow;
 
-
-
-
-
-            if (currentScienceState == ScienceState.Pca)
+            if (IsRaw)
             {
-                double[][] pcaRaw = mathServ.ApplyPCA(data);
-                for (int i = 0; i < pcaRaw.Length; i++)
-                {
-                    points[i].Clear();
-                    for (int j = 0; j < pcaRaw[i].Length; j++)
-                    {
-                        points[i].Add(new DataPoint(j, pcaRaw[i][j]));
-                    }
-                }
+                DrawLines(data);
             }
-            else if (currentScienceState == ScienceState.PcaComponents)
+            else if (IsPCAComponent && !IsFFT && !IsBudder)
             {
-                double[][] pcaRaw = mathServ.GetPcaComponent(data);
-                for (int i = 0; i < pcaRaw.Length; i++)
-                {
-                    points[i].Clear();
-                    for (int j = 0; j < pcaRaw[i].Length; j++)
-                    {
-                        points[i].Add(new DataPoint(j, pcaRaw[i][j]));
-                    }
-                }
+                Queue<double>[] da = new Queue<double>[4];
+                da = mathServ.GetPcaComponent(data);
+                DrawLines(da);
             }
-            else
+            else if (IsFFT && !IsPCA && !IsBudder && !IsPCAComponent)
             {
-                int i = data.Length - 1;
+                Queue<double>[] da = new Queue<double>[4];
+                da = mathServ.Conversion_fft(data);
+                DrawLines(da);
+            }
+            else if (IsPCA && !IsFFT && !IsBudder)
+            {
+                Queue<double>[] da = new Queue<double>[4];
+                da = mathServ.ApplyPCA(data);
+                DrawLines(da);
+            }
+            else if (IsBudder && !IsPCA && !IsPCAComponent && !IsFFT)
+            {
+                Queue<double>[] da = new Queue<double>[4];
+                int i = 0;
                 foreach (Queue<double> dw in data)
                 {
-                    points[i].Clear();
-
+                    da[i] = new Queue<double>();
                     double[] rawData = dw.ToArray();
-
-                    if (currentScienceState == ScienceState.ButtersWorth)
-                        rawData = mathServ.BW_hi_5(rawData);
-                    else if (currentScienceState == ScienceState.FFT)
-                    {
-                        rawData = mathServ.Conversion_fft(rawData);
-                    }
-
-                    int j = 0;
+                    rawData = mathServ.BW_hi_5(rawData);
                     foreach (double d in rawData)
                     {
-                        if (currentScienceState == ScienceState.FFT)
-                            points[i].Add(new DataPoint(stream.FrequencyBins[j], d));
-                        else
-                            points[i].Add(new DataPoint(j, d));
-                        j++;
+                        da[i].Enqueue(d);                  
                     }
-                    i--;
+                    i++;
                 }
+                DrawLines(da);
             }
+            else if (IsBudder && IsPCA && !IsFFT)
+            {
+                Queue<double>[] da = new Queue<double>[4];
+                int i = 0;
+                foreach (Queue<double> dw in data)
+                {
+                    da[i] = new Queue<double>();
+                    double[] rawData = dw.ToArray();
+                    rawData = mathServ.BW_hi_5(rawData);
+                    foreach (double d in rawData)
+                    {
+                        da[i].Enqueue(d);
+                    }
+                    i++;
+                }
+                da = mathServ.ApplyPCA(da);
+                DrawLines(da);
+            }
+            else if (IsBudder && IsPCA && IsFFT)
+            {
+                Queue<double>[] da = new Queue<double>[4];
+                int i = 0;
+                foreach (Queue<double> dw in data)
+                {
+                    da[i] = new Queue<double>();
+                    double[] rawData = dw.ToArray();
+                    rawData = mathServ.BW_hi_5(rawData);
+                    foreach (double d in rawData)
+                    {
+                        da[i].Enqueue(d);
+                    }
+                    i++;
+                }
+                da = mathServ.ApplyPCA(da);
+                da = mathServ.Conversion_fft(da);
+                DrawLines(da);
+            }
+            else if (IsBudder && IsPCAComponent && !IsFFT)
+            {
+                Queue<double>[] da = new Queue<double>[4];
+                int i = 0;
+                foreach (Queue<double> dw in data)
+                {
+                    da[i] = new Queue<double>();
+                    double[] rawData = dw.ToArray();
+                    rawData = mathServ.BW_hi_5(rawData);
+                    foreach (double d in rawData)
+                    {
+                        da[i].Enqueue(d);
+                    }
+                    i++;
+                }
+                da = mathServ.GetPcaComponent(da);
+                DrawLines(da);
+            }
+            else if (IsBudder && IsPCAComponent && IsFFT)
+            {
+                Queue<double>[] da = new Queue<double>[4];
+                int i = 0;
+                foreach (Queue<double> dw in data)
+                {
+                    da[i] = new Queue<double>();
+                    double[] rawData = dw.ToArray();
+                    rawData = mathServ.BW_hi_5(rawData);
+                    foreach (double d in rawData)
+                    {
+                        da[i].Enqueue(d);
+                    }
+                    i++;
+                }
+                da = mathServ.GetPcaComponent(da);
+                da = mathServ.Conversion_fft(da);
+                DrawLines(da);
+            }
+            else if (IsBudder && IsFFT)
+            {
+                Queue<double>[] da = new Queue<double>[4];
+                int i = 0;
+                foreach (Queue<double> dw in data)
+                {
+                    da[i] = new Queue<double>();
+                    double[] rawData = dw.ToArray();
+                    rawData = mathServ.BW_hi_5(rawData);
+                    foreach (double d in rawData)
+                    {
+                        da[i].Enqueue(d);
+                    }
+                    i++;
+                }
+                da = mathServ.Conversion_fft(da);
+                DrawLines(da);
+            }
+            else if (IsPCA && IsFFT)
+            {
+                Queue<double>[] da = new Queue<double>[4];
+                da = mathServ.ApplyPCA(data);
+                da = mathServ.Conversion_fft(da);
+                DrawLines(da);
+            }
+            else if (IsPCAComponent && IsFFT)
+            {
+                Queue<double>[] da = new Queue<double>[4];
+                da = mathServ.GetPcaComponent(data);
+                da = mathServ.Conversion_fft(da);
+                DrawLines(da);
+            }
+
+
+
+            //if (currentScienceState == ScienceState.Pca)
+            //{
+            //    double[][] pcaRaw = mathServ.ApplyPCA(data);
+            //    for (int i = 0; i < pcaRaw.Length; i++)
+            //    {
+            //        points[i].Clear();
+            //        for (int j = 0; j < pcaRaw[i].Length; j++)
+            //        {
+            //            points[i].Add(new DataPoint(j, pcaRaw[i][j]));
+            //        }
+            //    }
+            //}
+            //else if (currentScienceState == ScienceState.PcaComponents)
+            //{
+            //    double[][] pcaRaw = mathServ.GetPcaComponent(data);
+            //    for (int i = 0; i < pcaRaw.Length; i++)
+            //    {
+            //        points[i].Clear();
+            //        for (int j = 0; j < pcaRaw[i].Length; j++)
+            //        {
+            //            points[i].Add(new DataPoint(j, pcaRaw[i][j]));
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    int i = data.Length - 1;
+            //    foreach (Queue<double> dw in data)
+            //    {
+            //        points[i].Clear();
+
+            //        double[] rawData = dw.ToArray();
+
+            //        if (currentScienceState == ScienceState.ButtersWorth)
+            //            rawData = mathServ.BW_hi_5(rawData);
+            //        else if (currentScienceState == ScienceState.FFT)
+            //        {
+            //            rawData = mathServ.Conversion_fft(rawData);
+            //        }
+
+            //        int j = 0;
+            //        foreach (double d in rawData)
+            //        {
+            //            if (currentScienceState == ScienceState.FFT)
+            //                points[i].Add(new DataPoint(stream.FrequencyBins[j], d));
+            //            else
+            //                points[i].Add(new DataPoint(j, d));
+            //            j++;
+            //        }
+            //        i--;
+            //    }
+        
+            
         }
 
         private void GraphRawOnly()
@@ -362,7 +524,7 @@ namespace EEGfront
             }
         }
 
-        private bool isRaw = false;
+        private bool isRaw = true;
         public bool IsRaw
         {
             get { return isRaw; }

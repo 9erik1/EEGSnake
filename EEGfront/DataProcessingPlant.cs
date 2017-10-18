@@ -27,7 +27,7 @@ namespace EEGfront
         /// returns: PCA applied subtracting the first and last components</para>
         /// <seealso cref="DataProcessingPlant.cs"/>
         /// </summary>
-        public double[][] ApplyPCA(Queue<Double>[] rawStream)
+        public Queue<Double>[] ApplyPCA(Queue<Double>[] rawStream)
         {
             PrincipalComponentAnalysis pcaLib = new PrincipalComponentAnalysis(PrincipalComponentMethod.Center);
 
@@ -48,7 +48,20 @@ namespace EEGfront
 
             actual = actual.Dot(removedComp);
             actual = actual.Transpose();
-            return actual;
+
+            Queue<Double>[] proxy = new Queue<double>[4];
+
+            for (int i = 0; i < 4; i++)
+            {
+                proxy[i] = new Queue<double>();
+                for (int j = 0; j < actual[i].Length; j++)
+                {
+                    proxy[i].Enqueue(actual[i][j]);
+                }
+            }
+
+
+            return proxy;
         }
 
         /// <summary>GetPcaComponent is a method in the DataProcessingPlant class.
@@ -56,7 +69,7 @@ namespace EEGfront
         /// returns the Principle Components</para>
         /// <seealso cref="DataProcessingPlant.cs"/>
         /// </summary>
-        public double[][] GetPcaComponent(Queue<Double>[] rawStream)
+        public Queue<Double>[] GetPcaComponent(Queue<Double>[] rawStream)
         {
             PrincipalComponentAnalysis pcaLib = new PrincipalComponentAnalysis(PrincipalComponentMethod.Center);
 
@@ -68,37 +81,53 @@ namespace EEGfront
 
             // Apply PCA
             pcaLib.Learn(pca.Transpose());
-            double[][] actual = pcaLib.Transform(pca.Transpose());
+            double[][] actual = pcaLib.Transform(pca.Transpose()).Transpose();
 
-            return actual.Transpose();
+            Queue<Double>[] proxy = new Queue<double>[4];
+
+            for (int i = 0; i < 4; i++)
+            {
+                proxy[i] = new Queue<double>();
+                for (int j = 0; j < actual[i].Length; j++)
+                {
+                    proxy[i].Enqueue(actual[i][j]);
+                }
+            }
+
+
+            return proxy;
+
+            //return actual.Transpose();
         }
 
         /// <summary>Conversion_fft is a method in the DataProcessingPlant class.
         /// <para>Here's how you CONVERT DOUBLE TO COMPLEX, THEN FFT.</para>
         /// <seealso cref="DataProcessingPlant.cs"/>
         /// </summary>
-        public double[] Conversion_fft(double[] raw_proxy)
+        public Queue<Double>[] Conversion_fft(Queue<Double>[] raw_proxy)
         {
-            //var p = raw; // redundant
-            //Complex[] complex = new Complex[p.Count()]; // redundant
-
-            Complex[] complex_raw_proxy = new Complex[raw_proxy.Length];  // INITIALIZING FOR CONVERSION OF THE double INPUT TO a Complex variable
-
-            ///// CONVERT TO COMPLEX VALUES /////
-            int buffer_window = 0;                                                  // ignoring this many data points due to startup of data acquisition (not necessary for sim data)
-            for (int j = buffer_window; j < complex_raw_proxy.Length; j++)
+            Queue<Double>[] proxy = new Queue<double>[4];
+            for (int rawI = 0; rawI < raw_proxy.Length; rawI++)
             {
-                //complex_raw[j] = new Complex(p[j], 0); // redundant
-                complex_raw_proxy[j] = new Complex(raw_proxy[j], 0);
+                proxy[rawI] = new Queue<double>();
+                Complex[] complex_raw_proxy = new Complex[raw_proxy[rawI].Count];  // INITIALIZING FOR CONVERSION OF THE double INPUT TO a Complex variable
+
+                ///// CONVERT TO COMPLEX VALUES /////
+                double[] rr = raw_proxy[rawI].ToArray();
+                int buffer_window = 0;                                                  // ignoring this many data points due to startup of data acquisition (not necessary for sim data)
+                for (int j = buffer_window; j < complex_raw_proxy.Length; j++)
+                {
+                    //complex_raw[j] = new Complex(p[j], 0); // redundant
+                    complex_raw_proxy[j] = new Complex(rr[j], 0);
+                }
+                Accord.Math.Transforms.FourierTransform2.FFT(complex_raw_proxy, FourierTransform.Direction.Forward);
+
+                int firstHalfFFT = complex_raw_proxy.Length / 2;
+                for (int i = 0; i < firstHalfFFT; i++)
+                    proxy[rawI].Enqueue(complex_raw_proxy[i].Magnitude);
             }
-            Accord.Math.Transforms.FourierTransform2.FFT(complex_raw_proxy, FourierTransform.Direction.Forward);
 
-            int firstHalfFFT = complex_raw_proxy.Length / 2;
-            double[] magnitudes = new double[firstHalfFFT];
-            for(int i = 0; i < firstHalfFFT; i++)           
-                magnitudes[i] = complex_raw_proxy[i].Magnitude;            
-
-            return magnitudes;
+            return proxy;
         }
 
         /// <summary>BW_hi_5 is a method in the DataProcessingPlant class.

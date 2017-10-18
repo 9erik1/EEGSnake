@@ -38,11 +38,12 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <CheckBox HorizontalAlignment="Center" Grid.Column="0" IsChecked="{Binding IsBudder}" Content="Budder" ToolTip="lick my ass" />
-            <CheckBox HorizontalAlignment="Center" Grid.Column="1" IsChecked="{Binding IsFFT}" Content="fft" ToolTip="lick my hole" />
+            <CheckBox HorizontalAlignment="Center" Grid.Column="0" IsChecked="{Binding IsRaw}" Content="raw" ToolTip="Raw EEG Signal" />
+            <CheckBox HorizontalAlignment="Center" Grid.Column="1" IsChecked="{Binding IsBudder}" Content="Budder" ToolTip="High Pass Filter 5-30 hz" />
             <CheckBox HorizontalAlignment="Center" Grid.Column="2" IsChecked="{Binding IsPCA}" Content="pca" ToolTip="lick my asshole" />
             <CheckBox HorizontalAlignment="Center" Grid.Column="3" IsChecked="{Binding IsPCAComponent}" Content="pca components" ToolTip="lick my balls" />
-            <CheckBox HorizontalAlignment="Center" Grid.Column="4" IsChecked="{Binding IsRaw}" Content="raw" ToolTip="lick my dong" />
+            <CheckBox HorizontalAlignment="Center" Grid.Column="4" IsChecked="{Binding IsFFT}" Content="fft" ToolTip="lick my hole" />
+            
         </Grid>
         
         <oxy:Plot Grid.Row="1" Grid.Column="1" Name ="Wave" Title="{Binding Title[0]}">
