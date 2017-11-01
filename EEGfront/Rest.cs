@@ -54,7 +54,10 @@ namespace EEGfront
             return responseString;
 
         }
-
+        /// <summary>PostPrev is a method in the Rest class.
+        /// <para>https urlencoded POST request. The body contains user_id and returns a JSON object containing that users previous classifier binaries from the db.</para>
+        /// <seealso cref="Rest.cs"/>
+        /// </summary>
         public async Task<string> PostPrev(string user_id)
         {
             var values = new Dictionary<string, string>
@@ -72,6 +75,10 @@ namespace EEGfront
             return responseString;
         }
 
+        /// <summary>PostCurrent is a method in the Rest class.
+        /// <para>https urlencoded POST request. The body contains user_id and returns a JSON object containing that users current classifier binaries from the db.</para>
+        /// <seealso cref="Rest.cs"/>
+        /// </summary>
         public async Task<MulticlassSupportVectorMachine<Gaussian>> PostCurrent(string user_id)
         {
             var values = new Dictionary<string, string>
@@ -91,8 +98,14 @@ namespace EEGfront
             return classifier;
         }
 
+        /// <summary>UpdateModel is a method in the Rest class.
+        /// <para>https multipart/formdata POST request. 
+        /// The body contains user_id and the deserialized binaries of the classifer trained during the current app session. 
+        /// returns a JSON response with a success or error message.</para>
+        /// <seealso cref="Rest.cs"/>
+        /// </summary>
         public async Task<string> UpdateModel(string user_id, Stream content)
-        { 
+        {
 
             MultipartFormDataContent formdata = new MultipartFormDataContent();
 
@@ -106,6 +119,12 @@ namespace EEGfront
             return responsestring;
         }
 
+        /// <summary>UpdateModel is a method in the Rest class.
+        /// <para>https urlencoded POST request.
+        /// The body contains user_id.
+        /// Returns a JSON response with a success or error message and the db 2nd most current EEG data from training input manager (TIM)</para>
+        /// <seealso cref="Rest.cs"/>
+        /// </summary>
         public async Task<string> PostPrevRaw(string user_id)
         {
             var values = new Dictionary<string, string>
@@ -123,6 +142,12 @@ namespace EEGfront
             return responseString;
         }
 
+        /// <summary>PostCurrentRaw is a method in the Rest class.
+        /// <para>https urlencoded POST request. 
+        /// The body contains user_id.
+        /// Returns a JSON response with a success or error message and the db most current EEG data from training input manager (TIM).</para>
+        /// <seealso cref="Rest.cs"/>
+        /// </summary>
         public async Task<TrainingInputManager> PostCurrentRaw(string user_id)
         {
             IFormatter formatter = new BinaryFormatter();
@@ -144,6 +169,10 @@ namespace EEGfront
             return classifier;
         }
 
+        /// <summary>UpdateModelRaw Sends the TIM Raw.
+        /// <para>https multipart/formdata POST request. The body contains user_id and the deserialized binaries of the training input manager(TIM) during the current app session. returns a JSON response with a success or error message.</para>
+        /// <seealso cref="Rest.cs"/>
+        /// </summary>
         public async Task<string> UpdateModelRaw(string user_id, Stream content)
         {
 

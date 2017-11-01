@@ -33,7 +33,7 @@ namespace EEGfront
 
             var pca = new double[4][];
             pca[0] = rawStream[0].ToArray();
-            pca[1] = rawStream[1].ToArray();
+            pca[1] = rawStream[1].ToArray(); 
             pca[2] = rawStream[2].ToArray();
             pca[3] = rawStream[3].ToArray();
 
