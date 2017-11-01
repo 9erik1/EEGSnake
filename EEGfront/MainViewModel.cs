@@ -73,6 +73,7 @@ namespace EEGfront
 
         private bool IsDraw = true;
         Thread draw;
+        Thread snakeUpdate;
 
         private EmotiveAquisition stream;
         private Rest restService;
@@ -81,9 +82,11 @@ namespace EEGfront
         private Random randy;
         private int appleX;
         private int appleY;
+        private Snake snakeLogic;
 
         private MainViewModel(string idTag)
         {
+            snakeLogic = new Snake();
             randy = new Random();
             restService = Rest.Instance;
             stream = EmotiveAquisition.Instance;
@@ -132,10 +135,11 @@ namespace EEGfront
             downToggle = Visibility.Visible;
             leftToggle = Visibility.Visible;
             rightToggle = Visibility.Visible;
+            
 
+            //draw = new Thread(new ThreadStart(Draw));
+            //draw.Start();
 
-            draw = new Thread(new ThreadStart(Draw));
-            draw.Start();
             //private Brush _colorr = Brushes.Red;
             //SnakeGame = Brushes.Green
             //snakeGame = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
@@ -163,6 +167,9 @@ namespace EEGfront
 
             snakeGameProx[appleX][appleY] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
             SnakeGame = (SolidColorBrush[][])snakeGameProx.Clone();
+
+            snakeUpdate = new Thread(new ThreadStart(SnakeUpdate));
+            snakeUpdate.Start();
         }
 
         private int NewApplePos()
@@ -266,26 +273,26 @@ namespace EEGfront
         public void Up()
         {
             Console.WriteLine("Up");
-            
-            SnakeX--;
+            snakeLogic.MoveUp();
+            //SnakeX--;
 
-            //if (headNode.next != null)
-            //{
-            //    Node currentNode = headNode;
-            //    while (currentNode != null)
-            //    {
-            //        Console.WriteLine(currentNode.data + "\n");
-            //        currentNode = currentNode.next;
-            //    }
-            //}
-            //else
-            //    Console.WriteLine("Not Available");
+            ////if (headNode.next != null)
+            ////{
+            ////    Node currentNode = headNode;
+            ////    while (currentNode != null)
+            ////    {
+            ////        Console.WriteLine(currentNode.data + "\n");
+            ////        currentNode = currentNode.next;
+            ////    }
+            ////}
+            ////else
+            ////    Console.WriteLine("Not Available");
 
-            MoveSnake();
+            //MoveSnake();
 
 
-            bool hit = CollisionDetect();
-            RedrawBoard(hit);
+            //bool hit = CollisionDetect();
+            //RedrawBoard(hit);
 
             Console.WriteLine("X: " + SnakeX + " Y: " + SnakeY + " AX: " + appleX + " AY: " + appleY);
         }
@@ -294,10 +301,10 @@ namespace EEGfront
         {
             Console.WriteLine("Down");
 
-            SnakeX++;
-            MoveSnake();
-            bool hit = CollisionDetect();
-            RedrawBoard(hit);
+            //SnakeX++;
+            //MoveSnake();
+            //bool hit = CollisionDetect();
+            //RedrawBoard(hit);
 
             Console.WriteLine("X: " + SnakeX + " Y: " + SnakeY + " AX: " + appleX + " AY: " + appleY);
         }
@@ -333,6 +340,14 @@ namespace EEGfront
 
 
         private async void Draw()
+        {
+            while (IsDraw)
+            {
+                await Task.Delay(2000);
+            }
+        }
+
+        private async void SnakeUpdate()
         {
             while (IsDraw)
             {
