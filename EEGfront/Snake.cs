@@ -81,60 +81,25 @@ namespace EEGfront
         {
             LinkedListNode<SnakeCube> currentNode = snakeUser.First;
             SnakeCube proxy;//for mod the positions
+            SnakeCube curProcy;//for mod the positions
             SnakeCube lastPos = new SnakeCube();
             while (currentNode != null)
             {
                 if (currentNode.Previous == null)
                 {
+                    proxy = currentNode.Value;
+                    lastPos = proxy;
                     switch (dir)
                     {
                         case SnakeMotivation.Up:
-                            proxy = currentNode.Value;
                             proxy.Y--;
                             if (proxy.Y < 0)
                                 proxy.Y = 19;
-                            currentNode.Value = proxy;
                             break;
                         case SnakeMotivation.Down:
-                            proxy = currentNode.Value;
                             proxy.Y++;
                             if (proxy.Y > 19)
                                 proxy.Y = 0;
-                            currentNode.Value = proxy;
-                            break;
-                        case SnakeMotivation.Right:
-                            proxy = currentNode.Value;
-                            proxy.X++;
-                            if (proxy.X > 19)
-                                proxy.X = 0;
-                            currentNode.Value = proxy;
-                            break;
-                        case SnakeMotivation.Left:
-                            proxy = currentNode.Value;
-                            proxy.X--;
-                            if (proxy.X < 0)
-                                proxy.X = 19;
-                            currentNode.Value = proxy;
-                            break;
-                        default:
-                            Console.WriteLine("Ctrl+F 'fortnight' asap!!!!!!!");
-                            break;
-                    }
-                }
-                else
-                {
-                    proxy = currentNode.Previous.Value;
-                    switch (dir)
-                    {
-                        case SnakeMotivation.Up:
-                            proxy.Y++;
-                            if (proxy.Y > 19)
-                                proxy.Y = 0;
-                            break;
-                        case SnakeMotivation.Down:
-                            proxy.Y--;
-                            if (proxy.Y < 0)
-                                proxy.Y = 19;
                             break;
                         case SnakeMotivation.Right:
                             proxy.X++;
@@ -150,7 +115,14 @@ namespace EEGfront
                             Console.WriteLine("Ctrl+F 'fortnight' asap!!!!!!!");
                             break;
                     }
+
                     currentNode.Value = proxy;
+                }
+                else 
+                {
+                    var pro = currentNode.Value;
+                    currentNode.Value = lastPos;
+                    lastPos = pro;
                 }
                 currentNode = currentNode.Next;
             }
@@ -180,10 +152,10 @@ namespace EEGfront
             switch (dir)
             {
                 case SnakeMotivation.Up:
-                    yHit = 1;
+                    yHit = -1;
                     break;
                 case SnakeMotivation.Down:
-                    yHit = -1;
+                    yHit = 1;
                     break;
                 case SnakeMotivation.Right:
                     xHit = 1;
@@ -195,6 +167,7 @@ namespace EEGfront
                     Console.WriteLine("Ctrl+F 'fortnight' asap!!!!!!!");
                     break;
             }
+            
 
             snakeUser.AddFirst(new SnakeCube(applePos.Y + xHit, applePos.X + yHit));
         }
