@@ -15,11 +15,13 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using Accord.IO;
 using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace EEGfront
 {
     public class MainViewModel : INotifyPropertyChanged
     {
+        private Object thisLock = new Object();
         //these max values are hard coded into xaml grid and can not be changed
         //in future remove reliance on hard coded xaml
         private static readonly int XMAX = 20;
@@ -52,7 +54,7 @@ namespace EEGfront
             {
                 if (value != Snake.First.Value.X)
                 {
-                    Snake.First.Value = new Vector(value,SnakeY);
+                    Snake.First.Value = new Vector(value, SnakeY);
                 }
             }
         }
@@ -72,8 +74,6 @@ namespace EEGfront
         TrainingInputManager T_I_M;
 
         private bool IsDraw = true;
-        Thread draw;
-        Thread snakeUpdate;
 
         private EmotiveAquisition stream;
         private Rest restService;
@@ -119,7 +119,7 @@ namespace EEGfront
 
             Dir = 0;
             Trials = 0;
-            
+
             //stream = EmotiveAquisition.Instance;
 
             menuItems = new ObservableCollection<AppState>();
@@ -135,7 +135,7 @@ namespace EEGfront
             downToggle = Visibility.Visible;
             leftToggle = Visibility.Visible;
             rightToggle = Visibility.Visible;
-            
+
 
             //draw = new Thread(new ThreadStart(Draw));
             //draw.Start();
@@ -168,8 +168,17 @@ namespace EEGfront
             snakeGameProx[appleX][appleY] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
             SnakeGame = (SolidColorBrush[][])snakeGameProx.Clone();
 
-            snakeUpdate = new Thread(new ThreadStart(SnakeUpdate));
-            snakeUpdate.Start();
+            //Task.Run(async () =>
+            //{
+            //    await Task.Delay
+            //    currentClassifier = await restService.PostCurrent("13");
+            //});
+        }
+
+        public void LymeCanada()
+        {
+            snakeLogic.MoveSnake();
+            RedrawBoard();
         }
 
         private int NewApplePos()
@@ -207,13 +216,13 @@ namespace EEGfront
                 appleX = NewApplePos();
                 appleY = NewApplePos();
                 snakeGameProx[appleX][appleY] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
-                Snake.AddLast(new Vector(SnakeX,SnakeY));
+                Snake.AddLast(new Vector(SnakeX, SnakeY));
                 return true;
             }
             return false;
         }
 
-        private void RedrawBoard(bool isHit)
+        private void RedrawBoard()
         {
             // repaints board red
             for (int j = 0; j < XMAX; j++)
@@ -221,8 +230,9 @@ namespace EEGfront
                     snakeGameProx[j][k] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 0));
 
             // draw snake
-            foreach(Vector v in Snake)
-                snakeGameProx[(int)v.X][(int)v.Y] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
+
+            foreach (Vector v in snakeLogic.GetSnakeList())
+                snakeGameProx[(int)(v.Y * 10)][(int)(v.X * 10)] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
 
             // draw apple
             snakeGameProx[appleX][appleY] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
@@ -300,7 +310,7 @@ namespace EEGfront
         public void Down()
         {
             Console.WriteLine("Down");
-
+            snakeLogic.MoveDown();
             //SnakeX++;
             //MoveSnake();
             //bool hit = CollisionDetect();
@@ -312,24 +322,14 @@ namespace EEGfront
         public void Left()
         {
             Console.WriteLine("Left");
-
-            SnakeY--;
-            MoveSnake();
-            bool hit = CollisionDetect();
-            RedrawBoard(hit);
-
+            snakeLogic.MoveLeft();
             Console.WriteLine("X: " + SnakeX + " Y: " + SnakeY + " AX: " + appleX + " AY: " + appleY);
         }
 
         public void Right()
         {
             Console.WriteLine("Right");
-
-            SnakeY++;
-            MoveSnake();
-            bool hit = CollisionDetect();
-            RedrawBoard(hit);
-
+            snakeLogic.MoveRight();
             Console.WriteLine("X: " + SnakeX + " Y: " + SnakeY + " AX: " + appleX + " AY: " + appleY);
         }
 
@@ -351,6 +351,8 @@ namespace EEGfront
         {
             while (IsDraw)
             {
+                snakeLogic.MoveSnake();
+                RedrawBoard();
                 await Task.Delay(2000);
             }
         }

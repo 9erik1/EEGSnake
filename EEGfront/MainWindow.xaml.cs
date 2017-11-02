@@ -16,7 +16,7 @@ namespace EEGfront
     /// </summary>
     public partial class MainWindow : Window
     {
-        private MainViewModel snakeGameInput = MainViewModel.Instance;
+        private MainViewModel snakeGameInput;
 
         private EmotiveAquisition stream;
 
@@ -45,7 +45,7 @@ namespace EEGfront
         {
             this.WindowState = System.Windows.WindowState.Maximized;
             InitializeComponent();
-
+            snakeGameInput = MainViewModel.Instance;
             drawL = new Thread(new ThreadStart(DrawL));
             drawL.Start();
             drawR = new Thread(new ThreadStart(DrawR));
@@ -54,8 +54,8 @@ namespace EEGfront
             drawT.Start();
             drawB = new Thread(new ThreadStart(DrawB));
             drawB.Start();
-            //deawGame = new Thread(new ThreadStart(GameThread));
-            //deawGame.Start();
+            deawGame = new Thread(new ThreadStart(GameThread));
+            deawGame.Start();
 
             left = (GLControl)Lefty.Child;
             right = (GLControl)Rightey.Child;
@@ -70,16 +70,12 @@ namespace EEGfront
         {
             while (isDraw)
             {
-                await Task.Delay(20);
+                await Task.Delay(100);
                 lock (drawLock)
                 {
                     Dispatcher.BeginInvoke((Action)(() =>
                     {
-                        game.MakeCurrent();
-                        GL.Clear(ClearBufferMask.ColorBufferBit);
-                        GL.ClearColor(Color.Wheat);
-                        Draw_digit();
-                        game.SwapBuffers();
+                        snakeGameInput.LymeCanada();
                     }));
                 }
             }

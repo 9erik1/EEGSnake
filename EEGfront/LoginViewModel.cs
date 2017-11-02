@@ -3,6 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace EEGfront
 {
@@ -27,10 +28,15 @@ namespace EEGfront
         private async void Clickey()
         {
             var pca = new MainWindow();
-            pca.DataContext = MainViewModel.Instance;
+            var vm = MainViewModel.Instance;
+            pca.DataContext = vm;
+
 
             pca.Show();
             pca.Closing += Pca_Closed;
+            
+
+
             //Console.WriteLine("----------START LOGIN----------");
             //try
             //{

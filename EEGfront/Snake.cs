@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Linq;
 
 namespace EEGfront
 {
@@ -15,6 +16,11 @@ namespace EEGfront
             snakeUser = new LinkedList<Vector>();
             snakeUser.AddFirst(new Vector(0.0d, 0.0d));
             dir = SnakeMotivation.Down;
+        }
+
+        public LinkedList<Vector> GetSnakeList()
+        {
+            return snakeUser;
         }
 
         public int GetX()
@@ -60,22 +66,30 @@ namespace EEGfront
                     {
                         case SnakeMotivation.Up:
                             proxy = currentNode.Value;
-                            proxy.Y += 0.1d;
+                            proxy.Y -= 0.1d;
+                            if (proxy.Y < 0)
+                                proxy.Y = 1.9;
                             snakeUser.First.Value = proxy;
                             break;
                         case SnakeMotivation.Down:
                             proxy = currentNode.Value;
-                            proxy.Y -= 0.1d;
+                            proxy.Y += 0.1d;
+                            if (proxy.Y > 1.9)
+                                proxy.Y = 0.0;
                             snakeUser.First.Value = proxy;
                             break;
                         case SnakeMotivation.Right:
                             proxy = currentNode.Value;
                             proxy.X += 0.1d;
+                            if (proxy.X > 1.9)
+                                proxy.X = 0.0;
                             snakeUser.First.Value = proxy;
                             break;
                         case SnakeMotivation.Left:
                             proxy = currentNode.Value;
                             proxy.X -= 0.1d;
+                            if (proxy.X < 0)
+                                proxy.X = 1.9;
                             snakeUser.First.Value = proxy;
                             break;
                         default:

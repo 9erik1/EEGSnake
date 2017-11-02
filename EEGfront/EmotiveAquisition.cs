@@ -139,7 +139,7 @@ namespace EEGfront
 
             for (int i = 0; i < N; i++)
             {
-                dataWindow[0].Enqueue(amplitude * Math.Sin(5*2 * Math.PI * i / sampleFrequency));
+                dataWindow[0].Enqueue(amplitude * Math.Sin(5 * 2 * Math.PI * i / sampleFrequency));
                 if (dataWindow[0].Count > N)
                     dataWindow[0].Dequeue();
             }
