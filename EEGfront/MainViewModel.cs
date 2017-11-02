@@ -46,30 +46,6 @@ namespace EEGfront
             Stats
         }
 
-        private LinkedList<Vector> Snake;
-        private int SnakeX
-        {
-            get { return (int)Snake.First.Value.X; }
-            set
-            {
-                if (value != Snake.First.Value.X)
-                {
-                    Snake.First.Value = new Vector(value, SnakeY);
-                }
-            }
-        }
-        private int SnakeY
-        {
-            get { return (int)Snake.First.Value.Y; }
-            set
-            {
-                if (value != Snake.First.Value.Y)
-                {
-                    Snake.First.Value = new Vector(SnakeX, value);
-                }
-            }
-        }
-
         //The collected raws for the current user
         TrainingInputManager T_I_M;
 
@@ -79,15 +55,11 @@ namespace EEGfront
         private Rest restService;
         private SVMClassifier machineStudent;
         MulticlassSupportVectorMachine<Gaussian> currentClassifier;
-        private Random randy;
-        private int appleX;
-        private int appleY;
         private Snake snakeLogic;
 
         private MainViewModel(string idTag)
         {
             snakeLogic = new Snake();
-            randy = new Random();
             restService = Rest.Instance;
             stream = EmotiveAquisition.Instance;
             stream.ReverseKill();
@@ -144,8 +116,6 @@ namespace EEGfront
             //SnakeGame = Brushes.Green
             //snakeGame = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
             //int[,] array6 = new int[10, 10];
-            Snake = new LinkedList<Vector>();
-            Snake.AddFirst(new Vector(0d, 0d));
 
             for (int i = 0; i < XMAX; i++)
             {
@@ -162,10 +132,8 @@ namespace EEGfront
             }
             snakeGameProx[0][0] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
 
-            appleX = NewApplePos();
-            appleY = NewApplePos();
-
-            snakeGameProx[appleX][appleY] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
+            var efrg = snakeLogic.GetApplePos();
+            snakeGameProx[(int)efrg.X][(int)efrg.Y] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
             SnakeGame = (SolidColorBrush[][])snakeGameProx.Clone();
 
             //Task.Run(async () =>
@@ -178,49 +146,45 @@ namespace EEGfront
         public void LymeCanada()
         {
             snakeLogic.MoveSnake();
+            snakeLogic.Detect();
             RedrawBoard();
         }
 
-        private int NewApplePos()
-        {
-            return randy.Next(1, 20);
-        }
+        //private bool CollisionDetect()
+        //{
+        //    if (SnakeX < 0)
+        //    {
+        //        SnakeX = XMAX - 1;
+        //        return false;
+        //    }
+        //    if (SnakeY < 0)
+        //    {
+        //        SnakeY = YMAX - 1;
+        //        return false;
+        //    }
 
-        private bool CollisionDetect()
-        {
-            if (SnakeX < 0)
-            {
-                SnakeX = XMAX - 1;
-                return false;
-            }
-            if (SnakeY < 0)
-            {
-                SnakeY = YMAX - 1;
-                return false;
-            }
+        //    if (SnakeX > 19)
+        //    {
+        //        SnakeX = 0;
+        //        return false;
+        //    }
+        //    if (SnakeY > 19)
+        //    {
+        //        SnakeY = 0;
+        //        return false;
+        //    }
 
-            if (SnakeX > 19)
-            {
-                SnakeX = 0;
-                return false;
-            }
-            if (SnakeY > 19)
-            {
-                SnakeY = 0;
-                return false;
-            }
-
-            if (SnakeX == appleX && SnakeY == appleY)
-            {
-                snakeGameProx[appleX][appleY] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 0));
-                appleX = NewApplePos();
-                appleY = NewApplePos();
-                snakeGameProx[appleX][appleY] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
-                Snake.AddLast(new Vector(SnakeX, SnakeY));
-                return true;
-            }
-            return false;
-        }
+        //    if (SnakeX == appleX && SnakeY == appleY)
+        //    {
+        //        snakeGameProx[appleX][appleY] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 0));
+        //        appleX = NewApplePos();
+        //        appleY = NewApplePos();
+        //        snakeGameProx[appleX][appleY] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
+        //        Snake.AddLast(new Vector(SnakeX, SnakeY));
+        //        return true;
+        //    }
+        //    return false;
+        //}
 
         private void RedrawBoard()
         {
@@ -235,102 +199,39 @@ namespace EEGfront
                 snakeGameProx[(int)(v.Y * 10)][(int)(v.X * 10)] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
 
             // draw apple
-            snakeGameProx[appleX][appleY] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
+            var efrg = snakeLogic.GetApplePos();
+            snakeGameProx[(int)(efrg.X*10)][(int)(efrg.Y*10)] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
 
             // bind it to xaml
             SnakeGame = (SolidColorBrush[][])snakeGameProx.Clone();
-        }
-
-        private void MoveSnake()
-        {
-            if (Snake.First != null)
-            {
-                LinkedListNode<Vector> currentNode = Snake.First;
-                while (currentNode != null)
-                {
-                    if (currentNode.Previous == null)
-                    {
-                        currentNode = currentNode.Next;
-                    }
-                    else
-                    {
-                        Vector lastPos = currentNode.Previous.Value;
-                        Vector currentPos = currentNode.Value;
-
-                        if (lastPos.X == currentPos.X)
-                        {
-                            if (lastPos.X < currentPos.X)
-                                currentPos.X--;
-                            else
-                                currentPos.X++;
-                        }
-                        if (lastPos.Y == currentPos.Y)
-                        {
-                            if (lastPos.Y < currentPos.Y)
-                                currentPos.Y--;
-                            else
-                                currentPos.Y++;
-                        }
-
-                        currentNode.Value = currentPos;
-
-                        currentNode = currentNode.Next;
-                    }
-                }
-            }
         }
 
         public void Up()
         {
             Console.WriteLine("Up");
             snakeLogic.MoveUp();
-            //SnakeX--;
-
-            ////if (headNode.next != null)
-            ////{
-            ////    Node currentNode = headNode;
-            ////    while (currentNode != null)
-            ////    {
-            ////        Console.WriteLine(currentNode.data + "\n");
-            ////        currentNode = currentNode.next;
-            ////    }
-            ////}
-            ////else
-            ////    Console.WriteLine("Not Available");
-
-            //MoveSnake();
-
-
-            //bool hit = CollisionDetect();
-            //RedrawBoard(hit);
-
-            Console.WriteLine("X: " + SnakeX + " Y: " + SnakeY + " AX: " + appleX + " AY: " + appleY);
+            //Console.WriteLine("X: " + SnakeX + " Y: " + SnakeY + " AX: " + appleX + " AY: " + appleY);
         }
 
         public void Down()
         {
             Console.WriteLine("Down");
             snakeLogic.MoveDown();
-            //SnakeX++;
-            //MoveSnake();
-            //bool hit = CollisionDetect();
-            //RedrawBoard(hit);
-
-            Console.WriteLine("X: " + SnakeX + " Y: " + SnakeY + " AX: " + appleX + " AY: " + appleY);
+           //Console.WriteLine("X: " + SnakeX + " Y: " + SnakeY + " AX: " + appleX + " AY: " + appleY);
         }
 
         public void Left()
         {
             Console.WriteLine("Left");
             snakeLogic.MoveLeft();
-            Console.WriteLine("X: " + SnakeX + " Y: " + SnakeY + " AX: " + appleX + " AY: " + appleY);
+            //Console.WriteLine("X: " + SnakeX + " Y: " + SnakeY + " AX: " + appleX + " AY: " + appleY);
         }
 
         public void Right()
         {
             Console.WriteLine("Right");
             snakeLogic.MoveRight();
-            Console.WriteLine("X: " + SnakeX + " Y: " + SnakeY + " AX: " + appleX + " AY: " + appleY);
+            //Console.WriteLine("X: " + SnakeX + " Y: " + SnakeY + " AX: " + appleX + " AY: " + appleY);
         }
 
         public void Shutdown()

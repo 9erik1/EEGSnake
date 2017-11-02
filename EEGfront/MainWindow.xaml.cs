@@ -70,14 +70,11 @@ namespace EEGfront
         {
             while (isDraw)
             {
-                await Task.Delay(100);
-                lock (drawLock)
-                {
-                    Dispatcher.BeginInvoke((Action)(() =>
-                    {
-                        snakeGameInput.LymeCanada();
-                    }));
-                }
+                await Task.Delay(250);
+                await Dispatcher.BeginInvoke((Action)(() =>
+                 {
+                     snakeGameInput.LymeCanada();
+                 }));
             }
         }
         void Draw_digit()
