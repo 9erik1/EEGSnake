@@ -5,29 +5,43 @@ using System.Linq;
 
 namespace EEGfront
 {
+
+    public struct SnakeCube
+    {
+
+        public SnakeCube(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
+
+        public int X;
+        public int Y;
+    }
+
     public class Snake
     {
 
         private Random randy;
-        private LinkedList<Vector> snakeUser;
-        private Vector applePos;
+        private LinkedList<SnakeCube> snakeUser;
+        private SnakeCube applePos;
         private SnakeMotivation dir;
 
         public Snake()
         {
-            snakeUser = new LinkedList<Vector>();
-            snakeUser.AddFirst(new Vector(0.0d, 0.0d));
+            snakeUser = new LinkedList<SnakeCube>();
+            snakeUser.AddFirst(new SnakeCube(0, 0));
             randy = new Random();
             NewApplePos();
             dir = SnakeMotivation.Down;
         }
 
-        public LinkedList<Vector> GetSnakeList()
+        public LinkedList<SnakeCube> GetSnakeList()
         {
             return snakeUser;
         }
 
-        public Vector GetApplePos()
+        public SnakeCube GetApplePos()
         {
             return applePos;
         }
@@ -65,8 +79,8 @@ namespace EEGfront
         // todo : on a thread somewhere
         public void MoveSnake()
         {
-            LinkedListNode<Vector> currentNode = snakeUser.First;
-            Vector proxy;//for mod the positions
+            LinkedListNode<SnakeCube> currentNode = snakeUser.First;
+            SnakeCube proxy;//for mod the positions
             while (currentNode != null)
             {
                 if (currentNode.List.Count == 1)
@@ -75,30 +89,30 @@ namespace EEGfront
                     {
                         case SnakeMotivation.Up:
                             proxy = currentNode.Value;
-                            proxy.Y -= 0.1;
+                            proxy.Y --;
                             if (proxy.Y < 0)
-                                proxy.Y = 1.9;
+                                proxy.Y = 19;
                             snakeUser.First.Value = proxy;
                             break;
                         case SnakeMotivation.Down:
                             proxy = currentNode.Value;
-                            proxy.Y += 0.1;
-                            if (proxy.Y > 1.9)
-                                proxy.Y = 0.0;
+                            proxy.Y ++;
+                            if (proxy.Y > 19)
+                                proxy.Y = 0;
                             snakeUser.First.Value = proxy;
                             break;
                         case SnakeMotivation.Right:
                             proxy = currentNode.Value;
-                            proxy.X += 0.1;
-                            if (proxy.X > 1.9)
-                                proxy.X = 0.0;
+                            proxy.X ++;
+                            if (proxy.X > 19)
+                                proxy.X = 0;
                             snakeUser.First.Value = proxy;
                             break;
                         case SnakeMotivation.Left:
                             proxy = currentNode.Value;
-                            proxy.X -= 0.1;
+                            proxy.X --;
                             if (proxy.X < 0)
-                                proxy.X = 1.9;
+                                proxy.X = 19;
                             snakeUser.First.Value = proxy;
                             break;
                         default:
@@ -113,8 +127,8 @@ namespace EEGfront
                 }
                 else
                 {
-                    Vector lastPos = currentNode.Previous.Value;
-                    Vector currentPos = currentNode.Value;
+                    SnakeCube lastPos = currentNode.Previous.Value;
+                    SnakeCube currentPos = currentNode.Value;
 
                     if (lastPos.X == currentPos.X)
                     {
@@ -162,9 +176,7 @@ namespace EEGfront
             //    return false;
             //}
 
-            Vector face = snakeUser.First.Value;
-            face.X = Math.Round(face.X, 1);
-            face.Y = Math.Round(face.Y, 1);
+            SnakeCube face = snakeUser.First.Value;
             if (face.Y == applePos.X && face.X == applePos.Y)
             {
                 NewApplePos();
@@ -173,8 +185,8 @@ namespace EEGfront
 
         private void NewApplePos()
         {
-            applePos.X = Math.Round(randy.NextDouble() * 2, 1);
-            applePos.Y = Math.Round(randy.NextDouble() * 2, 1);
+            applePos.X = randy.Next(1,20);
+            applePos.Y = randy.Next(1,20);
         }
 
         private void NewApple()

@@ -195,12 +195,12 @@ namespace EEGfront
 
             // draw snake
 
-            foreach (Vector v in snakeLogic.GetSnakeList())
-                snakeGameProx[(int)(v.Y * 10)][(int)(v.X * 10)] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
+            foreach (SnakeCube v in snakeLogic.GetSnakeList())
+                snakeGameProx[v.Y][v.X] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
 
             // draw apple
             var efrg = snakeLogic.GetApplePos();
-            snakeGameProx[(int)(efrg.X*10)][(int)(efrg.Y*10)] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
+            snakeGameProx[efrg.X][efrg.Y] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
 
             // bind it to xaml
             SnakeGame = (SolidColorBrush[][])snakeGameProx.Clone();
