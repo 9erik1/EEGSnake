@@ -148,6 +148,7 @@ namespace EEGfront
             snakeLogic.MoveSnake();
             snakeLogic.Detect();
             RedrawBoard();
+
         }
 
         //private bool CollisionDetect()
