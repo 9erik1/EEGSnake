@@ -123,43 +123,35 @@ namespace EEGfront
                 }
                 else
                 {
+                    proxy = currentNode.Previous.Value;
                     switch (dir)
                     {
-
                         case SnakeMotivation.Up:
-                            proxy = currentNode.Previous.Value;
                             proxy.Y++;
                             if (proxy.Y > 19)
                                 proxy.Y = 0;
-                            currentNode.Value = proxy;
                             break;
                         case SnakeMotivation.Down:
-                            proxy = currentNode.Previous.Value;
                             proxy.Y--;
                             if (proxy.Y < 0)
                                 proxy.Y = 19;
-                            currentNode.Value = proxy;
                             break;
                         case SnakeMotivation.Right:
-                            proxy = currentNode.Previous.Value;
                             proxy.X++;
                             if (proxy.X > 19)
                                 proxy.X = 0;
-                            currentNode.Value = proxy;
                             break;
                         case SnakeMotivation.Left:
-                            proxy = currentNode.Previous.Value;
                             proxy.X--;
                             if (proxy.X < 0)
                                 proxy.X = 19;
-                            currentNode.Value = proxy;
                             break;
                         default:
                             Console.WriteLine("Ctrl+F 'fortnight' asap!!!!!!!");
                             break;
                     }
+                    currentNode.Value = proxy;
                 }
-
                 currentNode = currentNode.Next;
             }
         }
@@ -176,8 +168,8 @@ namespace EEGfront
 
         private void NewApplePos()
         {
-            applePos.X = randy.Next(1,20);
-            applePos.Y = randy.Next(1,20);
+            applePos.X = randy.Next(1, 20);
+            applePos.Y = randy.Next(1, 20);
         }
 
         private void GrowLights()
@@ -204,7 +196,7 @@ namespace EEGfront
                     break;
             }
 
-            snakeUser.AddFirst(new SnakeCube(applePos.X+xHit, applePos.Y+yHit));
+            snakeUser.AddFirst(new SnakeCube(applePos.Y + xHit, applePos.X + yHit));
         }
 
     }
