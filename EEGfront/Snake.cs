@@ -31,6 +31,8 @@ namespace EEGfront
         {
             snakeUser = new LinkedList<SnakeCube>();
             snakeUser.AddFirst(new SnakeCube(0, 0));
+            snakeUser.AddFirst(new SnakeCube(0, 1));
+            snakeUser.AddFirst(new SnakeCube(0, 2));
             randy = new Random();
             NewApplePos();
             dir = SnakeMotivation.Down;
@@ -58,21 +60,29 @@ namespace EEGfront
 
         public void MoveUp()
         {
+            if (dir == SnakeMotivation.Down)
+                return;
             dir = SnakeMotivation.Up;
         }
 
         public void MoveDown()
         {
+            if (dir == SnakeMotivation.Up)
+                return;
             dir = SnakeMotivation.Down;
         }
 
         public void MoveLeft()
         {
+            if (dir == SnakeMotivation.Right)
+                return;
             dir = SnakeMotivation.Left;
         }
 
         public void MoveRight()
         {
+            if (dir == SnakeMotivation.Left)
+                return;
             dir = SnakeMotivation.Right;
         }
 
@@ -118,7 +128,7 @@ namespace EEGfront
 
                     currentNode.Value = proxy;
                 }
-                else 
+                else
                 {
                     var pro = currentNode.Value;
                     currentNode.Value = lastPos;
@@ -131,6 +141,20 @@ namespace EEGfront
         public void Detect()
         {
             SnakeCube face = snakeUser.First.Value;
+
+            var shmelts = snakeUser.Where(x => x.X == face.X && x.Y == face.Y);
+
+            if(shmelts.Count()>1)
+            {
+                // reset snake
+                dir = SnakeMotivation.Down;
+                snakeUser.Clear();
+                snakeUser.AddFirst(new SnakeCube(0, 0));
+                snakeUser.AddFirst(new SnakeCube(0, 1));
+                snakeUser.AddFirst(new SnakeCube(0, 2));
+            }
+
+
             if (face.Y == applePos.X && face.X == applePos.Y)
             {
                 GrowLights();
@@ -140,8 +164,8 @@ namespace EEGfront
 
         private void NewApplePos()
         {
-            applePos.X = randy.Next(1, 20);
-            applePos.Y = randy.Next(1, 20);
+            applePos.X = randy.Next(1, 19);
+            applePos.Y = randy.Next(1, 19);
         }
 
         private void GrowLights()
@@ -167,7 +191,7 @@ namespace EEGfront
                     Console.WriteLine("Ctrl+F 'fortnight' asap!!!!!!!");
                     break;
             }
-            
+
 
             snakeUser.AddFirst(new SnakeCube(applePos.Y + xHit, applePos.X + yHit));
         }
