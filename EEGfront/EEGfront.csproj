@@ -168,7 +168,6 @@
     </ApplicationDefinition>
     <Compile Include="DataProcessingPlant.cs" />
     <Compile Include="Snake.cs" />
-    <Compile Include="SnakeDirection.cs" />
     <Compile Include="StatsViewModel.cs" />
     <Compile Include="StatsWindow.xaml.cs">
       <DependentUpon>StatsWindow.xaml</DependentUpon>

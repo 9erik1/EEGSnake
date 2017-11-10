@@ -11,19 +11,14 @@ using System.Numerics;
 
 namespace EEGfront
 {
-
-
     public class SVMClassifier
     {
         public MulticlassSupportVectorMachine<Gaussian> Learn { get; set; }
         private DataProcessingPlant mathServ;
-        #region pipework
         public SVMClassifier()
         {
             mathServ = DataProcessingPlant.Instance;
         }
-
-        #endregion
 
         private double[][] ApplyPCA(Queue<Double>[] rawStream)
         {
@@ -42,7 +37,6 @@ namespace EEGfront
             var x = pcaLib.Learn(pca.Transpose());
             double[][] actual = pcaLib.Transform(pca.Transpose());
 
-
             // Apply Reverse PCA to Time-Series
             double[][] removedComp = new double[2][];
             removedComp[0] = pcaLib.ComponentVectors[0];
@@ -50,7 +44,6 @@ namespace EEGfront
 
             actual = actual.Dot(pcaLib.ComponentVectors);
             actual = actual.Transpose();
-
 
             // Apply FFT
             Complex[][] transformed_data = new Complex[actual.Count()][];
@@ -91,8 +84,6 @@ namespace EEGfront
                 }
             };
 
-   
-
             if (Learn == null)
             {
                 Learn = teacher.Learn(inputs, outputs);
@@ -112,108 +103,6 @@ namespace EEGfront
                 aggregateData[2]
             };
             int[] predicted = Learn.Decide(testinput);
-            return predicted;
-        }
-
-
-        public int[] MachineLearn(Queue<Double>[] rawStream)
-        {
-
-            double[][] aggregateData = ApplyPCA(rawStream);
-
-            double[][] inputs =
-             {
-                aggregateData[0], //  0 
-                aggregateData[0], //  0
-                aggregateData[3], //  2
-    aggregateData[3], //  2
-    aggregateData[3], //  2
-    aggregateData[3],//2
-    aggregateData[3],
-    aggregateData[3],//  2
-    aggregateData[3], //  2
-    aggregateData[3], //  2
-    aggregateData[3], //  2
-    aggregateData[3],//2
-    aggregateData[3],
-    aggregateData[3],//  2
-    aggregateData[3], //  2
-    aggregateData[3], //  2
-    aggregateData[3], //  2
-    aggregateData[3],//2
-    aggregateData[3],
-    aggregateData[3],//  2
-    aggregateData[3], //  2
-    aggregateData[3], //  2
-    aggregateData[3], //  2
-    aggregateData[3],//2
-    aggregateData[3],
-    aggregateData[3]//  2
-            };
-
-            int[] outputs = // those are the class labels
-{
-    0, 0,
-
-    1, 1, 1, 1, 1,1,1, 1, 1, 1, 1,1,1, 1, 1, 1, 1,1,1, 1, 1, 1, 1,1
-};
-            double[][] testinput =
-{
-                //               input         output
-    aggregateData[3], //  2
-    aggregateData[0], //  0 
-    aggregateData[0], //  0
-    aggregateData[0], //  0
-    aggregateData[0], //  0
-
-    aggregateData[3], //  2
-
-    aggregateData[3], //  2
-    aggregateData[3] //  0
-
- };
-
-
-            // Create the multi-class learning algorithm for the machine
-            var teacher = new MulticlassSupportVectorLearning<Gaussian>()
-            {
-                // Configure the learning algorithm to use SMO to train the
-                //  underlying SVMs in each of the binary class subproblems.
-                Learner = (param) => new SequentialMinimalOptimization<Gaussian>()
-                {
-                    // Estimate a suitable guess for the Gaussian kernel's parameters.
-                    // This estimate can serve as a starting point for a grid search.
-                    UseKernelEstimation = true
-                }
-            };
-
-            Learn = teacher.Learn(inputs, outputs);
-
-
-            // Create the multi-class learning algorithm for the machine
-            var calibration = new MulticlassSupportVectorLearning<Gaussian>()
-            {
-                Model = Learn, // We will start with an existing machine
-
-                // Configure the learning algorithm to use SMO to train the
-                //  underlying SVMs in each of the binary class subproblems.
-                Learner = (param) => new ProbabilisticOutputCalibration<Gaussian>()
-                {
-                    Model = param.Model // Start with an existing machine
-                }
-            };
-
-
-            // Configure parallel execution options
-            calibration.ParallelOptions.MaxDegreeOfParallelism = 1;
-
-            // Learn a machine
-            calibration.Learn(inputs, outputs);
-
-            // Obtain class predictions for each sample
-            int[] predicted = Learn.Decide(testinput);
-
-            Console.WriteLine(predicted);
             return predicted;
         }
     }

@@ -3,7 +3,6 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
-using System.Windows.Threading;
 
 namespace EEGfront
 {
@@ -20,50 +19,34 @@ namespace EEGfront
             loginModule = new HandShake();
         }
 
-        public void Shutdown()
-        {
-
-        }
-
         private async void Clickey()
         {
-            var pca = new MainWindow();
-            var vm = MainViewModel.Instance;
-            pca.DataContext = vm;
+            Console.WriteLine("----------START LOGIN----------");
+            try
+            {
+                string answer = await loginModule.Shake(User, Pass);
+                Err = answer;
+                Console.WriteLine(answer);
+                string userid = string.Empty;
 
+                if (!string.IsNullOrEmpty(answer.Split(',')[2].Split(':')[1]))
+                    userid = answer.Split(',')[2].Split(':')[1];
+                Console.WriteLine(userid.Substring(0, userid.Length - 1));
 
-            pca.Show();
-            pca.Closing += Pca_Closed;
-            
+                if (!string.IsNullOrEmpty(userid))
+                {
+                    var pca = new MainWindow();
+                    pca.DataContext = MainViewModel.Instance;
 
-
-            //Console.WriteLine("----------START LOGIN----------");
-            //try
-            //{
-            //    string answer = await loginModule.Shake(User, Pass);
-            //    Err = answer;
-            //    Console.WriteLine(answer);
-            //    string userid = string.Empty;
-
-            //    if (!string.IsNullOrEmpty(answer.Split(',')[2].Split(':')[1]))
-            //        userid = answer.Split(',')[2].Split(':')[1];
-            //    Console.WriteLine(userid.Substring(0,userid.Length-1));
-
-            //    if(!string.IsNullOrEmpty(userid))
-            //    {
-            //        var pca = new MainWindow();
-            //        pca.DataContext = MainViewModel.Instance;
-
-            //        pca.Show();
-            //        pca.Closing += Pca_Closed;
-            //    }
-
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine("Failed for basic reason: " + e);
-            //    //Err = e.Message;
-            //}
+                    pca.Show();
+                    pca.Closing += Pca_Closed;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Failed for basic reason: " + e);
+                //Err = e.Message;
+            }
             Console.WriteLine("-----------END LOGIN-----------");
         }
         private void Pca_Closed(object sender, EventArgs e)

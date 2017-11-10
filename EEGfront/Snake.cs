@@ -1,27 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows;
 using System.Linq;
 
 namespace EEGfront
 {
-
+    public enum SnakeMotivation { Up, Down, Left, Right }
     public struct SnakeCube
     {
-
         public SnakeCube(int x, int y)
         {
             X = x;
             Y = y;
         }
-
         public int X;
         public int Y;
     }
 
     public class Snake
     {
-
         private Random randy;
         private LinkedList<SnakeCube> snakeUser;
         private SnakeCube applePos;
@@ -91,7 +87,6 @@ namespace EEGfront
         {
             LinkedListNode<SnakeCube> currentNode = snakeUser.First;
             SnakeCube proxy;//for mod the positions
-            SnakeCube curProcy;//for mod the positions
             SnakeCube lastPos = new SnakeCube();
             while (currentNode != null)
             {

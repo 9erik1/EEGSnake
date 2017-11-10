@@ -26,7 +26,6 @@ namespace EEGfront
         private GLControl right;
         private GLControl top;
         private GLControl bot;
-        private GLControl game;
 
         Thread drawL;
         Thread drawR;
@@ -219,11 +218,6 @@ namespace EEGfront
         private void GLviewBot(object sender, EventArgs e)
         {
             glInit(bot, sender, "hell");
-        }
-
-        private void GLviewGame(object sender, EventArgs e)
-        {
-            glInit(game, sender, "game");
         }
 
         private void glInit(GLControl g, object sender, string name)

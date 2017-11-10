@@ -183,7 +183,7 @@ namespace EEGfront
                     fps++;
                     //Console.WriteLine(fps);
                 }
-                catch (NullReferenceException nulley)
+                catch (NullReferenceException)
                 {
                     pass = false;
                     isActive = false;

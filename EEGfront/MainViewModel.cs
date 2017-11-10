@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using System.Threading;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
@@ -7,7 +6,6 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using System;
 using System.Windows;
-using System.Net;
 using System.IO;
 using Accord.MachineLearning.VectorMachines;
 using Accord.Statistics.Kernels;
@@ -15,13 +13,11 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using Accord.IO;
 using System.Windows.Media;
-using System.Windows.Threading;
 
 namespace EEGfront
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private Object thisLock = new Object();
         //these max values are hard coded into xaml grid and can not be changed
         //in future remove reliance on hard coded xaml
         private static readonly int XMAX = 20;
@@ -108,15 +104,6 @@ namespace EEGfront
             leftToggle = Visibility.Visible;
             rightToggle = Visibility.Visible;
 
-
-            //draw = new Thread(new ThreadStart(Draw));
-            //draw.Start();
-
-            //private Brush _colorr = Brushes.Red;
-            //SnakeGame = Brushes.Green
-            //snakeGame = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
-            //int[,] array6 = new int[10, 10];
-
             for (int i = 0; i < XMAX; i++)
             {
                 snakeGame[i] = new SolidColorBrush[XMAX];
@@ -148,44 +135,7 @@ namespace EEGfront
             snakeLogic.MoveSnake();
             snakeLogic.Detect();
             RedrawBoard();
-
         }
-
-        //private bool CollisionDetect()
-        //{
-        //    if (SnakeX < 0)
-        //    {
-        //        SnakeX = XMAX - 1;
-        //        return false;
-        //    }
-        //    if (SnakeY < 0)
-        //    {
-        //        SnakeY = YMAX - 1;
-        //        return false;
-        //    }
-
-        //    if (SnakeX > 19)
-        //    {
-        //        SnakeX = 0;
-        //        return false;
-        //    }
-        //    if (SnakeY > 19)
-        //    {
-        //        SnakeY = 0;
-        //        return false;
-        //    }
-
-        //    if (SnakeX == appleX && SnakeY == appleY)
-        //    {
-        //        snakeGameProx[appleX][appleY] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 0));
-        //        appleX = NewApplePos();
-        //        appleY = NewApplePos();
-        //        snakeGameProx[appleX][appleY] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
-        //        Snake.AddLast(new Vector(SnakeX, SnakeY));
-        //        return true;
-        //    }
-        //    return false;
-        //}
 
         private void RedrawBoard()
         {
@@ -195,7 +145,6 @@ namespace EEGfront
                     snakeGameProx[j][k] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 0));
 
             // draw snake
-
             foreach (SnakeCube v in snakeLogic.GetSnakeList())
                 snakeGameProx[v.Y][v.X] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
 
@@ -364,8 +313,6 @@ namespace EEGfront
         }
         private async void PackLearn(int dir)
         {
-            var x = machineStudent.MachineLearn(stream.DataWindow);
-
             machineStudent.UpdateSVM(stream.DataWindow, dir);
 
             var payload = new MemoryStream();
@@ -405,7 +352,7 @@ namespace EEGfront
             s.Close();
         }
 
-        private async void AutoTest()
+        private void AutoTest()
         {
             try
             {
