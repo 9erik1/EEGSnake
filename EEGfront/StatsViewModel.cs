@@ -71,15 +71,18 @@ namespace EEGfront
             Title[2] = "O1";
             Title[3] = "O2";
 
-            OxyAxisLabels = new string[Title.Length * 2];
-            OxyAxisLabels[0] = "Frequency (Hz)";       // 1st x-axis            
-            OxyAxisLabels[1] = "Signal (ADUs)";        // 1st y-axis            
-            OxyAxisLabels[2] = "Frequency (Hz)";       // 2nd x-axis            
-            OxyAxisLabels[3] = "Signal (ADUs)";        // 2nd y-axis            
-            OxyAxisLabels[4] = "Frequency (Hz)";       // 3rd x-axis            
-            OxyAxisLabels[5] = "Signal (ADUs)";        // 3rd y-axis            
-            OxyAxisLabels[6] = "Frequency (Hz)";       // 4th x-axis
-            OxyAxisLabels[7] = "Signal (ADUs)";        // 4th y-axis
+            OxyAxisLabels = new ObservableCollection<string>();
+            OxyAxisLabels.Add("Time");       // 1st x-axis            
+            OxyAxisLabels.Add("Mag");       // 1st y-axis
+            OxyAxisLabels.Add("Time");       // 1st x-axis            
+            OxyAxisLabels.Add("Mag");       // 1st y-axis            
+            OxyAxisLabels.Add("Time");       // 1st x-axis            
+            OxyAxisLabels.Add("Mag");       // 1st y-axis            
+            OxyAxisLabels.Add("Time");       // 1st x-axis            
+            OxyAxisLabels.Add("Mag");       // 1st y-axis            
+
+
+
 
             mathServ = DataProcessingPlant.Instance;
 
@@ -138,6 +141,35 @@ namespace EEGfront
             // obvious duplicated draw and obvious mathserv should take Queue<double>
             Queue<double>[] data = stream.DataWindow;
 
+            if (IsFFT)
+            {
+                if (OxyAxisLabels[0] != "Frequency (Hz)")
+                {
+                    OxyAxisLabels[0] = "Frequency (Hz)";       // 1st x-axis            
+                    OxyAxisLabels[1] = "Signal (ADUs)";        // 1st y-axis            
+                    OxyAxisLabels[2] = "Frequency (Hz)";       // 2nd x-axis            
+                    OxyAxisLabels[3] = "Signal (ADUs)";        // 2nd y-axis            
+                    OxyAxisLabels[4] = "Frequency (Hz)";       // 3rd x-axis            
+                    OxyAxisLabels[5] = "Signal (ADUs)";        // 3rd y-axis            
+                    OxyAxisLabels[6] = "Frequency (Hz)";       // 4th x-axis
+                    OxyAxisLabels[7] = "Signal (ADUs)";        // 4th y-axis
+                }
+            }
+            else
+            {
+                if (OxyAxisLabels[0] != "Time")
+                {
+                    OxyAxisLabels[0] = "Time";       // 1st x-axis            
+                    OxyAxisLabels[1] = "Mag";        // 1st y-axis            
+                    OxyAxisLabels[2] = "Time";       // 2nd x-axis            
+                    OxyAxisLabels[3] = "Mag";        // 2nd y-axis            
+                    OxyAxisLabels[4] = "Time";       // 3rd x-axis            
+                    OxyAxisLabels[5] = "Mag";        // 3rd y-axis            
+                    OxyAxisLabels[6] = "Time";       // 4th x-axis
+                    OxyAxisLabels[7] = "Mag";        // 4th y-axis
+                }
+            }
+
             if (IsRaw)
             {
                 DrawLines(data);
@@ -171,7 +203,7 @@ namespace EEGfront
                     rawData = mathServ.BW_hi_5(rawData);
                     foreach (double d in rawData)
                     {
-                        da[i].Enqueue(d);                  
+                        da[i].Enqueue(d);
                     }
                     i++;
                 }
@@ -337,8 +369,8 @@ namespace EEGfront
             //        }
             //        i--;
             //    }
-        
-            
+
+
         }
 
         private void GraphRawOnly()
@@ -488,6 +520,7 @@ namespace EEGfront
                 if (IsRaw)
                     IsRaw = false;
                 isFFT = value;
+
                 NotifyPropertyChanged();
             }
         }
@@ -550,7 +583,16 @@ namespace EEGfront
         }
 
         public string[] Title { get; private set; }
-        public string[] OxyAxisLabels { get; private set; }
+        private ObservableCollection<string> oxyAxisLabels;
+        public ObservableCollection<string> OxyAxisLabels
+        {
+            get { return oxyAxisLabels; }
+            set
+            {
+                oxyAxisLabels = value;
+                NotifyPropertyChanged();
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
