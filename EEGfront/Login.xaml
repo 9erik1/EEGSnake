@@ -11,7 +11,7 @@
             <TextBlock Margin="10" FontSize="20">HON of New Earth</TextBlock>
             <TextBox Height="30" Width="200" Text="{Binding User}"></TextBox>
             <TextBox Height="30" Width="200" Text="{Binding Pass}"></TextBox>
-            <Button Command="{Binding OptionChanged}" Margin="10">Login</Button>
+            <Button Command="{Binding OptionChanged}" Margin="10" IsDefault="True" >Login</Button>
             <TextBlock TextWrapping="Wrap" Height="30" Width="200" Text="{Binding Err}"></TextBlock>
         </StackPanel>
 

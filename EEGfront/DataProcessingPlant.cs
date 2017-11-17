@@ -42,11 +42,11 @@ namespace EEGfront
             double[][] actual = pcaLib.Transform(pca.Transpose());
 
             // Apply Reverse PCA to Time-Series
-            double[][] removedComp = new double[2][];
-            removedComp[0] = pcaLib.ComponentVectors[1];
-            removedComp[1] = pcaLib.ComponentVectors[2];
+            double[][] reconstructedComp = new double[2][];
+            reconstructedComp[0] = pcaLib.ComponentVectors[1];
+            reconstructedComp[1] = pcaLib.ComponentVectors[2];
 
-            actual = actual.Dot(removedComp);
+            actual = actual.Dot(reconstructedComp);
             actual = actual.Transpose();
 
             Queue<Double>[] proxy = new Queue<double>[4];

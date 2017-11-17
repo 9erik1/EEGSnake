@@ -143,29 +143,29 @@ namespace EEGfront
 
             if (IsFFT)
             {
-                if (OxyAxisLabels[0] != "Frequency (Hz)")
+                if (OxyAxisLabels[0] != "Frequency Bins (0.0625Hz Wide, 64Hz max)")
                 {
-                    OxyAxisLabels[0] = "Frequency (Hz)";       // 1st x-axis            
-                    OxyAxisLabels[1] = "Signal (ADUs)";        // 1st y-axis            
-                    OxyAxisLabels[2] = "Frequency (Hz)";       // 2nd x-axis            
-                    OxyAxisLabels[3] = "Signal (ADUs)";        // 2nd y-axis            
-                    OxyAxisLabels[4] = "Frequency (Hz)";       // 3rd x-axis            
-                    OxyAxisLabels[5] = "Signal (ADUs)";        // 3rd y-axis            
-                    OxyAxisLabels[6] = "Frequency (Hz)";       // 4th x-axis
-                    OxyAxisLabels[7] = "Signal (ADUs)";        // 4th y-axis
+                    OxyAxisLabels[0] = "Frequency Bins (0.0625Hz Wide, 64Hz max)";       // 1st x-axis            
+                    OxyAxisLabels[1] = "Power Spectrum";        // 1st y-axis            
+                    OxyAxisLabels[2] = "Frequency Bins (0.0625Hz Wide, 64Hz max)";       // 2nd x-axis            
+                    OxyAxisLabels[3] = "Power Spectrum";        // 2nd y-axis            
+                    OxyAxisLabels[4] = "Frequency Bins (0.0625Hz Wide, 64Hz max)";       // 3rd x-axis            
+                    OxyAxisLabels[5] = "Power Spectrum";        // 3rd y-axis            
+                    OxyAxisLabels[6] = "Frequency Bins (0.0625Hz Wide, 64Hz max)";       // 4th x-axis
+                    OxyAxisLabels[7] = "Power Spectrum";        // 4th y-axis
                 }
             }
             else
             {
-                if (OxyAxisLabels[0] != "Time")
+                if (OxyAxisLabels[0] != "Time (128 samples per Sec)")
                 {
-                    OxyAxisLabels[0] = "Time";       // 1st x-axis            
-                    OxyAxisLabels[1] = "Mag";        // 1st y-axis            
-                    OxyAxisLabels[2] = "Time";       // 2nd x-axis            
-                    OxyAxisLabels[3] = "Mag";        // 2nd y-axis            
-                    OxyAxisLabels[4] = "Time";       // 3rd x-axis            
+                    OxyAxisLabels[0] = "Time (128 Samples per Sec)";       // 1st x-axis            
+                    OxyAxisLabels[1] = "Mag";        // 1st y-axis
+                    OxyAxisLabels[2] = "Time (128 Samples per Sec)"; //2nd x-axis
+                    OxyAxisLabels[3] = "Mag";        // 2nd y-axis
+                    OxyAxisLabels[4] = "Time (128 Samples per Sec)"; //3rd x-axis
                     OxyAxisLabels[5] = "Mag";        // 3rd y-axis            
-                    OxyAxisLabels[6] = "Time";       // 4th x-axis
+                    OxyAxisLabels[6] = "Time (128 Ssamples per Sec)";       // 4th x-axis
                     OxyAxisLabels[7] = "Mag";        // 4th y-axis
                 }
             }
