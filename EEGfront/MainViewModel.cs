@@ -18,23 +18,13 @@ namespace EEGfront
 {
     public class MainViewModel : INotifyPropertyChanged
     {
+        private string secretidtag = "";
         //these max values are hard coded into xaml grid and can not be changed
         //in future remove reliance on hard coded xaml
         private static readonly int XMAX = 20;
         private static readonly int YMAX = 20;
 
-        private static MainViewModel instance;
-        public static MainViewModel Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new MainViewModel("");
-                }
-                return instance;
-            }
-        }
+
         public enum AppState
         {
             Game,
@@ -53,7 +43,7 @@ namespace EEGfront
         MulticlassSupportVectorMachine<Gaussian> currentClassifier;
         private Snake snakeLogic;
 
-        private MainViewModel(string idTag)
+        public MainViewModel(string idTag)
         {
             snakeLogic = new Snake();
             restService = Rest.Instance;
@@ -65,7 +55,7 @@ namespace EEGfront
 
             Task.Run(async () =>
             {
-                T_I_M = await restService.PostCurrentRaw("8");
+                T_I_M = await restService.PostCurrentRaw(idTag);
                 Console.WriteLine(T_I_M);
                 if (T_I_M == null)
                     T_I_M = new TrainingInputManager();
@@ -76,7 +66,7 @@ namespace EEGfront
             //    Console.WriteLine("asd");
             //}));
 
-            Task.Run(async () => currentClassifier = await restService.PostCurrent("13"));
+            Task.Run(async () => currentClassifier = await restService.PostCurrent(idTag));
 
             // Example 
             //await restService.Get("https://zotac.mikedev.ca:5900/rest/");
@@ -123,11 +113,10 @@ namespace EEGfront
             snakeGameProx[(int)efrg.X][(int)efrg.Y] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
             SnakeGame = (SolidColorBrush[][])snakeGameProx.Clone();
 
-            //Task.Run(async () =>
-            //{
-            //    await Task.Delay
-            //    currentClassifier = await restService.PostCurrent("13");
-            //});
+            Task.Run(async () =>
+            {
+                currentClassifier = await restService.PostCurrent("13");
+            });
         }
 
         public void LymeCanada()
@@ -319,7 +308,7 @@ namespace EEGfront
 
             Serializer.Save(machineStudent.Learn, payload);
             payload.Position = 0;
-            await restService.UpdateModelRaw("8", payload);
+            await restService.UpdateModelRaw(secretidtag, payload);
             payload.Close();
         }
         private async void PackRaw(int dir)
@@ -348,7 +337,7 @@ namespace EEGfront
 
             formatter.Serialize(s, T_I_M);
             s.Position = 0;
-            await restService.UpdateModelRaw("8", s);
+            await restService.UpdateModelRaw(secretidtag, s);
             s.Close();
         }
 

@@ -12,7 +12,7 @@ namespace EEGfront
 
         public LoginViewModel()
         {
-            User = "Satan";
+            User = "60Hurts";
             Pass = "IN";
 
             //using of the login module
@@ -36,7 +36,8 @@ namespace EEGfront
                 if (!string.IsNullOrEmpty(userid))
                 {
                     var pca = new MainWindow();
-                    pca.DataContext = MainViewModel.Instance;
+                    var x = new MainViewModel(userid);            
+                    pca.DataContext = x;
 
                     pca.Show();
                     pca.Closing += Pca_Closed;

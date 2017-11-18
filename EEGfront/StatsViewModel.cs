@@ -81,9 +81,6 @@ namespace EEGfront
             OxyAxisLabels.Add("Time");       // 1st x-axis            
             OxyAxisLabels.Add("Mag");       // 1st y-axis            
 
-
-
-
             mathServ = DataProcessingPlant.Instance;
 
             CompositionTarget.Rendering += (s, a) =>
