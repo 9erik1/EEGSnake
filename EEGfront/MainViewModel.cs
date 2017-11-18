@@ -115,7 +115,7 @@ namespace EEGfront
 
             Task.Run(async () =>
             {
-                currentClassifier = await restService.PostCurrent("13");
+                currentClassifier = await restService.PostCurrent(idTag);
             });
         }
 
