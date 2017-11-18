@@ -294,6 +294,7 @@ namespace EEGfront
                 }
 
                 PackRaw(Dir);
+                PackLearn(Dir);
             }
             catch (Exception e)
             {
@@ -308,7 +309,7 @@ namespace EEGfront
 
             Serializer.Save(machineStudent.Learn, payload);
             payload.Position = 0;
-            await restService.UpdateModelRaw(secretidtag, payload);
+            await restService.UpdateModelLern(secretidtag, payload);
             payload.Close();
         }
         private async void PackRaw(int dir)

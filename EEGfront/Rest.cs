@@ -104,7 +104,7 @@ namespace EEGfront
         /// returns a JSON response with a success or error message.</para>
         /// <seealso cref="Rest.cs"/>
         /// </summary>
-        public async Task<string> UpdateModel(string user_id, Stream content)
+        public async Task<string> UpdateModelLern(string user_id, Stream content)
         {
 
             MultipartFormDataContent formdata = new MultipartFormDataContent();
