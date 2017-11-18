@@ -347,11 +347,8 @@ namespace EEGfront
             {
                 int x = Trials * 1000;
                 await Task.Delay(x);
-                //var x = await restService.PostCurrent("8");
-
-                var y = machineStudent.AnswerSVM(stream.DataWindow);
-
-                Console.WriteLine("Auto Test" + y);
+                PackLearn(Dir);
+                Console.WriteLine("Auto Test" + Dir.ToString());
             }
             catch (Exception e)
             {
