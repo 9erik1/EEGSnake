@@ -1,13 +1,8 @@
-﻿
-using Accord.MachineLearning.VectorMachines;
+﻿using Accord.MachineLearning.VectorMachines;
 using Accord.MachineLearning.VectorMachines.Learning;
-using Accord.Math;
-using Accord.Statistics.Analysis;
 using Accord.Statistics.Kernels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
 
 namespace EEGfront
 {
@@ -26,12 +21,13 @@ namespace EEGfront
         /// </summary>
         public void UpdateSVM(Queue<Double>[] rawStream, int output)//Know your output
         {
-            double[][] aggregateData = mathServ.ApplyPCArr(rawStream);
+            Queue<Double>[] aggregateData = mathServ.ApplyPCAue(rawStream);
+            aggregateData = mathServ.Conversion_fft(aggregateData);
             double[][] inputs =
             {
-                aggregateData[1],
-                aggregateData[2],
-                aggregateData[3]
+                aggregateData[1].ToArray(),
+                aggregateData[2].ToArray(),
+                aggregateData[3].ToArray()
             };
             int[] outputs =
             {
@@ -52,14 +48,9 @@ namespace EEGfront
                 }
             };
 
-            if (Learn == null)
-            {
-                Learn = teacher.Learn(inputs, outputs);
-            }
-            else
-            {
-                //Learn = Learn.Concatenate(teacher.Learn(inputs, outputs))[0];
-            }
+
+            Learn = teacher.Learn(inputs, outputs);
+
         }
 
         public int[] AnswerSVM(Queue<Double>[] rawStream)
