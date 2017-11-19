@@ -357,6 +357,23 @@ namespace EEGfront
             s.Close();
         }
 
+        private async void Clear()
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream s = new MemoryStream();
+
+            T_I_M = new TrainingInputManager();
+
+            formatter.Serialize(s, T_I_M);
+            Console.WriteLine(string.Format("TIM DOWN: {0}", T_I_M.Down.Count.ToString()));
+            Console.WriteLine(string.Format("TIM UP: {0}", T_I_M.Up.Count.ToString()));
+            Console.WriteLine(string.Format("TIM LEFT: {0}", T_I_M.Left.Count.ToString()));
+            Console.WriteLine(string.Format("TIM RIGHT: {0}", T_I_M.Right.Count.ToString()));
+            s.Position = 0;
+            await restService.UpdateModelRaw(secretidtag, s);
+            s.Close();
+        }
+
         private async void Learn()
         {
             try
@@ -438,6 +455,21 @@ namespace EEGfront
                         p => this.Answer());
                 }
                 return answerCommand;
+            }
+        }
+
+        private ICommand clearCommand;
+        public ICommand ClearCommand
+        {
+            get
+            {
+                if (clearCommand == null)
+                {
+                    clearCommand = new RelayCommand(
+                        p => true,
+                        p => this.Clear());
+                }
+                return clearCommand;
             }
         }
 

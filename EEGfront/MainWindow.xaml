@@ -490,6 +490,7 @@
 
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding TrainToggle}">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                <Button Height="20" Width="50" Content="Clear" Command="{Binding ClearCommand}" ></Button>
                 <Button Height="20" Width="50" Content="Learn" Command="{Binding AutoCommand}" ></Button>
                 <Button Height="20" Width="50" Content="Test" Command="{Binding ManualCommand}"></Button>
                 <Button Height="20" Width="50" Content="TODO" Command="{Binding AnswerCommand}"></Button>

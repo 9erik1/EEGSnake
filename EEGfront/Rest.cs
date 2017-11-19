@@ -180,7 +180,7 @@ namespace EEGfront
             }
             catch (Exception e)
             {
-                Console.WriteLine("WARNING TODO ALERT COMMENT CODE PLS: "+e);
+                Console.WriteLine("Error in raw retrieval: "+e);
                 return null;
             }
         }
