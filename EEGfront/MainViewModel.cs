@@ -350,8 +350,10 @@ namespace EEGfront
             {
                 //int x = Trials * 1000;
                 //await Task.Delay(x);
-                await PackLearn(Dir);
-                Console.WriteLine("Learn Updated" + Dir.ToString());
+                string svmClass = "";
+                svmClass = await PackLearn(Dir);
+                Console.WriteLine("Learn Updated: " + Dir.ToString());
+                Console.WriteLine("SVM Updated: " + svmClass.ToString());
             }
             catch (Exception e)
             {

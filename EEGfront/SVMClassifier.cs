@@ -20,45 +20,13 @@ namespace EEGfront
             mathServ = DataProcessingPlant.Instance;
         }
 
-        private double[][] ApplyPCA(Queue<Double>[] rawStream)
-        {
-            PrincipalComponentAnalysis pcaLib = new PrincipalComponentAnalysis(PrincipalComponentMethod.Center);
-
-            var pca = new double[4][];
-            pca[0] = rawStream[0].ToArray();
-            pca[1] = rawStream[1].ToArray();
-            pca[2] = rawStream[2].ToArray();
-            pca[3] = rawStream[3].ToArray();
-
-            for (int p = 0; p < pca.Count(); p++)
-                pca[p] = mathServ.BW_hi_5(pca[p]);
-
-            // Apply PCA
-            var x = pcaLib.Learn(pca.Transpose());
-            double[][] actual = pcaLib.Transform(pca.Transpose());
-
-            // Apply Reverse PCA to Time-Series
-            double[][] removedComp = new double[2][];
-            removedComp[0] = pcaLib.ComponentVectors[0];
-            removedComp[1] = pcaLib.ComponentVectors[1];
-
-            actual = actual.Dot(pcaLib.ComponentVectors);
-            actual = actual.Transpose();
-
-            // Apply FFT
-            Complex[][] transformed_data = new Complex[actual.Count()][];
-            for (int f = 0; f < actual.Count(); f++)
-            {
-                transformed_data[f] = new Complex[actual[f].Count()];
-                //transformed_data[f] = mathServ.Conversion_fft(actual[f]);//this is need
-            }
-
-            return actual;
-        }
-
+        /// <summary>UpdateSVM is a method in the SVMClassifier class.
+        /// <para></para>
+        /// <seealso cref="SVMClassifier.cs"/>
+        /// </summary>
         public void UpdateSVM(Queue<Double>[] rawStream, int output)//Know your output
         {
-            double[][] aggregateData = ApplyPCA(rawStream);
+            double[][] aggregateData = mathServ.ApplyPCArr(rawStream);
             double[][] inputs =
             {
                 aggregateData[1],
@@ -96,7 +64,7 @@ namespace EEGfront
 
         public int[] AnswerSVM(Queue<Double>[] rawStream)
         {
-            double[][] aggregateData = ApplyPCA(rawStream);
+            double[][] aggregateData = mathServ.ApplyPCArr(rawStream);
             double[][] testinput =
             {
                 aggregateData[1],

@@ -27,7 +27,7 @@ namespace EEGfront
         /// returns: PCA applied subtracting the first and last components</para>
         /// <seealso cref="DataProcessingPlant.cs"/>
         /// </summary>
-        public Queue<Double>[] ApplyPCA(Queue<Double>[] rawStream)
+        public Queue<Double>[] ApplyPCAue(Queue<Double>[] rawStream)
         {
             PrincipalComponentAnalysis pcaLib = new PrincipalComponentAnalysis(PrincipalComponentMethod.Center);
 
@@ -62,6 +62,16 @@ namespace EEGfront
 
 
             return proxy;
+        }
+
+        /// <summary>ApplyPCA is a method in the DataProcessingPlant class.
+        /// <para>TODO: Comment
+        /// returns: PCA applied subtracting the first and last components</para>
+        /// <seealso cref="DataProcessingPlant.cs"/>
+        /// </summary>
+        public double[][] ApplyPCArr(Queue<Double>[] rawStream)
+        {
+            return Todo(rawStream);
         }
 
         /// <summary>GetPcaComponent is a method in the DataProcessingPlant class.
@@ -163,6 +173,30 @@ namespace EEGfront
 
             return dd7;
 
+        }
+
+        private double[][] Todo(Queue<Double>[] rawStream)
+        {
+            PrincipalComponentAnalysis pcaLib = new PrincipalComponentAnalysis(PrincipalComponentMethod.Center);
+
+            var pca = new double[4][];
+            pca[0] = rawStream[0].ToArray();
+            pca[1] = rawStream[1].ToArray();
+            pca[2] = rawStream[2].ToArray();
+            pca[3] = rawStream[3].ToArray();
+
+            // Apply PCA
+            pcaLib.Learn(pca.Transpose());
+            double[][] actual = pcaLib.Transform(pca.Transpose());
+
+            // Apply Reverse PCA to Time-Series
+            double[][] reconstructedComp = new double[2][];
+            reconstructedComp[0] = pcaLib.ComponentVectors[1];
+            reconstructedComp[1] = pcaLib.ComponentVectors[2];
+
+            actual = actual.Dot(reconstructedComp);
+            actual = actual.Transpose();
+            return actual;
         }
     }
 }

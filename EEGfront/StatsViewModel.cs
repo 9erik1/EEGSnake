@@ -186,7 +186,7 @@ namespace EEGfront
             else if (IsPCA && !IsFFT && !IsBudder)
             {
                 Queue<double>[] da = new Queue<double>[4];
-                da = mathServ.ApplyPCA(data);
+                da = mathServ.ApplyPCAue(data);
                 DrawLines(da);
             }
             else if (IsBudder && !IsPCA && !IsPCAComponent && !IsFFT)
@@ -221,7 +221,7 @@ namespace EEGfront
                     }
                     i++;
                 }
-                da = mathServ.ApplyPCA(da);
+                da = mathServ.ApplyPCAue(da);
                 DrawLines(da);
             }
             else if (IsBudder && IsPCA && IsFFT)
@@ -239,7 +239,7 @@ namespace EEGfront
                     }
                     i++;
                 }
-                da = mathServ.ApplyPCA(da);
+                da = mathServ.ApplyPCAue(da);
                 da = mathServ.Conversion_fft(da);
                 DrawLines(da);
             }
@@ -301,7 +301,7 @@ namespace EEGfront
             else if (IsPCA && IsFFT)
             {
                 Queue<double>[] da = new Queue<double>[4];
-                da = mathServ.ApplyPCA(data);
+                da = mathServ.ApplyPCAue(data);
                 da = mathServ.Conversion_fft(da);
                 DrawLines(da);
             }
