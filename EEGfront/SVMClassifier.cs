@@ -67,11 +67,12 @@ namespace EEGfront
         /// </summary>
         public int[] AnswerSVM(Queue<Double>[] rawStream)
         {
-            double[][] aggregateData = mathServ.ApplyPCArr(rawStream);
+            Queue<Double>[] aggregateData = mathServ.ApplyPCAue(rawStream);
+            aggregateData = mathServ.Conversion_fft(aggregateData);
             double[][] testinput =
             {
-                aggregateData[1],
-                aggregateData[2]
+                aggregateData[1].ToArray(),
+                aggregateData[2].ToArray()
             };
             int[] predicted = Learn.Decide(testinput);
             return predicted;
