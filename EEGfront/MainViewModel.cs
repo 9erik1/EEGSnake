@@ -294,7 +294,7 @@ namespace EEGfront
                 }
 
                 PackRaw(Dir);
-                PackLearn(Dir);
+                //await PackLearn(Dir);
             }
             catch (Exception e)
             {
@@ -339,6 +339,10 @@ namespace EEGfront
             }
 
             formatter.Serialize(s, T_I_M);
+            Console.WriteLine(string.Format("TIM DOWN: {0}",T_I_M.Down.Count.ToString()));
+            Console.WriteLine(string.Format("TIM UP: {0}", T_I_M.Up.Count.ToString()));
+            Console.WriteLine(string.Format("TIM LEFT: {0}", T_I_M.Left.Count.ToString()));
+            Console.WriteLine(string.Format("TIM RIGHT: {0}", T_I_M.Right.Count.ToString()));
             s.Position = 0;
             await restService.UpdateModelRaw(secretidtag, s);
             s.Close();
@@ -352,6 +356,23 @@ namespace EEGfront
                 //await Task.Delay(x);
                 string svmClass = "";
                 svmClass = await PackLearn(Dir);
+                Console.WriteLine("Learn Updated: " + Dir.ToString());
+                Console.WriteLine("SVM Updated: " + svmClass.ToString());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Failed for basic reason: " + e);
+            }
+        }
+
+        private void Answer()
+        {
+            try
+            {
+                //int x = Trials * 1000;
+                //await Task.Delay(x);
+                int[] svmClass;
+                svmClass = machineStudent.AnswerSVM(stream.DataWindow);
                 Console.WriteLine("Learn Updated: " + Dir.ToString());
                 Console.WriteLine("SVM Updated: " + svmClass.ToString());
             }
@@ -393,6 +414,21 @@ namespace EEGfront
                         p => this.ManTest());
                 }
                 return manualCommand;
+            }
+        }
+
+        private ICommand answerCommand;
+        public ICommand AnswerCommand
+        {
+            get
+            {
+                if (answerCommand == null)
+                {
+                    answerCommand = new RelayCommand(
+                        p => true,
+                        p => this.Answer());
+                }
+                return answerCommand;
             }
         }
 
