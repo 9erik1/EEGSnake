@@ -12,7 +12,7 @@ namespace EEGfront
 
         public LoginViewModel()
         {
-            User = "60Hurts";
+            User = "60Hurtz";
             Pass = "IN";
 
             //using of the login module

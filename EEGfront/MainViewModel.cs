@@ -301,16 +301,18 @@ namespace EEGfront
                 Console.WriteLine("Failed for basic reason: " + e);
             }
         }
-        private async void PackLearn(int dir)
+        private async Task<string> PackLearn(int dir)
         {
+            string x = "";
             machineStudent.UpdateSVM(stream.DataWindow, dir);
 
             var payload = new MemoryStream();
 
             Serializer.Save(machineStudent.Learn, payload);
             payload.Position = 0;
-            await restService.UpdateModelLern(secretidtag, payload);
+            x = await restService.UpdateModelLern(secretidtag, payload);
             payload.Close();
+            return x;
         }
         private async void PackRaw(int dir)
         {
@@ -342,14 +344,14 @@ namespace EEGfront
             s.Close();
         }
 
-        private async void AutoTest()
+        private async void Learn()
         {
             try
             {
-                int x = Trials * 1000;
-                await Task.Delay(x);
-                PackLearn(Dir);
-                Console.WriteLine("Auto Test" + Dir.ToString());
+                //int x = Trials * 1000;
+                //await Task.Delay(x);
+                await PackLearn(Dir);
+                Console.WriteLine("Learn Updated" + Dir.ToString());
             }
             catch (Exception e)
             {
@@ -371,7 +373,7 @@ namespace EEGfront
                 {
                     autoCommand = new RelayCommand(
                         p => true,
-                        p => this.AutoTest());
+                        p => this.Learn());
                 }
                 return autoCommand;
             }
