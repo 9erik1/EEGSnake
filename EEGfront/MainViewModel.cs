@@ -303,31 +303,19 @@ namespace EEGfront
                 }
 
                 PackRaw(Dir);
-                //await PackLearn(Dir);
+                PackLearn(Dir);
             }
             catch (Exception e)
             {
                 Console.WriteLine("Failed for basic reason: " + e);
             }
         }
-        private async Task<string> PackLearn(int dir)
+        private void PackLearn(int dir)
         {
-            string x = "";
             machineStudent.UpdateSVM(stream.DataWindow, dir);
-
-            var payload = new MemoryStream();
-
-            Serializer.Save(machineStudent.Learn, payload);
-            payload.Position = 0;
-            x = await restService.UpdateModelLern(secretidtag, payload);
-            payload.Close();
-            return x;
         }
-        private async void PackRaw(int dir)
+        private void PackRaw(int dir)
         {
-            IFormatter formatter = new BinaryFormatter();
-            Stream s = new MemoryStream();
-
             switch (dir)
             {
                 case 0:
@@ -346,15 +334,6 @@ namespace EEGfront
                     Console.WriteLine("Default case");
                     break;
             }
-
-            formatter.Serialize(s, T_I_M);
-            Console.WriteLine(string.Format("TIM DOWN: {0}",T_I_M.Down.Count.ToString()));
-            Console.WriteLine(string.Format("TIM UP: {0}", T_I_M.Up.Count.ToString()));
-            Console.WriteLine(string.Format("TIM LEFT: {0}", T_I_M.Left.Count.ToString()));
-            Console.WriteLine(string.Format("TIM RIGHT: {0}", T_I_M.Right.Count.ToString()));
-            s.Position = 0;
-            await restService.UpdateModelRaw(secretidtag, s);
-            s.Close();
         }
 
         private async void Clear()
@@ -372,23 +351,6 @@ namespace EEGfront
             s.Position = 0;
             await restService.UpdateModelRaw(secretidtag, s);
             s.Close();
-        }
-
-        private async void Learn()
-        {
-            try
-            {
-                //int x = Trials * 1000;
-                //await Task.Delay(x);
-                string svmClass = "";
-                svmClass = await PackLearn(Dir);
-                Console.WriteLine("Learn Updated: " + Dir.ToString());
-                Console.WriteLine("SVM Updated: " + svmClass.ToString());
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Failed for basic reason: " + e);
-            }
         }
 
         private void Answer()
@@ -414,25 +376,32 @@ namespace EEGfront
             }
         }
 
+        private async void Push()
+        {
+            //raw
+            IFormatter formatter = new BinaryFormatter();
+            Stream s = new MemoryStream();
+            formatter.Serialize(s, T_I_M);
+            Console.WriteLine(string.Format("TIM DOWN: {0}", T_I_M.Down.Count.ToString()));
+            Console.WriteLine(string.Format("TIM UP: {0}", T_I_M.Up.Count.ToString()));
+            Console.WriteLine(string.Format("TIM LEFT: {0}", T_I_M.Left.Count.ToString()));
+            Console.WriteLine(string.Format("TIM RIGHT: {0}", T_I_M.Right.Count.ToString()));
+            s.Position = 0;
+            await restService.UpdateModelRaw(secretidtag, s);
+            s.Close();
+
+            //svm
+            var payload = new MemoryStream();
+            Serializer.Save(machineStudent.Learn, payload);
+            payload.Position = 0;
+            await restService.UpdateModelLern(secretidtag, payload);
+            payload.Close();
+        }
+
         public string[] Title { get; private set; }
 
         public int Dir { get; set; }
         public int Trials { get; set; }
-
-        private ICommand autoCommand;
-        public ICommand AutoCommand
-        {
-            get
-            {
-                if (autoCommand == null)
-                {
-                    autoCommand = new RelayCommand(
-                        p => true,
-                        p => this.Learn());
-                }
-                return autoCommand;
-            }
-        }
 
         private ICommand manualCommand;
         public ICommand ManualCommand
@@ -476,6 +445,21 @@ namespace EEGfront
                         p => this.Clear());
                 }
                 return clearCommand;
+            }
+        }
+
+        private ICommand pushCommand;
+        public ICommand PushCommand
+        {
+            get
+            {
+                if (pushCommand == null)
+                {
+                    pushCommand = new RelayCommand(
+                        p => true,
+                        p => this.Push());
+                }
+                return pushCommand;
             }
         }
 
