@@ -81,21 +81,29 @@ namespace EEGfront
         /// </summary>
         public async Task<MulticlassSupportVectorMachine<Gaussian>> PostCurrent(string user_id)
         {
-            var values = new Dictionary<string, string>
+            try
+            {
+                var values = new Dictionary<string, string>
             {
                 { "user_id", user_id }
             };
 
-            var content = new FormUrlEncodedContent(values);
+                var content = new FormUrlEncodedContent(values);
 
-            var response = await client.PostAsync("https://zotac.mikedev.ca:5900/rest/currentmodel/", content);
+                var response = await client.PostAsync("https://zotac.mikedev.ca:5900/rest/currentmodel/", content);
 
-            Stream c = await response.Content.ReadAsStreamAsync();
+                Stream c = await response.Content.ReadAsStreamAsync();
+                c.Position = 0;
+                MulticlassSupportVectorMachine<Gaussian> classifier = Serializer.Load<MulticlassSupportVectorMachine<Gaussian>>(c);
 
-            MulticlassSupportVectorMachine<Gaussian> classifier = Serializer.Load<MulticlassSupportVectorMachine<Gaussian>>(c);
-
-            LogResponse(response);
-            return classifier;
+                LogResponse(response);
+                return classifier;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error in classifier retrivle: " + e);
+                return null;
+            }
         }
 
         /// <summary>UpdateModel is a method in the Rest class.
@@ -150,23 +158,31 @@ namespace EEGfront
         /// </summary>
         public async Task<TrainingInputManager> PostCurrentRaw(string user_id)
         {
-            IFormatter formatter = new BinaryFormatter();
+            try
+            {
+                IFormatter formatter = new BinaryFormatter();
 
-            var values = new Dictionary<string, string>
+                var values = new Dictionary<string, string>
             {
                 { "user_id", user_id }
             };
 
-            var content = new FormUrlEncodedContent(values);
+                var content = new FormUrlEncodedContent(values);
 
-            var response = await client.PostAsync("https://zotac.mikedev.ca:5900/rest/currentraw/", content);
+                var response = await client.PostAsync("https://zotac.mikedev.ca:5900/rest/currentraw/", content);
 
-            Stream c = await response.Content.ReadAsStreamAsync();
+                Stream c = await response.Content.ReadAsStreamAsync();
+                c.Position = 0;
+                TrainingInputManager classifier = (TrainingInputManager)formatter.Deserialize(c);
 
-            TrainingInputManager classifier = (TrainingInputManager)formatter.Deserialize(c);
-
-            LogResponse(response);
-            return classifier;
+                LogResponse(response);
+                return classifier;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("WARNING TODO ALERT COMMENT CODE PLS: "+e);
+                return null;
+            }
         }
 
         /// <summary>UpdateModelRaw Sends the TIM Raw.

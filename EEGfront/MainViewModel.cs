@@ -53,20 +53,34 @@ namespace EEGfront
 
             T_I_M = new TrainingInputManager();
 
-            Task.Run(async () =>
+            if (!string.IsNullOrEmpty(idTag))
             {
-                T_I_M = await restService.PostCurrentRaw(idTag);
-                Console.WriteLine(T_I_M);
-                if (T_I_M == null)
-                    T_I_M = new TrainingInputManager();
-            });
+                Task.Run(async () =>
+                {
+                    T_I_M = await restService.PostCurrentRaw(idTag);
+                    Console.WriteLine(T_I_M);
+                    if (T_I_M == null)
+                    {
+                        T_I_M = new TrainingInputManager();
+                        Console.WriteLine("success creating new TIM");
+                    }
+                    else
+                    {
+                        Console.WriteLine("success creating TIM from the cloud");
+                    }
+                });
+
+                Task.Run(async () =>
+                {
+                    currentClassifier = await restService.PostCurrent(idTag);
+                    Console.WriteLine("success retriving current classifier");
+                });
+            }
 
             //Dispatcher.BeginInvoke((Action)(() =>
             //{
             //    Console.WriteLine("asd");
             //}));
-
-            Task.Run(async () => currentClassifier = await restService.PostCurrent(idTag));
 
             // Example 
             //await restService.Get("https://zotac.mikedev.ca:5900/rest/");
@@ -112,11 +126,6 @@ namespace EEGfront
             var efrg = snakeLogic.GetApplePos();
             snakeGameProx[(int)efrg.X][(int)efrg.Y] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
             SnakeGame = (SolidColorBrush[][])snakeGameProx.Clone();
-
-            Task.Run(async () =>
-            {
-                currentClassifier = await restService.PostCurrent(idTag);
-            });
         }
 
         public void LymeCanada()

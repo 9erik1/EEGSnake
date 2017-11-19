@@ -36,12 +36,14 @@ namespace EEGfront
                 if (!string.IsNullOrEmpty(userid))
                 {
                     var pca = new MainWindow();
+
+                    userid = userid.Trim('}');
                     var x = new MainViewModel(userid);            
                     pca.DataContext = x;
 
                     pca.Show();
                     pca.Closing += Pca_Closed;
-                }
+                }   
             }
             catch (Exception e)
             {
