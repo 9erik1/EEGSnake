@@ -493,7 +493,7 @@
                 <Button Height="20" Width="50" Content="Clear" Command="{Binding ClearCommand}" ></Button>
                 <Button Height="20" Width="50" Content="Learn" Command="{Binding AutoCommand}" ></Button>
                 <Button Height="20" Width="50" Content="Test" Command="{Binding ManualCommand}"></Button>
-                <Button Height="20" Width="50" Content="Push" Command="{Binding AnswerCommand}"></Button>
+                <Button Height="20" Width="50" Content="Answer" Command="{Binding AnswerCommand}"></Button>
                 <Label Content="Direction"></Label>
                 <TextBox Height="20" Width="50" Text="{Binding Dir}"></TextBox>
                 <Label Content="Count"></Label>
