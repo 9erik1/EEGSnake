@@ -19,22 +19,55 @@ namespace EEGfront
         /// <para>Takes rawStream and learns a guassian multi class Support Vector Machine</para>
         /// <seealso cref="SVMClassifier.cs"/>
         /// </summary>
-        public void UpdateSVM(Queue<Double>[] rawStream, int output)//Know your output
+        public void UpdateSVM(TrainingInputManager tim)//Know your output
         {
-            Queue<Double>[] aggregateData = mathServ.ApplyPCAue(rawStream);
-            aggregateData = mathServ.Conversion_fft(aggregateData);
-            double[][] inputs =
+            var w = tim.Up;
+            var x = tim.Right;
+            var y = tim.Down;
+            var z = tim.Left;
+            List<int> outs = new List<int>();
+            List<double[]> inns = new List<double[]>();
+
+
+            foreach (Tuple<Queue<Double>[], DateTime> qd in w)
             {
-                aggregateData[1].ToArray(),
-                aggregateData[2].ToArray(),
-                aggregateData[3].ToArray()
-            };
-            int[] outputs =
+                Queue<Double>[] aggregateData = mathServ.ApplyPCAue(qd.Item1);
+                aggregateData = mathServ.Conversion_fft(aggregateData);
+                outs.Add(0);
+                outs.Add(0);
+                inns.Add(aggregateData[1].ToArray());
+                inns.Add(aggregateData[2].ToArray());
+            }
+
+            foreach (Tuple<Queue<Double>[], DateTime> qd in x)
             {
-                output,
-                output,
-                1
-            };
+                Queue<Double>[] aggregateData = mathServ.ApplyPCAue(qd.Item1);
+                aggregateData = mathServ.Conversion_fft(aggregateData);
+                outs.Add(1);
+                outs.Add(1);
+                inns.Add(aggregateData[1].ToArray());
+                inns.Add(aggregateData[2].ToArray());
+            }
+
+            foreach (Tuple<Queue<Double>[], DateTime> qd in y)
+            {
+                Queue<Double>[] aggregateData = mathServ.ApplyPCAue(qd.Item1);
+                aggregateData = mathServ.Conversion_fft(aggregateData);
+                outs.Add(2);
+                outs.Add(2);
+                inns.Add(aggregateData[1].ToArray());
+                inns.Add(aggregateData[2].ToArray());
+            }
+
+            foreach (Tuple<Queue<Double>[], DateTime> qd in z)
+            {
+                Queue<Double>[] aggregateData = mathServ.ApplyPCAue(qd.Item1);
+                aggregateData = mathServ.Conversion_fft(aggregateData);
+                outs.Add(3);
+                outs.Add(3);
+                inns.Add(aggregateData[1].ToArray());
+                inns.Add(aggregateData[2].ToArray());
+            }
 
             MulticlassSupportVectorLearning<Gaussian> teacher = new MulticlassSupportVectorLearning<Gaussian>()
             {
@@ -49,7 +82,7 @@ namespace EEGfront
             };
 
 
-            Learn = teacher.Learn(inputs, outputs);
+            Learn = teacher.Learn(inns.ToArray(), outs.ToArray());
 
         }
         /// <summary>AnswerSVM is a method in the SVMClassifier class.

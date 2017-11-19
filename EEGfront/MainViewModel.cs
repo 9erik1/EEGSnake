@@ -165,7 +165,7 @@ namespace EEGfront
         {
             Console.WriteLine("Down");
             snakeLogic.MoveDown();
-           //Console.WriteLine("X: " + SnakeX + " Y: " + SnakeY + " AX: " + appleX + " AY: " + appleY);
+            //Console.WriteLine("X: " + SnakeX + " Y: " + SnakeY + " AX: " + appleX + " AY: " + appleY);
         }
 
         public void Left()
@@ -302,16 +302,15 @@ namespace EEGfront
                         break;
                 }
                 PackRaw(Dir);
-                PackLearn(Dir);
             }
             catch (Exception e)
             {
                 Console.WriteLine("Failed for basic reason: " + e);
             }
         }
-        private void PackLearn(int dir)
+        private void PackLearn()
         {
-            machineStudent.UpdateSVM(stream.DataWindow, dir);
+            machineStudent.UpdateSVM(T_I_M);
         }
         private void PackRaw(int dir)
         {
@@ -356,6 +355,29 @@ namespace EEGfront
             s.Close();
         }
 
+        private void Learn()
+
+        {
+
+            try
+
+            {
+
+
+                PackLearn();
+                Console.WriteLine("SVM Updated Successfully");
+            }
+
+            catch (Exception e)
+
+            {
+
+                Console.WriteLine("Failed for basic reason: " + e);
+
+            }
+
+        }
+
         private void Answer()
         {
             try
@@ -365,18 +387,43 @@ namespace EEGfront
                 int[] svmClass;
                 svmClass = machineStudent.AnswerSVM(stream.DataWindow);
                 Console.WriteLine("Learn Updated: " + Dir.ToString());
-                if(svmClass.Length>0)
+                if (svmClass.Length > 0)
                 {
                     for (int i = 0; i < svmClass.Length; i++)
                     {
-                        Console.WriteLine(string.Format("Answer {0}: {1}",i.ToString(),svmClass[i].ToString()));
+                        Console.WriteLine(string.Format("Answer {0}: {1}", i.ToString(), svmClass[i].ToString()));
                     }
-                }                
+                }
             }
             catch (Exception e)
             {
                 Console.WriteLine("Failed for basic reason: " + e);
             }
+        }
+
+        private ICommand learnCommand;
+
+        public ICommand LearnCommand
+
+        {
+
+            get
+            {
+
+                if (learnCommand == null)
+
+                {
+
+                    learnCommand = new RelayCommand(
+
+                         p => true,
+
+                      p => this.Learn());
+                }
+
+                return learnCommand;
+            }
+	
         }
 
         private async void Push()
@@ -461,6 +508,7 @@ namespace EEGfront
                 return pushCommand;
             }
         }
+
 
         #region Dir Toggles  
         private Visibility upToggle;
