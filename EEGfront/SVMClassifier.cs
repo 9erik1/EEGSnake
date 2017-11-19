@@ -21,7 +21,7 @@ namespace EEGfront
         }
 
         /// <summary>UpdateSVM is a method in the SVMClassifier class.
-        /// <para></para>
+        /// <para>Takes rawStream and learns a guassian multi class Support Vector Machine</para>
         /// <seealso cref="SVMClassifier.cs"/>
         /// </summary>
         public void UpdateSVM(Queue<Double>[] rawStream, int output)//Know your output
@@ -61,7 +61,10 @@ namespace EEGfront
                 //Learn = Learn.Concatenate(teacher.Learn(inputs, outputs))[0];
             }
         }
-
+        /// <summary>AnswerSVM is a method in the SVMClassifier class.
+        /// <para>Takes rawStream and outputs class label as an array of ints.</para>
+        /// <seealso cref="SVMClassifier.cs"/>
+        /// </summary>
         public int[] AnswerSVM(Queue<Double>[] rawStream)
         {
             double[][] aggregateData = mathServ.ApplyPCArr(rawStream);
