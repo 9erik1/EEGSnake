@@ -386,7 +386,7 @@ namespace EEGfront
                 //await Task.Delay(x);
                 int[] svmClass;
                 svmClass = machineStudent.AnswerSVM(stream.DataWindow);
-                Console.WriteLine("Learn Updated: " + Dir.ToString());
+                Console.WriteLine("Learn Updated: ");
                 if (svmClass.Length > 0)
                 {
                     for (int i = 0; i < svmClass.Length; i++)

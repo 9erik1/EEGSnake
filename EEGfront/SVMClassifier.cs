@@ -43,8 +43,10 @@ namespace EEGfront
             {
                 Queue<Double>[] aggregateData = mathServ.ApplyPCAue(qd.Item1);
                 aggregateData = mathServ.Conversion_fft(aggregateData);
+                //our outs count is 6 when TIM is 4
                 outs.Add(1);
                 outs.Add(1);
+                //we have count 6 arrays instead of 4
                 inns.Add(aggregateData[1].ToArray());
                 inns.Add(aggregateData[2].ToArray());
             }
@@ -90,7 +92,7 @@ namespace EEGfront
         /// <seealso cref="SVMClassifier.cs"/>
         /// </summary>
         public int[] AnswerSVM(Queue<Double>[] rawStream)
-        {
+        {///our answer shouldnt be count 2 but one answer for whole data set we need to go up a lvl
             Queue<Double>[] aggregateData = mathServ.ApplyPCAue(rawStream);
             aggregateData = mathServ.Conversion_fft(aggregateData);
             double[][] testinput =

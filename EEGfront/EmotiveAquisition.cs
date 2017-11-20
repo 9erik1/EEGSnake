@@ -62,7 +62,7 @@ namespace EEGfront
 
         private EmotiveAquisition()
         {
-            Console.WriteLine("EMO Engine Ini");
+            Console.WriteLine("EMO Engine Init");
 
             isConnected = false;
             isActive = false;
@@ -109,7 +109,7 @@ namespace EEGfront
         private async void Engine_EmoEngineConnected(object sender, EmoEngineEventArgs e)
         {
             Console.WriteLine("EMO Engine Connected");
-            Console.WriteLine("EMO Engine DataAquisition Attempt");
+            Console.WriteLine("EMO Engine DataAcquisition Attempt");
             await Task.Delay(5000);
             try
             {
@@ -121,12 +121,12 @@ namespace EEGfront
                     update.Start();
                 }
 
-                Console.WriteLine("EMO Engine DataAquisition Success");
+                Console.WriteLine("EMO Engine DataAcquisition Success");
                 isConnected = true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("EMO Engine DataAquisition Fail" + " | Exteption: " + ex.Message);
+                Console.WriteLine("EMO Engine DataAquisition Fail" + " | Exception: " + ex.Message);
                 update = new Thread(new ThreadStart(SimulationUpdate));
                 update.Start();
             }
@@ -187,14 +187,14 @@ namespace EEGfront
                 {
                     pass = false;
                     isActive = false;
-                    Console.WriteLine("Live Raw Packet Request Faield Nulley");
+                    Console.WriteLine("Live Raw Packet Request Failed; Null Reference Exception");
                 }
                 catch
                 {
                     pass = false;
                     isConnected = false;
                     engine.Connect();
-                    Console.WriteLine("Live Raw Packet Request Faield Dong");
+                    Console.WriteLine("Live Raw Packet Request Failed Dong");
                 }
 
                 if (pass)
