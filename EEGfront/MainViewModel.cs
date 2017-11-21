@@ -45,6 +45,7 @@ namespace EEGfront
 
         public MainViewModel(string idTag)
         {
+            secretidtag = idTag;
             snakeLogic = new Snake();
             restService = Rest.Instance;
             stream = EmotiveAquisition.Instance;
@@ -437,11 +438,11 @@ namespace EEGfront
             s.Close();
 
             //svm
-            var payload = new MemoryStream();
-            Serializer.Save(machineStudent.Learn, payload);
-            payload.Position = 0;
-            await restService.UpdateModelLern(secretidtag, payload);
-            payload.Close();
+            //var payload = new MemoryStream();
+            //Serializer.Save(machineStudent.Learn, payload);
+            //payload.Position = 0;
+            //await restService.UpdateModelLern(secretidtag, payload);
+            //payload.Close();
         }
 
         public string[] Title { get; private set; }
