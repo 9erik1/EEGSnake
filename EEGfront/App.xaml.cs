@@ -11,7 +11,7 @@ namespace EEGfront
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             var login = new Login();
-            login.DataContext = new LoginViewModel();
+            login.DataContext = LoginViewModel.Instance;
             login.Show();
         }
     }

@@ -44,7 +44,6 @@ namespace EEGfront
         {
             this.WindowState = System.Windows.WindowState.Maximized;
             InitializeComponent();
-            snakeGameInput = new MainViewModel("");
             drawL = new Thread(new ThreadStart(DrawL));
             drawL.Start();
             drawR = new Thread(new ThreadStart(DrawR));
@@ -67,6 +66,9 @@ namespace EEGfront
 
         private async void GameThread()
         {
+            await Task.Delay(1000);
+            var x = LoginViewModel.Instance.mvm;
+            snakeGameInput = x;
             while (isDraw)
             {
                 await Task.Delay(100);

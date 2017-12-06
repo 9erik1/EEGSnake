@@ -8,7 +8,21 @@ namespace EEGfront
 {
     public class LoginViewModel : INotifyPropertyChanged
     {
+        private static LoginViewModel instance;
+
+        public static LoginViewModel Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new LoginViewModel();
+                }
+                return instance;
+            }
+        }
         private HandShake loginModule;
+        public MainViewModel mvm;
 
         public LoginViewModel()
         {
@@ -38,12 +52,12 @@ namespace EEGfront
                     var pca = new MainWindow();
 
                     userid = userid.Trim('}');
-                    var x = new MainViewModel(userid);            
-                    pca.DataContext = x;
+                    mvm = new MainViewModel(userid);
+                    pca.DataContext = mvm;
 
                     pca.Show();
                     pca.Closing += Pca_Closed;
-                }   
+                }
             }
             catch (Exception e)
             {
