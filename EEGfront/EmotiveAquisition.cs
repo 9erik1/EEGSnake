@@ -68,7 +68,7 @@ namespace EEGfront
             isActive = false;
 
             double f_s = 128;
-            N = 16 * f_s;
+            N = 4 * f_s;
             frequencyBins = new double[(int)N / 2];
             for (int k = 0; k < frequencyBins.Length; k++)
                 frequencyBins[k] = k * f_s / N;
