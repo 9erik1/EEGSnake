@@ -4,6 +4,7 @@ using Accord.Statistics.Analysis;
 using System;
 using System.Collections.Generic;
 using System.Numerics;
+using System.Linq;
 
 namespace EEGfront
 {
@@ -71,7 +72,26 @@ namespace EEGfront
         /// </summary>
         public double[][] ApplyPCArr(Queue<Double>[] rawStream)
         {
-            return Todo(rawStream);
+            PrincipalComponentAnalysis pcaLib = new PrincipalComponentAnalysis(PrincipalComponentMethod.Center);
+
+            var pca = new double[4][];
+            pca[0] = rawStream[0].ToArray();
+            pca[1] = rawStream[1].ToArray();
+            pca[2] = rawStream[2].ToArray();
+            pca[3] = rawStream[3].ToArray();
+
+            // Apply PCA
+            pcaLib.Learn(pca.Transpose());
+            double[][] actual = pcaLib.Transform(pca.Transpose());
+
+            // Apply Reverse PCA to Time-Series
+            double[][] reconstructedComp = new double[2][];
+            reconstructedComp[0] = pcaLib.ComponentVectors[1];
+            reconstructedComp[1] = pcaLib.ComponentVectors[2];
+
+            actual = actual.Dot(reconstructedComp);
+            actual = actual.Transpose();
+            return actual;
         }
 
         /// <summary>GetPcaComponent is a method in the DataProcessingPlant class.
@@ -175,28 +195,16 @@ namespace EEGfront
 
         }
 
-        private double[][] Todo(Queue<Double>[] rawStream)
+        public double[] NormalizeData(IEnumerable<double> data, int min, int max)
         {
-            PrincipalComponentAnalysis pcaLib = new PrincipalComponentAnalysis(PrincipalComponentMethod.Center);
+            double dataMax = data.Max();
+            double dataMin = data.Min();
+            double range = dataMax - dataMin;
 
-            var pca = new double[4][];
-            pca[0] = rawStream[0].ToArray();
-            pca[1] = rawStream[1].ToArray();
-            pca[2] = rawStream[2].ToArray();
-            pca[3] = rawStream[3].ToArray();
-
-            // Apply PCA
-            pcaLib.Learn(pca.Transpose());
-            double[][] actual = pcaLib.Transform(pca.Transpose());
-
-            // Apply Reverse PCA to Time-Series
-            double[][] reconstructedComp = new double[2][];
-            reconstructedComp[0] = pcaLib.ComponentVectors[1];
-            reconstructedComp[1] = pcaLib.ComponentVectors[2];
-
-            actual = actual.Dot(reconstructedComp);
-            actual = actual.Transpose();
-            return actual;
+            return data
+                .Select(d => (d - dataMin) / range)
+                .Select(n => ((1 - n) * min + n * max))
+                .ToArray();
         }
     }
 }

@@ -35,8 +35,8 @@ namespace EEGfront
                 aggregateData = mathServ.Conversion_fft(aggregateData);
                 outs.Add(0);
                 outs.Add(0);
-                inns.Add(aggregateData[1].ToArray());
-                inns.Add(aggregateData[2].ToArray());
+                inns.Add(mathServ.NormalizeData(aggregateData[1].ToArray(), 0, 1));
+                inns.Add(mathServ.NormalizeData(aggregateData[2].ToArray(), 0, 1));
             }
 
             foreach (Tuple<Queue<Double>[], DateTime> qd in x)
@@ -47,8 +47,8 @@ namespace EEGfront
                 outs.Add(1);
                 outs.Add(1);
                 //we have count 6 arrays instead of 4
-                inns.Add(aggregateData[1].ToArray());
-                inns.Add(aggregateData[2].ToArray());
+                inns.Add(mathServ.NormalizeData(aggregateData[1].ToArray(), 0, 1));
+                inns.Add(mathServ.NormalizeData(aggregateData[2].ToArray(), 0, 1));
             }
 
             foreach (Tuple<Queue<Double>[], DateTime> qd in y)
@@ -57,8 +57,8 @@ namespace EEGfront
                 aggregateData = mathServ.Conversion_fft(aggregateData);
                 outs.Add(2);
                 outs.Add(2);
-                inns.Add(aggregateData[1].ToArray());
-                inns.Add(aggregateData[2].ToArray());
+                inns.Add(mathServ.NormalizeData(aggregateData[1].ToArray(), 0, 1));
+                inns.Add(mathServ.NormalizeData(aggregateData[2].ToArray(), 0, 1));
             }
 
             foreach (Tuple<Queue<Double>[], DateTime> qd in z)
@@ -67,8 +67,8 @@ namespace EEGfront
                 aggregateData = mathServ.Conversion_fft(aggregateData);
                 outs.Add(3);
                 outs.Add(3);
-                inns.Add(aggregateData[1].ToArray());
-                inns.Add(aggregateData[2].ToArray());
+                inns.Add(mathServ.NormalizeData(aggregateData[1].ToArray(), 0, 1));
+                inns.Add(mathServ.NormalizeData(aggregateData[2].ToArray(), 0, 1));
             }
 
             MulticlassSupportVectorLearning<Gaussian> teacher = new MulticlassSupportVectorLearning<Gaussian>()
@@ -83,6 +83,7 @@ namespace EEGfront
                 }
             };
 
+            //teacher.ParallelOptions.MaxDegreeOfParallelism = 1;
 
             Learn = teacher.Learn(inns.ToArray(), outs.ToArray());
 
