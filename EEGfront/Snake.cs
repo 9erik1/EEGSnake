@@ -141,14 +141,13 @@ namespace EEGfront
 
             if(shmelts.Count()>1)
             {
-                // reset snake
+                // Reset Snake
                 dir = SnakeMotivation.Down;
                 snakeUser.Clear();
                 snakeUser.AddFirst(new SnakeCube(0, 0));
                 snakeUser.AddFirst(new SnakeCube(0, 1));
                 snakeUser.AddFirst(new SnakeCube(0, 2));
             }
-
 
             if (face.Y == applePos.X && face.X == applePos.Y)
             {
@@ -186,7 +185,6 @@ namespace EEGfront
                     Console.WriteLine("Ctrl+F 'fortnight' asap!!!!!!!");
                     break;
             }
-
 
             snakeUser.AddFirst(new SnakeCube(applePos.Y + xHit, applePos.X + yHit));
         }

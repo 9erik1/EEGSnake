@@ -61,7 +61,6 @@ namespace EEGfront
                 }
             }
 
-
             return proxy;
         }
 
@@ -84,13 +83,14 @@ namespace EEGfront
             pcaLib.Learn(pca.Transpose());
             double[][] actual = pcaLib.Transform(pca.Transpose());
 
-            // Apply Reverse PCA to Time-Series
+            //Remove the First and Last Component, to Prepare Reconstruction and Filter Out Components
             double[][] reconstructedComp = new double[2][];
             reconstructedComp[0] = pcaLib.ComponentVectors[1];
             reconstructedComp[1] = pcaLib.ComponentVectors[2];
-
+            // Apply Reverse PCA to Time-Series
             actual = actual.Dot(reconstructedComp);
             actual = actual.Transpose();
+
             return actual;
         }
 
@@ -124,9 +124,7 @@ namespace EEGfront
                 }
             }
 
-
             return proxy;
-
             //return actual.Transpose();
         }
 
@@ -140,11 +138,11 @@ namespace EEGfront
             for (int rawI = 0; rawI < raw_proxy.Length; rawI++)
             {
                 proxy[rawI] = new Queue<double>();
-                Complex[] complex_raw_proxy = new Complex[raw_proxy[rawI].Count];  // INITIALIZING FOR CONVERSION OF THE double INPUT TO a Complex variable
+                Complex[] complex_raw_proxy = new Complex[raw_proxy[rawI].Count];  // Initializing for Conversion of the double Input to a Complex Variable
 
-                ///// CONVERT TO COMPLEX VALUES /////
+                ///// Convert To Complex Values /////
                 double[] rr = raw_proxy[rawI].ToArray();
-                int buffer_window = 0;                                                  // ignoring this many data points due to startup of data acquisition (not necessary for sim data)
+                int buffer_window = 0;                                                  // Ignoring this many data points due to startup of data acquisition (not necessary for sim data)
                 for (int j = buffer_window; j < complex_raw_proxy.Length; j++)
                 {
                     //complex_raw[j] = new Complex(p[j], 0); // redundant
@@ -192,7 +190,6 @@ namespace EEGfront
             }
 
             return dd7;
-
         }
 
         public double[] NormalizeData(IEnumerable<double> data, int min, int max)

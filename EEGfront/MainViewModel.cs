@@ -357,26 +357,16 @@ namespace EEGfront
         }
 
         private void Learn()
-
         {
-
             try
-
             {
-
-
                 PackLearn();
                 Console.WriteLine("SVM Updated Successfully");
             }
-
             catch (Exception e)
-
             {
-
                 Console.WriteLine("Failed for basic reason: " + e);
-
             }
-
         }
 
         private void Answer()
@@ -402,31 +392,6 @@ namespace EEGfront
             }
         }
 
-        private ICommand learnCommand;
-
-        public ICommand LearnCommand
-
-        {
-
-            get
-            {
-
-                if (learnCommand == null)
-
-                {
-
-                    learnCommand = new RelayCommand(
-
-                         p => true,
-
-                      p => this.Learn());
-                }
-
-                return learnCommand;
-            }
-	
-        }
-
         private async void Push()
         {
             //raw
@@ -450,6 +415,7 @@ namespace EEGfront
         public int Dir { get; set; }
         public int Trials { get; set; }
 
+        #region ICommand Button Commands
         private ICommand manualCommand;
         public ICommand ManualCommand
         {
@@ -462,6 +428,23 @@ namespace EEGfront
                         p => this.ManTest());
                 }
                 return manualCommand;
+            }
+        }
+
+        private ICommand learnCommand;
+        public ICommand LearnCommand
+        {
+            get
+            {
+                if (learnCommand == null)
+                {
+                    learnCommand = new RelayCommand(
+
+                         p => true,
+
+                      p => this.Learn());
+                }
+                return learnCommand;
             }
         }
 
@@ -509,9 +492,9 @@ namespace EEGfront
                 return pushCommand;
             }
         }
+        #endregion
 
-
-        #region Dir Toggles  
+        #region Direction Toggles  
         private Visibility upToggle;
         public Visibility UpToggle
         {
@@ -624,7 +607,6 @@ namespace EEGfront
             }
         }
 
-
         private SolidColorBrush[][] snakeGameProx = new SolidColorBrush[20][];
         private SolidColorBrush[][] snakeGame = new SolidColorBrush[20][];
         public SolidColorBrush[][] SnakeGame
@@ -642,7 +624,6 @@ namespace EEGfront
                 }
             }
         }
-
 
         public string DisplayedImage
         {
