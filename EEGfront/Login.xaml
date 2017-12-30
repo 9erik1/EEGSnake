@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EEGfront"
         mc:Ignorable="d"
-        Title="Login" Height="300" Width="300">
+        Title="Login" Height="325" Width="300">
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="{Binding TrainToggle}">
             <TextBlock Margin="10" FontSize="35" TextAlignment="Center">EEGsnake</TextBlock>
@@ -14,7 +14,7 @@
             <TextBox Height="30" Width="200" Text="{Binding User}"></TextBox>
             <TextBox Height="30" Width="200" Text="{Binding Pass}"></TextBox>
             <Button Command="{Binding OptionChanged}" Margin="10, 25, 10, 10" IsDefault="True" >Login</Button>
-            <TextBlock TextWrapping="Wrap" Height="30" Width="200" Text="{Binding Err}"></TextBlock>
+            <TextBlock TextWrapping="Wrap" Height="30" Width="200" TextAlignment="Center" Text="{Binding Err}"></TextBlock>
         </StackPanel>
     </Grid>
 </Window>
