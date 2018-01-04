@@ -1,5 +1,7 @@
-﻿using Accord.MachineLearning.VectorMachines;
+﻿using Accord.MachineLearning;
+using Accord.MachineLearning.VectorMachines;
 using Accord.MachineLearning.VectorMachines.Learning;
+using Accord.Math.Optimization.Losses;
 using Accord.Statistics.Kernels;
 using System;
 using System.Collections.Generic;
@@ -69,6 +71,67 @@ namespace EEGfront
                 //inns.Add(mathServ.NormalizeData(aggregateData[2].ToArray(), 0, 1));
             }
 
+            //experimental
+            // Ensure results are reproducible
+            Accord.Math.Random.Generator.Seed = 0;
+
+            // Example binary data
+            double[][] inputs =
+            {
+                new double[] { -1, -1 },
+                new double[] { -1,  1 },
+                new double[] {  1, -1 },
+                new double[] {  1,  1 }
+            };
+
+            int[] xor = // xor labels
+            {
+                -1, 1, 1, -1
+            };
+
+            // Instantiate a new Grid Search algorithm for Kernel Support Vector Machines
+            var gridsearch = new Accord.MachineLearning.Performance.GridSearch<SupportVectorMachine<Accord.Statistics.Kernels.Polynomial>, double[], int>()
+            {
+                // Here we can specify the range of the parameters to be included in the search
+                ParameterRanges = new Accord.MachineLearning.GridSearchRangeCollection()
+                {
+                    new GridSearchRange("complexity", new double[] { 0.00000001, 5.20, 0.30, 0.50 } ),
+                    new GridSearchRange("degree",     new double[] { 1, 10, 2, 3, 4, 5 } ),
+                    new GridSearchRange("constant",   new double[] { 0, 1, 2 } )
+                },
+
+                // Indicate how learning algorithms for the models should be created
+                Learner = (p) => new SequentialMinimalOptimization<Accord.Statistics.Kernels.Polynomial>
+                {
+                    Complexity = p["complexity"],
+                    Kernel = new Accord.Statistics.Kernels.Polynomial((int)p["degree"], p["constant"])
+                },
+
+                // Define how the performance of the models should be measured
+                Loss = (actual, expected, m) => new ZeroOneLoss(expected).Loss(actual)
+            };
+
+            // If needed, control the degree of CPU parallelization
+            gridsearch.ParallelOptions.MaxDegreeOfParallelism = 1;
+
+            // Search for the best model parameters
+            var result = gridsearch.Learn(inputs, xor);
+
+            // Get the best SVM found during the parameter search
+            SupportVectorMachine<Accord.Statistics.Kernels.Polynomial> svm = result.BestModel;
+
+            // Get an estimate for its error:
+            double bestError = result.BestModelError;
+
+            // Get the best values found for the model parameters:
+            double bestC = result.BestParameters["complexity"].Value;
+            Console.WriteLine("bestC: "+ bestC + "------------");
+            double bestDegree = result.BestParameters["degree"].Value;
+            Console.WriteLine("bestDegree: " + bestDegree + "------------");
+            double bestConstant = result.BestParameters["constant"].Value;
+            Console.WriteLine("bestConstant: " + bestConstant + "------------");
+
+            //
             MulticlassSupportVectorLearning<Gaussian> teacher = new MulticlassSupportVectorLearning<Gaussian>()
             {
                 // Configure the learning algorithm to use SMO to train the
